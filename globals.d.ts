@@ -1,0 +1,1 @@
+declare var content: Record<string, unknown>;

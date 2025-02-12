@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "jsx": "react",
+    "target": "esnext",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@common/*": ["src/common/*"],
+      "@components/*": ["src/components/*"],
+      "@styled": ["node_modules/@n3e/styled"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+    "dist",
+    "bin"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "presets": [
+    ["@babel/preset-env"],
+    ["@babel/preset-react"]
+  ],
+  "plugins": [
+    ["module-resolver", {
+      "alias": {
+        "@common": "./src/common",
+        "@components": "./src/components",
+        "@styled": "./node_modules/@n3e/styled"
+      }
+    }]
+  ]
+}
