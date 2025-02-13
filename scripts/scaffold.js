@@ -10,7 +10,7 @@ import {
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { getStyles } from '@n3e/styled';
+import { getStyles } from '@styled';
 
 import { App } from '@components/App';
 
@@ -67,26 +67,45 @@ sync('src/app/**/index.html').map((file) => {
   }
 
   const content = readFileSync(file, 'utf8');
-  const heading = content.match(/<h1>([^$]+?)<\/h1>/);
-  const sections = (content.match(/<h2>/g) || []).length;
-  const title = heading ? heading[1] : '';
+  const orderComment = content.match(/<!--order:([^$]+?)-->/);
+  const order = orderComment ? +orderComment[1] : 0;
+  
+  const headingMatch = content.match(/<h1>([^$]+?)<\/h1>/);
+  const title = headingMatch ? headingMatch[1] : '';
+
+  const sectionMatch = 
+    content.match(/<h2 id="(.*?)">([^$]+?)<\/h2>/g) || [];
+  const sections = /** @type {string[]} */(sectionMatch).map((str) => {
+    const stripped = str
+      .replace('<h2 id="', '')
+      .replace('</h2>', '');
+    const [id, text] = stripped.split('">');
+
+    return {
+      id,
+      text
+    }
+  });
 
   const route = title.toLowerCase().replace('basics', '');
   const path = `/${route}`;
 
   return {
     content,
+    order,
     output,
     path,
     sections,
     title
   };
-}).forEach(({
+}).sort((a, b) => (
+  a.order - b.order
+)).forEach(({
   output,
   path
 }, _, array) => {
   const data = {
-    active: path,
+    currentPage: path,
     pages: array.map(({
       content,
       path,
