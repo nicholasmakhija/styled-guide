@@ -3,10 +3,10 @@ import { hydrateRoot } from 'react-dom/client';
 import { App } from '@components/App';
 
 const root = document.getElementById('root');
-const content = window.content;
+const data = window.data;
 
 hydrateRoot(root, 
   <StrictMode>
-    <App {...content} />
+    <App {...data} />
   </StrictMode>
 );

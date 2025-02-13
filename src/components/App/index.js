@@ -3,16 +3,30 @@ import { AppRoot } from './elements';
 
 /** 
  * @param {{
- *  innerHTML?: unknown;
+ *  active?: string
+ *  pages?: {
+ *    content: string,
+ *    path: string,
+ *    title: string,
+ *    sections: number
+ *  }[];
  * }} props
  * @returns {JSX.Element}
  */
 export const App = ({
-  innerHTML
+  active,
+  pages = []
 }) => {
   return (
-    <AppRoot dangerouslySetInnerHTML={{
-      __html: innerHTML
-    }} />
+    <AppRoot data-current-page={active}>
+      {pages.map((page, index) => page.path === active && (
+        <div 
+          key={`${index}-${page.title}-${page.sections}`}
+          dangerouslySetInnerHTML={{
+            __html: page.content
+          }}
+        />
+      ))}
+    </AppRoot>
   );
 }
