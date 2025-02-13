@@ -56,6 +56,33 @@ export const renderHTML = (sheets, data, html) =>
 </body>
 </html>`;
 
+/**
+ * @param {string} str 
+ * @param {RegExp} regex 
+ * @returns {{
+ *  list: (RegExpMatchArray|string)[],
+ *  matched: string
+ * }}
+ */
+const execData = (str, regex) => {
+  const matchedArray = str.match(regex);
+  const cleaned = matchedArray || [];
+
+  return {
+    list: cleaned,
+    matched: cleaned.length ? cleaned[1] : ''
+  };
+};
+
+/**
+ * @param {string} heading 
+ * @returns {Section}
+ */
+const getSectionData = (heading) => ({
+  id: execData(heading, /id="(.*?)"/).matched,
+  text: execData(heading, />(.*?)<\/h2>/).matched
+});
+
 sync('src/app/**/index.html').map((file) => {
   const output = file.replace('src/app', 'dist');
   const dir = dirname(output);
@@ -67,28 +94,14 @@ sync('src/app/**/index.html').map((file) => {
   }
 
   const content = readFileSync(file, 'utf8');
-  const orderComment = content.match(/<!--order:([^$]+?)-->/);
-  const order = orderComment ? +orderComment[1] : 0;
-  
-  const headingMatch = content.match(/<h1>([^$]+?)<\/h1>/);
-  const title = headingMatch ? headingMatch[1] : '';
+  const order = +execData(content, /<!--order:([^$]+?)-->/).matched;
 
-  const sectionMatch = 
-    content.match(/<h2 id="(.*?)">([^$]+?)<\/h2>/g) || [];
-  const sections = /** @type {string[]} */(sectionMatch).map((str) => {
-    const stripped = str
-      .replace('<h2 id="', '')
-      .replace('</h2>', '');
-    const [id, text] = stripped.split('">');
-
-    return {
-      id,
-      text
-    }
-  });
-
+  const title = execData(content, /<h1>([^$]+?)<\/h1>/).matched;
   const route = title.toLowerCase().replace('basics', '');
   const path = `/${route}`;
+
+  const headings = execData(content, /<h2 id="(.*?)">([^$]+?)<\/h2>/g).list;
+  const sections = headings.map(getSectionData);
 
   return {
     content,
