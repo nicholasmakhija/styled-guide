@@ -1,37 +1,113 @@
+<!--order:1-->
 <h1>Basics</h1>
 
-<h2 data-skip>Styled</h2>
+<section>
+<h2>Styled</h2>
 
-<p>A high performance and easy to use CSS-in-JS library with support for server-side rendering. Built similar to other popular libraries, with a familiar API, providing a great overall developer experience.</p>
+  <p>A high performance and easy to use CSS-in-JS library with support for server-side rendering. Built similar to other popular libraries, with a familiar API, providing a great overall developer experience.</p>
 
-<p>Styles are defined using Object Literal syntax, meaning instead of writing properties in <code>kebab-case</code> like regular CSS, they are in <code>camelCase</code> eg: <code>max-width</code> would be <code>maxWidth</code>. Don't worry, Styled provides autocompletion and type checking for CSS properties and values thanks to <a href="https://github.com/frenic/csstype#readme">CSSType</a>.</p>
+  <p>Styles are defined using Object Literal syntax, meaning instead of writing properties in <code>kebab-case</code> like regular CSS, they are in <code>camelCase</code> eg: <code>max-width</code> would be <code>maxWidth</code>. Don't worry, Styled provides autocompletion and type checking for CSS properties and values thanks to <a href="https://github.com/frenic/csstype#readme">CSSType</a>.</p>
 
-<p>There is also a way to define global styles using CSS, more on that later.</p>
+  <p>There is also a way to define global styles using CSS, more on that later.</p>
+</section>
 
-<h2>Installation</h2>
+<section>
+  <h2 id="installation">Installation</h2>
 
-<p>Install Styled using your favourite package manager</p>
+  <p>Install Styled using your favourite package manager</p>
 
-<pre><code>
-  <span data-comment># with npm</span>
-  <span data-function>npm</span> install @n3e/styled
-  
-  <span data-comment># with yarn</span>
-  <span data-function>yarn</span> add @n3e/styled
+<pre><code><!--
+--><span data-comment># with npm</span>
+<span data-function>npm</span> install @n3e/styled
 
-  <span data-comment># with pnpm</span>
-  <span data-function>pnpm</span> add @n3e/styled
+<span data-comment># with yarn</span>
+<span data-function>yarn</span> add @n3e/styled
 
-  <span data-comment># with bun</span>
-  <span data-function>bun</span> add @n3e/styled
+<span data-comment># with pnpm</span>
+<span data-function>pnpm</span> add @n3e/styled
+
+<span data-comment># with bun</span>
+<span data-function>bun</span> add @n3e/styled
 </code></pre>
 
-<p>Once installed, just import like so</p>
+  <p>Once installed, just import like so</p>
 
-<pre><code>
-  <span data-keyword>import</span> styled <span data-keyword>from</span> <span data-string>'@n3e/styled'</span>
+<pre><code><!--
+--><span data-keyword>import</span> styled <span data-keyword>from</span> <span data-string>'@n3e/styled'</span>;
 </code></pre>
+</section>
 
-<h2>Getting started</h2>
+<section>
+  <h2 id="getting-started">Getting started</h2>
 
-<p>Let's start by building a simple button.</p>
+  <p>Let's start by building a simple button.</p>
+
+<pre><code></code></pre>
+</section>
+
+<section>
+  <h2 id="pseudo">Pseudo</h2>
+
+  <p>Styled comes with a <a href="/api">helper</a> for writing pseudo styles, below is an example of how to use <code>pseudo-classes</code>.</p>
+
+<pre><code></code></pre>
+
+  <p>Similarly <code>pseudo-element</code> styles are defined as shown below.</p>
+
+<pre><code></code></pre>
+</section>
+
+<section>
+  <h2 id="combinator">Combinator</h2>
+
+  <h3>Descendant combinator</h3>
+
+<pre><code></code></pre>
+
+  <h3>Child combinator (>)</h3>
+
+<pre><code></code></pre>
+
+  <h3>Sibling combinators (~ or +)</h3>
+
+<pre><code></code></pre>
+</section>
+
+<section>
+  <h2 id="attribute-selector">Attribute selectors</h2>
+
+  <p>You can event create selectors based on attributes and yes, Styled does comes with a <a href="/api#attribute-builder">helper</a> for creating these.</p>
+
+<pre><code></code></pre>
+</section>
+
+<section>
+  <h2 id="at-rules">At-rules</h2>
+
+  <p>Nested at-rules such as <code>@media</code>, <code>@supports</code> and even <code>@container</code> are declared as demonstrated below.</p>
+
+<pre><code></code></pre>
+
+  <p>For examples of <code>@keyframes</code> and <code>@font-face</code>, refer to <a href="/api#global-styles">API</a> section.</p>
+
+  <p>Styled also exposes a <a href="/api#media-query-builder">API</a> for building media queries.</p>
+</section>
+
+<section>
+  <h2 id="prop-based-styles">Prop based styles</h2>
+
+  <p>Property matching or pattern matching can be achieved by calling the <code>prop</code> method on the <code>style</code> helper.</p>
+
+<pre><code></code></pre>
+
+  <p>You can even specify a function that takes the prop being matched as its only argument and also type the props for the same.</p>
+
+<pre><code></code></pre>
+
+  <blockquote>
+    <strong>IMPORTANT!</strong>
+    <p>In order to avoid maintaining a whitelist of props that are not meant to be passed down to the underlying HTML tag, all props used in any of the pattern matching functions will be treated as transient props and will <strong>NOT</strong> flow downward.</p>
+
+    <p>Thus in the example above <code>width</code> and <code>height</code> props will not be passed to the underlying <code>svg</code> tag, so ensure styles are defined to handle that.</p>
+  </blockquote>
+</section>
