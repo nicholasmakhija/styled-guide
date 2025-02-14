@@ -108,6 +108,7 @@ export const Main = styled.main({
     whiteSpace: 'pre'
   },
   [style.selector('[data-table]')]: {
+    boxShadow: `inset 0 0 0 ${asRem(1)} ${CSS_VARS.BORDER_SECONDARY}`,
     padding: `0 ${asRem(8)}`,
     overflow: 'hidden',
     overflowX: 'auto',
