@@ -13,6 +13,10 @@ import { renderToString } from 'react-dom/server';
 import { getStyles } from '@styled';
 
 import { App } from '@components/App';
+import {
+  CLASS_NAME_IS_DARK_MODE,
+  KEY_IS_DARK_MODE
+} from '../src/common/utils/theme.js';
 
 /**
  * @param {string} sheets
@@ -49,6 +53,23 @@ export const renderHTML = (sheets, data, html) =>
 
   ${sheets}
   <script>var data = ${data};</script>
+  <script>
+    (function () {
+      const html = document.documentElement;
+      const isDark = window.localStorage.getItem('${KEY_IS_DARK_MODE}') === 'true';
+
+      window.localStorage.setItem('${KEY_IS_DARK_MODE}', isDark);
+
+      if (isDark) {
+        html.classList.add('${CLASS_NAME_IS_DARK_MODE}');
+      } else {
+        html.classList.remove('${CLASS_NAME_IS_DARK_MODE}');
+      }
+
+      // FIXME: DELETE!
+      console.log("DOM content loaded");
+    })();
+  </script>
   <script defer src="/js/index.js"></script>
 </head>
 <body>
@@ -80,7 +101,7 @@ const execData = (str, regex) => {
  */
 const getSectionData = (heading) => ({
   id: execData(heading, /id="(.*?)"/).matched,
-  text: execData(heading, />(.*?)<\/h2>/).matched
+  text: execData(heading, />(.*?)<\//).matched
 });
 
 sync('src/app/**/index.html').map((file) => {
@@ -101,7 +122,13 @@ sync('src/app/**/index.html').map((file) => {
   const path = `/${route}`;
 
   const headings = execData(content, /<h2 id="(.*?)">([^$]+?)<\/h2>/g).list;
+  // const headings = execData(content, /<h[2-3] id="(.*?)">([^$]+?)<\/h[2-3]>/g).list; // all h2, h3
   const sections = headings.map(getSectionData);
+
+  // DEBUG:
+  // console.group(file);
+  // console.log('sections', sections);
+  // console.groupEnd();
 
   return {
     content,

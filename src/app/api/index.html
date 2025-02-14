@@ -1,4 +1,618 @@
 <!--order:2-->
 <h1>API</h1>
 
-<h2 id="style-helper">Style Helper</h2>
+<section>
+  <h2 id="style-helper">Style Helper</h2>
+
+  <p>Styled also exposes a helper for writing pseudo, attribute and prop selectors.</p>
+
+<pre><code><!--
+--><span data-keyword>import </span> styled { style } <span data-keyword>from</span> <span data-string>'@n3e/styled'</span>;
+
+<span data-keyword>export const</span> <span data-variable>SomeElement</span> <span data-keyword>=</span> <span data-variable>styled</span>.<span data-function>button</span>(<span data-keyword>{</span>
+  [<span data-variable>style</span>.disabled]<span data-keyword>:</span> {
+    <span data-comment>// disabled ui styles</span>
+  }
+<span data-keyword>}</span>);
+</code></pre>
+
+  <h3>Pseudo Elements</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Param</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>after</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>backdrop</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>before</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>cue</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>cueRegion</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>firstLetter</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>firstLine</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>fileSelectorButton</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>marker</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>placeholder</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>selection</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>part</td>
+        <td>function</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>slotted</td>
+        <td>function</td>
+        <td>string</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Pseudo Classes</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Param</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>active</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>anyLink</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>autofill</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>checked</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>default</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>defined</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>disabled</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>empty</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>enabled</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>first</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>firstChild</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>firstOfType</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>fullscreen</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>focus</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>focusVisible</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>focusWithin</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>hover</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>indeterminate</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>inRange</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>invalid</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>lastChild</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>lastOfType</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>left</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>link</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>modal</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>onlyChild</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>onlyOfType</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>optional</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>outOfRange</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>pictureInPicture</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>placeholderShown</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>paused</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>playing</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>readOnly</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>readWrite</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>required</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>right</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>root</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>scope</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>target</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>valid</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>visited</td>
+        <td>string</td>
+        <td>n/a</td>
+      </tr>
+      <tr>
+        <td>host</td>
+        <td>function</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>lang</td>
+        <td>function</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>is</td>
+        <td>function</td>
+        <td>string[]</td>
+      </tr>
+      <tr>
+        <td>not</td>
+        <td>function</td>
+        <td>string[]</td>
+      </tr>
+      <tr>
+        <td>where</td>
+        <td>function</td>
+        <td>string[]</td>
+      </tr>
+      <tr>
+        <td>nthChild</td>
+        <td>function</td>
+        <td>number/string</td>
+      </tr>
+      <tr>
+        <td>nthLastChild</td>
+        <td>function</td>
+        <td>number/string</td>
+      </tr>
+      <tr>
+        <td>nthLastOfType</td>
+        <td>function</td>
+        <td>number/string</td>
+      </tr>
+      <tr>
+        <td>nthOfType</td>
+        <td>function</td>
+        <td>number/string</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 id="attribute-builder">Attribute builder</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Method</th>
+        <th scope="col">Arg type</th>
+        <th scope="col">CSS syntax</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>equals</td>
+        <td>string[]</td>
+        <td>[attr=value]</td>
+      </tr>
+      <tr>
+        <td>contains</td>
+        <td>string[]</td>
+        <td>[attr~=value]</td>
+      </tr>
+      <tr>
+        <td>containsAny</td>
+        <td>string[]</td>
+        <td>[attr*=value]</td>
+      </tr>
+      <tr>
+        <td>startsWith</td>
+        <td>string[]</td>
+        <td>[attr^=value]</td>
+      </tr>
+      <tr>
+        <td>endsWith</td>
+        <td>string[]</td>
+        <td>[attr$=value]</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Combinators</h3>
+
+  <p><code>style.or</code> for creating nested selector lists <i>(comma separated)</i></p>
+
+<pre><code></code></pre>
+
+  <p><code>style.and</code> for combining nested selectors</p>
+
+<pre><code></code></pre>
+</section>
+
+<section>
+  <h2 id="media-query-builder">Media Query builder</h2>
+
+  <p>Writing media queries can be made easy with the help of the <code>mq</code> helper that provides a nice DSL. Simply chain the exposed methods to build the desired media query string.</p>
+
+<pre><code><!--
+--><span data-keyword>import </span> styled { mq } <span data-keyword>from</span> <span data-string>'@n3e/styled'</span>;
+
+<span data-keyword>export const</span> <span data-variable>Container</span> <span data-keyword>=</span> <span data-variable>styled</span>.<span data-function>div</span>(<span data-keyword>{</span>
+  <span data-comment>// @media screen and (min-width: 768px) and (max-width: 991px) { ... }</span>
+  [<span data-function>mq</span>().<span data-function>screen</span>().<span data-function>from</span>(<span data-variable>768</span>).<span data-function>to</span>(<span data-variable>992</span>)]<span data-keyword>:</span> {
+    maxWidth<span data-keyword>:</span> <span data-string>'45rem'</span>
+  }
+<span data-keyword>}</span>);
+</code></pre>
+
+  <h3>Media Types</h3>
+
+  <p>The mq helper exposes 2 media type methods</p>
+
+  <ul>
+    <li><code>screen</code> which outputs <code>@media screen</code></li>
+    <li><code>print</code> which outputs <code>@media print</code></li>
+  </ul>
+
+  <h3>Defined media query features</h3>
+
+  <p>These methods accept a <code>string</code> argument which is of a pre-defined set</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Method</th>
+        <th scope="col">Allowed args</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>anyPointer</td>
+        <td>'fine' or 'coarse' or 'none'</td>
+      </tr>
+      <tr>
+        <td>colorGamut</td>
+        <td>'srgb' or 'p3' or 'rec2020'</td>
+      </tr>
+      <tr>
+        <td>displayMode</td>
+        <td>'fullscreen' or 'standalone' or 'minimal-ui' or 'browser'</td>
+      </tr>
+      <tr>
+        <td>orientation</td>
+        <td>'landscape' or 'portrait'</td>
+      </tr>
+      <tr>
+        <td>overflowBlock</td>
+        <td>'none' or 'scroll' or 'optional-paged' or 'paged'</td>
+      </tr>
+      <tr>
+        <td>pointer</td>
+        <td>'fine' or 'coarse' or 'none'</td>
+      </tr>
+      <tr>
+        <td>prefersColorScheme</td>
+        <td>'light' or 'dark'</td>
+      </tr>
+      <tr>
+        <td>prefersContrast</td>
+        <td>'no-preference' or 'more' or 'less'</td>
+      </tr>
+      <tr>
+        <td>scripting</td>
+        <td>'none' or 'initial-only' or 'enabled'</td>
+      </tr>
+      <tr>
+        <td>update</td>
+        <td>'none' or 'slow' or 'fast'</td>
+      </tr>
+      <tr>
+        <td>anyHover</td>
+        <td>'none' or 'hover'</td>
+      </tr>
+      <tr>
+        <td>hover</td>
+        <td>'none' or 'hover'</td>
+      </tr>
+      <tr>
+        <td>forcedColors</td>
+        <td>'none' or 'active'</td>
+      </tr>
+      <tr>
+        <td>grid</td>
+        <td>'0' or '1'</td>
+      </tr>
+      <tr>
+        <td>invertedColors</td>
+        <td>'none' or 'inverted'</td>
+      </tr>
+      <tr>
+        <td>overflowInline</td>
+        <td>'none' or 'scroll'</td>
+      </tr>
+      <tr>
+        <td>prefersReducedMotion</td>
+        <td>'no-preference' or 'reduce'</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Range media query features</h3>
+
+  <p>As the CSS specification defines, these are features that are prefixed with <code>min</code> and <code>max</code>.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Method</th>
+        <th scope="col">Arg type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>height</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>width</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>aspectRatio</td>
+        <td>string</td>
+      </tr>
+      <tr>
+        <td>color</td>
+        <td>number (optional)</td>
+      </tr>
+      <tr>
+        <td>colorIndex</td>
+        <td>number (optional)</td>
+      </tr>
+      <tr>
+        <td>monochrome</td>
+        <td>number (optional)</td>
+      </tr>
+      <tr>
+        <td>resolution</td>
+        <td>string</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>All the methods in the above table also have min and max versions. eg: <code>width(arg: string)</code> me can be used as <code>minWidth(arg: string)</code> as well as <code>maxWith(arg: string)</code>.</p>
+
+  <p>To help with <code>min-width</code> and <code>max-width</code> just use <code>from</code> and <code>to</code> accordingly. <strong>NOTE:</strong> <code>px</code> unit applied to number supplied to <code>to</code> or <code>from</code>.</p>
+
+  <h3>Escape hatch</h3>
+
+  <p>There is also an escape hatch to use media features not supplied by <code>mq</code> helper or an unofficial or experimental one.</p>
+
+  <p>The <code>feature</code> method takes 2 arguments, the feature name <code>string</code> and the feature value <code>number</code> or <code>string</code>.</p>
+
+<pre><code><!--
+--><span data-function>mq</span>().<span data-function>feature</span>(<span data-string>'awesome-new-feature'</span>, <span data-string>'100ghz'</span>)
+</code></pre>
+</section>
+
+<section>
+  <h2 id="global-styles">Global styles</h2>
+
+  <p>To set default styles for body, headings etc. just use <code>withCSS</code> method which accepts normal CSS as its arguments.</p>
+
+<pre><code></code></pre>
+
+  <p>CSS variables can also be defined using this method</p>
+
+<pre><code></code></pre>
+
+  <p>Keyframe animations can be declared and used like so</p>
+
+<pre><code></code></pre>
+
+  <p>Font face rules</p>
+
+<pre><code></code></pre>
+</section>
+
+<section>
+  <h2 id="supported-css">Supported CSS</h2>
+
+  <p>The following at-rules are supported:</p>
+
+  <ul>
+    <li>container</li>
+    <li>counter-style</li>
+    <li>font-face</li>
+    <li>keyframes</li>
+    <li>media</li>
+    <li>property</li>
+    <li>starting-style</li>
+    <li>supports</li>
+  </ul>
+</section>
