@@ -27,7 +27,7 @@ export const HeaderHamburger = () => {
 
   return (
     <HeaderButton
-      isMenu
+      isToggle
       isOpen={isOpen}
       onClick={clickHandler}
     >

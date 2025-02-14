@@ -116,6 +116,8 @@ export const NavLink = styled.a({
   padding: asRem(4),
   textDecoration: 'none',
   background: 'transparent',
+  // background: 'rgba(255, 204,0, 0.4)', // FIXME: alignment check
+  // boxShadow: `inset 0 0 0 4px ${CSS_VARS.BACKGROUND_PRIMARY}`, // FIXME: alignment check
   color: CSS_VARS.COLOR,
   cursor: 'pointer',
   transition: '0.3s cubic-bezier(0.2, 0, 0, 1)',
@@ -133,7 +135,7 @@ export const NavLink = styled.a({
   },
   [style.prop('isTitle')]: {
     fontWeight: 'bold',
-    fontSize: asRem(23),
+    fontSize: asRem(24),
     lineHeight: asRem(32),
     [style.after]: {
       content: '',
@@ -155,6 +157,7 @@ export const NavLink = styled.a({
     }
   },
   [style.props.all('isTitle', 'isActive')]: {
+    cursor: 'default',
     color: CSS_VARS.HIGHLIGHT,
     [style.after]: {
       width: asRem(8)

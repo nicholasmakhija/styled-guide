@@ -10,6 +10,17 @@ const contentParadigm = {
   }
 };
 
+/**
+ * @typedef {{
+ *  children?: React.ReactNode,
+ *  dangerouslySetInnerHTML?: {
+ *    __html: string
+ *  }
+ *  ref?: React.ForwardedRef<HTMLElement>
+ * }} MainProps
+ */
+
+/** @type {import('@styled').StyledComponent<MainProps>} */
 export const Main = styled.main({
   flex: 1,
   paddingRight: asRem(GUTTER_WIDTH),
@@ -32,6 +43,16 @@ export const Main = styled.main({
     }
   },
   [style.selector('h2', 'h3', 'h4', 'p', 'blockquote', 'pre', 'table')]: contentParadigm,
+  [style.selector('h2')]: {
+    // background: 'rgba(255, 204,0, 0.4)', // FIXME: alignment check
+    fontSize: asRem(24),
+    lineHeight: asRem(32),
+  },
+  [style.selector('h3')]: {
+    // background: 'rgba(255, 204,0, 0.4)', // FIXME: alignment check
+    fontSize: asRem(18),
+    lineHeight: asRem(32),
+  },
   [style.selector('section')]: {
     margin: `0 0 ${asRem(48)}`
   },
@@ -84,7 +105,7 @@ export const Main = styled.main({
       textAlign: 'left'
     }
   }
-});
+}).withRef();
 
 /* FIXME: DELETE
 .c { color: #697098; }

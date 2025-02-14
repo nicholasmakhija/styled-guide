@@ -103,7 +103,7 @@ export const Line = styled.span({
 
 /**
  * @typedef {HeaderActionProps & {
- *  isMenu?: boolean,
+ *  isToggle?: boolean,
  *  isOpen?: boolean,
  *  onClick?: (e: Event) => void,
  * }} HeaderButtonProps
@@ -117,7 +117,7 @@ export const HeaderButton = styled
     backgroundColor: 'transparent',
     appearance: 'none',
     cursor: 'pointer',
-    [style.prop('isMenu')]: {
+    [style.prop('isToggle')]: {
       position: 'relative',
       overflow: 'hidden',
       [breakpoints.up.lg]: {

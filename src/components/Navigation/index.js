@@ -16,13 +16,15 @@ import {
 export const EVENT_NAV_OPENED = 'nav:opened';
 
 /** 
- * @param {AppProps & {
+ * @param {{
+ *  currentPath: string,
+ *  pages: Page[]
  *  onChange: (arg: Route) => void
  * }} props
  * @returns {JSX.Element}
  */
 export const Navigation = ({
-  currentPage,
+  currentPath,
   pages = [],
   onChange
 }) => {
@@ -72,23 +74,24 @@ export const Navigation = ({
               <NavLink
                 href={path}
                 isTitle
-                isActive={path === currentPage}
+                isActive={path === currentPath}
                 onClick={(e) => {
                   e.preventDefault();
 
-                  if (path !== currentPage) {
+                  if (path !== currentPath) {
                     history.pushState(path, '', path);
 
                     onChange({
                       hash: undefined,
                       pathname: path
                     });
+
+                    window.scrollTo(0, 0);
                   }
                 }}
               >{title}</NavLink>
             </NavItem>
-
-            {/*  FIXME: {sections.map(({ id, text }) => path === currentPage && ( */} 
+           
             {sections.map(({ id, text }) => (
               <NavItem key={id}>
                 <NavLink
@@ -96,8 +99,8 @@ export const Navigation = ({
                   onClick={(e) => {
                     e.preventDefault();
 
-                    if (path !== currentPage) {
-                      history.pushState(path, '', path);
+                    if (path !== currentPath) {
+                      history.pushState({}, '', path);
                     }
 
                     onChange({
