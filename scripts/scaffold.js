@@ -16,7 +16,7 @@ import { App } from '@components/App';
 import {
   CLASS_NAME_IS_DARK_MODE,
   KEY_IS_DARK_MODE
-} from '../src/common/utils/theme.js';
+} from '@common/utils/theme.js';
 
 /**
  * @param {string} sheets
@@ -121,8 +121,8 @@ sync('src/app/**/index.html').map((file) => {
   const route = title.toLowerCase().replace('basics', '');
   const path = `/${route}`;
 
+  // for all h2 and h3 use /<h[2-3] id="(.*?)">([^$]+?)<\/h[2-3]>/g
   const headings = execData(content, /<h2 id="(.*?)">([^$]+?)<\/h2>/g).list;
-  // const headings = execData(content, /<h[2-3] id="(.*?)">([^$]+?)<\/h[2-3]>/g).list; // all h2, h3
   const sections = headings.map(getSectionData);
 
   // DEBUG:
@@ -160,9 +160,7 @@ sync('src/app/**/index.html').map((file) => {
   };
 
   const stringifiedData = JSON.stringify(data);
-  const renderedHTML = renderToString(
-    <App {...data} />
-  );
+  const renderedHTML = renderToString(<App {...data} />);
   const sheets = getStyles();
   const html = renderHTML(sheets, stringifiedData, renderedHTML);
 

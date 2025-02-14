@@ -102,13 +102,43 @@ export const Main = styled.main({
   [style.selector('pre > code')]: {
     display: 'block',
     padding: asRem(16),
+    overflow: 'visible',
     border: 'none',
     background: 'transparent',
     whiteSpace: 'pre'
   },
+  [style.selector('[data-table]')]: {
+    padding: `0 ${asRem(8)}`,
+    overflow: 'hidden',
+    overflowX: 'auto',
+    background: CSS_VARS.BACKGROUND_SECONDARY_PALE
+  },
   [style.selector('table')]: {
+    margin: 0,
+    padding: 0,
+    border: 0,
+    verticalAlign: 'top',
+    tableLayout: 'auto',
+    borderCollapse: 'collapse',
+    borderSpacing: 0,
+    width: '100%',
+    wordBreak: 'normal',
+    [style.selector('thead', 'tbody', 'tr')]: {
+      margin: 0,
+      border: 0,
+      verticalAlign: 'top'
+    },
+    [style.selector('tbody tr')]: {
+      borderTop: `${asRem(1)} solid ${CSS_VARS.BORDER_SECONDARY}`
+    },
     [style.selector('th')]: {
-      textAlign: 'left'
+      textAlign: 'left',
+      fontWeight: 'bold'
+    },
+    [style.selector('th', 'td')]: {
+      margin: 0,
+      padding: `${asRem(12)} ${asRem(8)}`,
+      border: 0,
     }
   }
 }).withRef();
