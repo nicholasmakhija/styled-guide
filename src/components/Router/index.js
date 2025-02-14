@@ -69,11 +69,27 @@ export const Router = ({
       history.pushState({}, '', newPathname);
     }
 
+    if (!newHash) {
+      window.scrollTo(0, 0);
+    }
+
     setRoute({
       hash: newHash,
       pathname: newPathname
     });
-  }
+  };
+
+  /**
+   * @param {NodeListOf<HTMLAnchorElement>} nodeList 
+   * @param {('addEventListener'|'removeEventListener')} method 
+   */
+  const toggleEventListener = (nodeList, method) => {
+    nodeList.forEach((anchor) => {
+      const { hash, pathname } = anchor;
+
+      anchor[method]('click', clickHandler(pathname, hash));
+    });
+  };
 
   useEffect(() => {
     if (route.hash) {
@@ -83,18 +99,10 @@ export const Router = ({
     /** @type {NodeListOf<HTMLAnchorElement>} */
     const anchors = mainRef.current.querySelectorAll('a:not([target])');
 
-    anchors.forEach((anchor) => {
-      const { hash, pathname } = anchor;
-
-      anchor.addEventListener('click', clickHandler(pathname, hash));
-    });
+    toggleEventListener(anchors, 'addEventListener');
 
     return () => {
-      anchors.forEach((anchor) => {
-        const { hash, pathname } = anchor;
-  
-        anchor.removeEventListener('click', clickHandler(pathname, hash));
-      });
+      toggleEventListener(anchors, 'removeEventListener');
     };
   }, [route]);
   

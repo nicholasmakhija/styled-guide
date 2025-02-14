@@ -42,7 +42,13 @@ export const Main = styled.main({
       color: CSS_VARS.COLOR
     }
   },
-  [style.selector('h2', 'h3', 'h4', 'p', 'blockquote', 'pre', 'table')]: contentParadigm,
+  [style.selector('h1', 'h2', 'h3', 'h4', 'p', 'blockquote', 'pre', 'table')]: contentParadigm,
+  [style.selector('h1')]: {
+    // background: 'rgba(255, 204,0, 0.4)', // FIXME: alignment check
+    marginTop: asRem(24),
+    fontSize: asRem(32),
+    lineHeight: asRem(40),
+  },
   [style.selector('h2')]: {
     // background: 'rgba(255, 204,0, 0.4)', // FIXME: alignment check
     fontSize: asRem(24),
