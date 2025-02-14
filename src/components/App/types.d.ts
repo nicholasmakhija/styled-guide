@@ -11,8 +11,8 @@ type Page = {
 };
 
 type AppProps = {
-  currentPage?: string;
-  pages?: Page[]
+  currentPage: string;
+  pages: Page[]
 };
 
 declare var data: AppProps;
