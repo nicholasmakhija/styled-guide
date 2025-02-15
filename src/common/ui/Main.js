@@ -75,11 +75,11 @@ export const Main = styled.main({
   [style.selector('code')]: {
     padding: `0 ${asRem(4)}`,
     borderRadius: asRem(4),
-    fontSize: asRem(14),
-    lineHeight: asRem(16),
     background: CSS_VARS.BACKGROUND_CODE,
     boxShadow: `0 0 0 ${asRem(2)} ${CSS_VARS.BORDER_SECONDARY}`,
     overflow: 'hidden',
+    fontSize: asRem(14),
+    lineHeight: asRem(16),
     [style.selector('[data-comment]')]: { color: '#697098' },
     [style.selector('[data-function]')]: { color: '#61e884' },
     [style.selector('[data-keyword]')]: { color: '#eb82bf' },
@@ -97,11 +97,12 @@ export const Main = styled.main({
     whiteSpace: 'pre'
   },
   [style.selector('pre > code')]: {
-    display: 'block',
     padding: asRem(16),
-    overflow: 'visible',
-    border: 'none',
+    borderRadius: 0,
     background: 'transparent',
+    boxShadow: 'none',
+    overflow: 'visible',
+    display: 'block',
     whiteSpace: 'pre'
   },
   [style.selector('[data-table]')]: {
