@@ -8,13 +8,6 @@ import {
   NAV_WIDTH
 } from '@common/constants';
 
-const contentParadigm = {
-  margin: `0 0 ${asRem(24)}`,
-  [style.lastChild]: {
-    marginBottom: 0
-  }
-};
-
 /** @type {import('@styled').StyledComponent<MainProps>} */
 export const Main = styled.main({
   flex: 1,
@@ -37,7 +30,15 @@ export const Main = styled.main({
       color: CSS_VARS.COLOR
     }
   },
-  [style.selector('> *', '> section > *')]: contentParadigm,
+  [style.selector(
+    '> *:not(section)',
+    '> section > *'
+  )]: {
+    margin: `0 0 ${asRem(24)}`,
+    [style.lastChild]: {
+      marginBottom: 0
+    }
+  },
   [style.selector('h1')]: {
     // background: 'rgba(255, 204,0, 0.4)', // FIXME: alignment check
     marginTop: asRem(24),

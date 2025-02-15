@@ -110,4 +110,44 @@
 
     <p>Thus in the example above <code>width</code> and <code>height</code> props will not be passed to the underlying <code>svg</code> tag, so ensure styles are defined to handle that.</p>
   </blockquote>
+
+  <p>To match against multiple properties, just use one of <code>all</code>, <code>any</code> or <code>not</code> methods on the <code>style.props</code> helper.</p>
+
+<pre><code></code></pre>
+
+  <p>In the above example, opacity styles will only be applied when both <code>isChecked</code> and <code>isDisabled</code> props are supplied to the <code>CheckBoxUI</code> component.</p>
+
+  <p>When using a function for matching multiple props, be sure to pass in <strong>all</strong> props or the props object if not destructuring.</p>
+
+<pre><code></code></pre>
+</section>
+
+<section>
+  <h2 id="generics">Generics</h2>
+
+  <p>Not to confuse with Typescript's Generics, there is a mechanism for defining Components that are <i>"generic"</i>, basically a Higher Order Component that takes a <code>Component</code> as its only argument.</p>
+
+  <p>To define a Generic component, simply call the <code>generic</code> method as shown below.</p>
+
+<pre><code></code></pre>
+
+  <p>Then wrap a component with it as shown below.</p>
+
+<pre><code></code></pre>
+
+  <p>Generic components will pass all props received down to the wrapped component. Ensure that the <code>className</code> prop is passed down to the underlying DOM node when using custom components.</p>
+
+<pre><code></code></pre>
+
+  <p>To avoid nesting when trying to use multiple generic components, simply call the <code>extend</code> method.</p>
+
+<pre><code></code></pre>
+
+  <p>You can also extend from other Styled Components and even plain object literal styles. The <code>extend</code> method performs a deep merge, so nested styles containing duplicate keys will be combined.</p>
+
+<pre><code></code></pre>
+
+  <p>The resulting object styles for <code>&lt;ExtendMayhem&gt;</code> will be</p>
+
+<pre><code></code></pre>
 </section>
