@@ -26,8 +26,8 @@ const root = `
     ${CSS_PROPS.COLOR_CODE}: #f5f5f4;
     ${CSS_PROPS.BORDER_PRIMARY}: #ccd0d5;
     ${CSS_PROPS.BORDER_SECONDARY}: rgba(0, 0, 0, 0.1);
-    ${CSS_PROPS.HIGHLIGHT}: rgb(255, 105, 149);
-    ${CSS_PROPS.HIGHLIGHT_PALE}: rgba(255, 105, 149, 0.7);
+    ${CSS_PROPS.ACCENT}: rgb(255, 105, 149);
+    ${CSS_PROPS.ACCENT_PALE}: rgba(255, 105, 149, 0.7);
     ${CSS_PROPS.SKELETON}: rgba(0, 0, 0, 0.11);
   }
 `;

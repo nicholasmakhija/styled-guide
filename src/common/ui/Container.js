@@ -10,27 +10,6 @@ const CONTAINER_WIDTHS = {
   XL: 1140
 };
 
-/**
- * @typedef {(
- *  | 'start'
- *  | 'center'
- *  | 'space-around'
- *  | 'space-between'
- *  | 'space-evenly'
- * )} JustifyContentOptions
- */
-
-/**
- * @typedef {{
- *  children?: React.ReactNode,
- *  className?: string,
- *  flex?: JustifyContentOptions,
- *  isFluid?: boolean,
- *  isFullWidth?: boolean,
- * }
- * } ContainerProps
- */
-
 /** @type {import('@styled').StyledComponent<ContainerProps>} */
 export const Container = styled.div({
   width: `${CONTAINER_WIDTHS.XS}%`,

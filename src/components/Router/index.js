@@ -1,8 +1,4 @@
-import React, {
-  useState,
-  useRef,
-  useEffect
-} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import { Navigation } from '@components/Navigation';
 import { Container, Main } from '@common/ui';
@@ -81,7 +77,7 @@ export const Router = ({
 
   /**
    * @param {NodeListOf<HTMLAnchorElement>} nodeList 
-   * @param {('addEventListener'|'removeEventListener')} method 
+   * @param {('addEventListener' | 'removeEventListener')} method 
    */
   const toggleEventListener = (nodeList, method) => {
     nodeList.forEach((anchor) => {

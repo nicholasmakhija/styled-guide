@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  useRef
-} from 'react';
+import React, { useState, useRef } from 'react';
 
 import { useEventListener } from '@common/hooks';
 import { dispatchCustomEvent } from '@common/utils';
@@ -16,11 +13,7 @@ import {
 export const EVENT_NAV_OPENED = 'nav:opened';
 
 /** 
- * @param {{
- *  currentPath: string,
- *  pages: Page[]
- *  onChange: (arg: Route) => void
- * }} props
+ * @param {NavigationProps} props
  * @returns {JSX.Element}
  */
 export const Navigation = ({

@@ -5,25 +5,13 @@ import { CSS_VARS } from '@common/constants';
 
 const shimmer = 'shimmer';
 
-/**
- * @typedef {{
- *  cursor?: string,
- *  fill?: string,
- *  height?: number,
- *  stroke?: string,
- *  width?: number,
- *  hasLoader?: boolean,
- *  [key: string]: unknown
- * }} SkeletonSvgProps
- */
-
 /** @type {import('@styled').StyledComponent<SkeletonSvgProps>} */
 export const SkeletonSvg = styled
   .svg({
     display: 'inline-block',
     stroke: 'transparent',
     fill: 'currentColor',
-    // verticalAlign: 'middle', // FIXME:
+    // verticalAlign: 'middle', // FIXME: delete?
     pointerEvents: 'none',
     cursor: 'inherit',
     [style.not(':root')]:{

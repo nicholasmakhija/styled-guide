@@ -25,24 +25,19 @@ export const HeaderSticky = styled.div({
 });
 
 export const HeaderBrand = styled.div({
-  padding: `${asRem(4)} 0`
+  padding: `${asRem(4)} 0`,
+  color: CSS_VARS.ACCENT
 });
 
 export const HeaderActions = styled.div();
 
-/**
- * @typedef {{
- *  children?: React.ReactNode,
- *  canHover?: boolean,
- *  isRounded?: boolean,
- * }} HeaderActionProps
- */
+const HEADER_ICON_SIZE = 32;
 
 const HeaderAction = styled.generic({
   margin: 0,
   padding: asRem(4),
-  width: asRem(32),
-  height: asRem(32),
+  width: asRem(HEADER_ICON_SIZE),
+  height: asRem(HEADER_ICON_SIZE),
   display: 'inline-block',
   textAlign: 'center',
   verticalAlign: 'middle',
@@ -50,7 +45,7 @@ const HeaderAction = styled.generic({
   transition: '0.3s cubic-bezier(0.2, 0, 0, 1)',
   [style.focus]: {
     outline: 0,
-    boxShadow: `0 0 0 ${asRem(4)} ${CSS_VARS.HIGHLIGHT_PALE}`
+    boxShadow: `0 0 0 ${asRem(4)} ${CSS_VARS.ACCENT_PALE}`
   },
   [style.not(style.firstChild)]: {
     marginLeft: asRem(16)
@@ -66,13 +61,6 @@ const HeaderAction = styled.generic({
     borderRadius: '50%'
   }
 });
-
-/**
- * @typedef {HeaderActionProps & {
- *  href: string,
- *  target?: string
- * }} HeaderLinkProps
- */
 
 /** @type {import('@styled').StyledComponent<HeaderLinkProps>} */
 export const HeaderLink = styled
@@ -100,14 +88,6 @@ export const Line = styled.span({
     top: asRem(23)
   }
 });
-
-/**
- * @typedef {HeaderActionProps & {
- *  isToggle?: boolean,
- *  isOpen?: boolean,
- *  onClick?: (e: Event) => void,
- * }} HeaderButtonProps
- */
 
 /** @type {import('@styled').StyledComponent<HeaderButtonProps>} */
 export const HeaderButton = styled

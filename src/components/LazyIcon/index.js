@@ -5,20 +5,14 @@ import { SkeletonSvg } from './elements';
 const MIME_TYPE = 'image/svg+xml';
 
 /**
- * @returns {(url: string) => Promise<{
- *  viewBox: string,
- *  innerHTML: string
- * }>}
+ * @returns {(url: string) => Promise<IconState>}
  */
 const createIconCache = () => {
   const cache = new Map();
 
   /**
    * @param {string} url
-   * @returns {Promise<{
-   *  viewBox: string,
-   *  innerHTML: string
-   * }>}
+   * @returns {Promise<IconState>}
    */
   const getIcon = (url) => {
     /**
@@ -77,21 +71,9 @@ const createIconCache = () => {
 
 const fetchIcon = createIconCache();
 
-/**
- * @typedef {{
- *  className?: string,
- *  cursor?: string,
- *  fill?: string,
- *  hasLoader?: boolean,
- *  height?: number,
- *  src: string,
- *  stroke?: string,
- *  width?: number
- * }} LazyIconProps
- */
-
-/**
- * @type {(props: LazyIconProps) => JSX.Element}
+/** 
+ * @param {LazyIconProps} props
+ * @returns {JSX.Element}
  */
 export const LazyIcon = ({
   className = '',

@@ -18,8 +18,8 @@ export const BORDER_PRIMARY = '--border-primary';
 
 export const BORDER_SECONDARY = '--border-secondary';
 
-export const HIGHLIGHT = '--highlight';
+export const ACCENT = '--accent';
 
-export const HIGHLIGHT_PALE = '--highlight-pale';
+export const ACCENT_PALE = '--accent-pale';
 
 export const SKELETON = '--skeleton';

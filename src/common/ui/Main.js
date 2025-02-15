@@ -1,7 +1,12 @@
 import styled, { style } from '@styled';
 
 import { asRem, breakpoints } from '@common/utils';
-import { CSS_VARS, GUTTER_WIDTH } from '@common/constants';
+import {
+  BORDER_SIZE,
+  CSS_VARS,
+  GUTTER_WIDTH,
+  NAV_WIDTH
+} from '@common/constants';
 
 const contentParadigm = {
   margin: `0 0 ${asRem(24)}`,
@@ -10,16 +15,6 @@ const contentParadigm = {
   }
 };
 
-/**
- * @typedef {{
- *  children?: React.ReactNode,
- *  dangerouslySetInnerHTML?: {
- *    __html: string
- *  }
- *  ref?: React.ForwardedRef<HTMLElement>
- * }} MainProps
- */
-
 /** @type {import('@styled').StyledComponent<MainProps>} */
 export const Main = styled.main({
   flex: 1,
@@ -27,22 +22,22 @@ export const Main = styled.main({
   paddingLeft: asRem(GUTTER_WIDTH),
   maxWidth: '100%',
   [breakpoints.up.lg]: {
-    marginLeft: asRem(320)
+    marginLeft: asRem(NAV_WIDTH)
   },
   [style.selector('a')]: {
-    color: CSS_VARS.HIGHLIGHT,
+    color: CSS_VARS.ACCENT,
     textDecoration: 'none',
     [style.hover]: {
       textDecoration: 'underline'
     },
     [style.focus]: {
       outline: 0,
-      boxShadow: `0 0 0 ${asRem(4)} ${CSS_VARS.HIGHLIGHT_PALE}`,
-      background: CSS_VARS.HIGHLIGHT_PALE,
+      boxShadow: `0 0 0 ${asRem(4)} ${CSS_VARS.ACCENT_PALE}`,
+      background: CSS_VARS.ACCENT_PALE,
       color: CSS_VARS.COLOR
     }
   },
-  [style.selector('h1', 'h2', 'h3', 'h4', 'p', 'blockquote', 'pre', 'table', '[data-table]')]: contentParadigm,
+  [style.selector('> *', '> section > *')]: contentParadigm,
   [style.selector('h1')]: {
     // background: 'rgba(255, 204,0, 0.4)', // FIXME: alignment check
     marginTop: asRem(24),
@@ -68,20 +63,21 @@ export const Main = styled.main({
     paddingLeft: asRem(24),
     fontSize: asRem(14),
     boxShadow: `
-      0 ${asRem(2)} ${asRem(2)} 0 ${CSS_VARS.BORDER_SECONDARY},
-      inset ${asRem(4)} 0 0 0 ${CSS_VARS.HIGHLIGHT}
+      0 ${asRem(BORDER_SIZE)} 0 0 ${CSS_VARS.BORDER_SECONDARY},
+      inset ${asRem(4)} 0 0 0 ${CSS_VARS.ACCENT}
     `,
     [style.selector('> strong')]: {
       display: 'block',
-      color: CSS_VARS.HIGHLIGHT
+      color: CSS_VARS.ACCENT
     }
   },  
   [style.selector('code')]: {
     padding: `0 ${asRem(4)}`,
+    borderRadius: asRem(4),
     fontSize: asRem(14),
     lineHeight: asRem(16),
     background: CSS_VARS.BACKGROUND_CODE,
-    border: `${asRem(2)} solid rgba(0, 0, 0, 0.1)`,
+    boxShadow: `0 0 0 ${asRem(2)} ${CSS_VARS.BORDER_SECONDARY}`,
     overflow: 'hidden',
     [style.selector('[data-comment]')]: { color: '#697098' },
     [style.selector('[data-function]')]: { color: '#61e884' },
@@ -91,7 +87,7 @@ export const Main = styled.main({
     [style.selector('[data-type]')]: { color: '#96dfef', fontStyle: 'italic' },
   },
   [style.selector('pre')]: {
-    // margin: 0,
+    // margin: 0, // FIXME: delete?
     padding: 0,
     overflow: 'hidden',
     overflowX: 'auto',
@@ -109,7 +105,7 @@ export const Main = styled.main({
   },
   [style.selector('[data-table]')]: {
     padding: `0 ${asRem(8)}`,
-    boxShadow: `inset 0 0 0 ${asRem(1)} ${CSS_VARS.BORDER_SECONDARY}`,
+    boxShadow: `inset 0 0 0 ${asRem(BORDER_SIZE)} ${CSS_VARS.BORDER_SECONDARY}`,
     background: CSS_VARS.BACKGROUND_SECONDARY_PALE,
     [style.selector('> div')]: {
       overflow: 'hidden',
@@ -133,7 +129,7 @@ export const Main = styled.main({
       verticalAlign: 'top'
     },
     [style.selector('tbody tr')]: {
-      borderTop: `${asRem(1)} solid ${CSS_VARS.BORDER_SECONDARY}`
+      borderTop: `${asRem(BORDER_SIZE)} solid ${CSS_VARS.BORDER_SECONDARY}`
     },
     [style.selector('th')]: {
       textAlign: 'left',
@@ -143,6 +139,9 @@ export const Main = styled.main({
       margin: 0,
       padding: `${asRem(12)} ${asRem(8)}`,
       border: 0,
+    },
+    [style.selector('[data-highlight]')]: {
+      color: 'rgb(79, 159, 207)'
     }
   }
 }).withRef();

@@ -1,16 +1,7 @@
 import styled, { style } from '@styled';
 
 import { asRem, breakpoints } from '@common/utils';
-import { CSS_VARS } from '@common/constants';
-
-const NAV_WIDTH = 320;
-
-/**
- * @typedef {{
- *  children?: React.ReactNode,
- *  isOpen?: boolean
- * }} NavProps
- */
+import { BORDER_SIZE, CSS_VARS, NAV_WIDTH } from '@common/constants';
 
 /** @type {import('@styled').StyledComponent<NavProps>} */
 export const Nav = styled.nav({
@@ -19,7 +10,7 @@ export const Nav = styled.nav({
   left: asRem(-NAV_WIDTH),
   width: asRem(NAV_WIDTH),
   height: '100%',
-  // opacity: 0, // FIXME:
+  // opacity: 0, // FIXME: delete?
   visibility: 'hidden',
   textAlign: 'right',
   transition: '0.3s cubic-bezier(0.2, 0, 0, 1)',
@@ -34,7 +25,7 @@ export const Nav = styled.nav({
   },
   [breakpoints.up.lg]: {
     left: 'auto',
-    // opacity: 1 // FIXME:
+    // opacity: 1 // FIXME: delete?
     visibility: 'visible'
   },
   [style.prop('isOpen')]: {
@@ -46,13 +37,6 @@ export const Nav = styled.nav({
     }
   },
 });
-
-/**
- * @typedef {{
- *  children?: React.ReactNode,
- *  ref?: React.ForwardedRef<HTMLDivElement>
- * }} NavContentProps
- */
 
 /** @type {import('@styled').StyledComponent<NavContentProps>} */
 export const NavContent = styled
@@ -69,7 +53,7 @@ export const NavContent = styled
 export const NavList = styled.ul({
   position: 'relative',
   listStyle: 'none',
-  // margin: `0 0 ${asRem(24)}`, // FIXME:
+  // margin: `0 0 ${asRem(24)}`, // FIXME: delete?
   margin: 0,
   padding: 0,
   [style.after]: {
@@ -78,7 +62,7 @@ export const NavList = styled.ul({
       position: 'absolute',
       top: 0,
       right: asRem(-16),
-      width: asRem(1),
+      width: asRem(BORDER_SIZE),
       height: '100%',
       background: CSS_VARS.BORDER_PRIMARY
     }
@@ -86,8 +70,8 @@ export const NavList = styled.ul({
 });
 
 export const NavItem = styled.li({
-  // margin: `0 0 ${asRem(4)}`, // FIXME:
-  // padding: 0 // FIXME:
+  // margin: `0 0 ${asRem(4)}`, // FIXME: delete?
+  // padding: 0 // FIXME: delete?
   margin: 0,
   padding: `0 0 ${asRem(4)}`,
   [style.or(
@@ -97,17 +81,6 @@ export const NavItem = styled.li({
     paddingBottom: asRem(24)
   }
 });
-
-/**
- * @typedef {{
- *  children?: React.ReactNode,
- *  href: string,
- *  target?: string,
- *  isActive?: boolean,
- *  isTitle?: boolean,
- *  onClick?: (e: Event) => void 
- * }} NavLinkProps
- */
 
 /** @type {import('@styled').StyledComponent<NavLinkProps>} */
 export const NavLink = styled.a({
@@ -122,7 +95,7 @@ export const NavLink = styled.a({
   cursor: 'pointer',
   transition: '0.3s cubic-bezier(0.2, 0, 0, 1)',
   [style.hover]: {
-    color: CSS_VARS.HIGHLIGHT
+    color: CSS_VARS.ACCENT
   },
   [style.focus]: {
     outline: 0
@@ -131,7 +104,7 @@ export const NavLink = styled.a({
     style.not(style.hover),
     style.focus
   )]: {
-    background: CSS_VARS.HIGHLIGHT
+    background: CSS_VARS.ACCENT
   },
   [style.prop('isTitle')]: {
     fontWeight: 'bold',
@@ -143,7 +116,7 @@ export const NavLink = styled.a({
       right: asRem(-16),
       width: asRem(0),
       height: asRem(32),
-      background: CSS_VARS.HIGHLIGHT_PALE,
+      background: CSS_VARS.ACCENT_PALE,
       transition: 'width 0.3s cubic-bezier(0.2, 0, 0, 1)',
     },
     [style.and(
@@ -158,7 +131,7 @@ export const NavLink = styled.a({
   },
   [style.props.all('isTitle', 'isActive')]: {
     cursor: 'default',
-    color: CSS_VARS.HIGHLIGHT,
+    color: CSS_VARS.ACCENT,
     [style.after]: {
       width: asRem(8)
     }
