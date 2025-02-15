@@ -78,9 +78,9 @@ export const Navigation = ({
                       hash: undefined,
                       pathname: path
                     });
-
-                    window.scrollTo(0, 0);
                   }
+
+                  window.scrollTo(0, 0);
                 }}
               >{title}</NavLink>
             </NavItem>

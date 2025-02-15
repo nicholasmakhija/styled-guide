@@ -7,7 +7,7 @@
   <p>Styled also exposes a helper for writing pseudo, attribute and prop selectors.</p>
 
 <pre><code><!--
---><span data-keyword>import </span> styled, { style } <span data-keyword>from</span> <span data-string>'@n3e/styled'</span>;
+--><span data-keyword>import</span> styled, { style } <span data-keyword>from</span> <span data-string>'@n3e/styled'</span>;
 
 <span data-keyword>export const</span> <span data-variable>SomeElement</span> <span data-keyword>=</span> <span data-variable>styled</span>.<span data-function>button</span>(<span data-keyword>{</span>
   [<span data-variable>style</span>.disabled]<span data-keyword>:</span> {
@@ -17,6 +17,8 @@
 </code></pre>
 
   <h3>Pseudo Elements</h3>
+
+  <p>Available pseudo elements:</p>
 
   <ul>
     <li>after</li>
@@ -58,6 +60,8 @@
   </div>
 
   <h3>Pseudo Classes</h3>
+  
+  <p>Available pseudo classes:</p>
   
   <ul>
     <li>active</li>
@@ -104,7 +108,7 @@
     <li>visited</li>
   </ul>
 
-  <p>Pseudo class functions</p>
+  <p>Pseudo class functions:</p>
 
   <div data-table>
     <div>
@@ -217,7 +221,7 @@
   <p>Writing media queries can be made easy with the help of the <code>mq</code> helper that provides a nice DSL. Simply chain the exposed methods to build the desired media query string.</p>
 
 <pre><code><!--
---><span data-keyword>import </span> styled, { mq } <span data-keyword>from</span> <span data-string>'@n3e/styled'</span>;
+--><span data-keyword>import</span> styled, { mq } <span data-keyword>from</span> <span data-string>'@n3e/styled'</span>;
 
 <span data-keyword>export const</span> <span data-variable>Container</span> <span data-keyword>=</span> <span data-variable>styled</span>.<span data-function>div</span>(<span data-keyword>{</span>
   <span data-comment>// @media screen and (min-width: 768px) and (max-width: 991px) { ... }</span>
