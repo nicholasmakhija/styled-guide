@@ -108,11 +108,13 @@ export const Main = styled.main({
     whiteSpace: 'pre'
   },
   [style.selector('[data-table]')]: {
-    boxShadow: `inset 0 0 0 ${asRem(1)} ${CSS_VARS.BORDER_SECONDARY}`,
     padding: `0 ${asRem(8)}`,
-    overflow: 'hidden',
-    overflowX: 'auto',
-    background: CSS_VARS.BACKGROUND_SECONDARY_PALE
+    boxShadow: `inset 0 0 0 ${asRem(1)} ${CSS_VARS.BORDER_SECONDARY}`,
+    background: CSS_VARS.BACKGROUND_SECONDARY_PALE,
+    [style.selector('> div')]: {
+      overflow: 'hidden',
+      overflowX: 'auto'
+    }
   },
   [style.selector('table')]: {
     margin: 0,
