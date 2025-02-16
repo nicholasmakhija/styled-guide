@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import { useEventListener } from '@common/hooks';
 import { dispatchCustomEvent } from '@common/utils';
+import { NAV_ID } from '@common/constants';
 import {
   Nav,
   NavContent,
@@ -58,8 +59,30 @@ export const Navigation = ({
   useEventListener(EVENT_NAV_OPENED, toggleHandler);
   useEventListener('click', closeHandler);
 
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+    
+    const { scrollY } = window;
+
+    const { body } = document;
+    const initialPosition = body.style.position;
+    const initialTop = body.style.top;
+
+    body.style.position = 'fixed';
+    body.style.top = `-${scrollY}px`;
+
+    return () => {
+      body.style.position = initialPosition;
+      body.style.top = initialTop;
+
+      window.scrollTo(0, scrollY);
+    };
+  }, [isOpen]);
+
   return (
-    <Nav isOpen={isOpen}>
+    <Nav id={NAV_ID} isOpen={isOpen}>
       <NavContent ref={navContentRef}>
         {pages.map(({ path, sections, title }, index) => (
           <NavList key={`${index}-${title}`}>

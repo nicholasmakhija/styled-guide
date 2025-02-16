@@ -1,5 +1,6 @@
 type NavProps = {
   children?: React.ReactNode;
+  id?: string;
   isOpen?: boolean;
 };
 

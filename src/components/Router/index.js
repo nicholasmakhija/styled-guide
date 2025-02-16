@@ -2,17 +2,19 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import { Navigation } from '@components/Navigation';
 import { Container, Main } from '@common/ui';
+import {
+  CONTENT_SPACER,
+  HEADER_HEIGHT,
+  NAV_LINK_PADDING
+} from '@common/constants';
+
+const headerOffsetWithBuffer = HEADER_HEIGHT + CONTENT_SPACER + NAV_LINK_PADDING;
 
 /**
  * @param {string} id
  * @returns {void}
  */
 const scrollToElement = (id) => {
-  // + 60 (Header height)
-  // + 24 (NavContent padding-top)
-  // + 4 (NavLink padding-top)
-  // = 88
-  const headerOffsetWithBuffer = 88;
   const target = document.querySelector(id);
   
   if (target) {
@@ -48,8 +50,8 @@ export const Router = ({
    */
   const changeHandler = (newRoute) => {
     setTimeout(() => {
-      setRoute(newRoute)
-    });
+      setRoute(newRoute);
+    }, 0);
   };
 
   

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useEventListener } from '@common/hooks';
 import { dispatchCustomEvent } from '@common/utils';
+import { NAV_ID } from '@common/constants';
 import { EVENT_NAV_OPENED } from '@components/Navigation';
 import { HeaderButton, Line } from './elements';
 
@@ -24,6 +25,8 @@ export const HeaderHamburger = () => {
 
   return (
     <HeaderButton
+      aria-expanded={isOpen}
+      aria-controls={NAV_ID}
       isToggle
       isOpen={isOpen}
       onClick={clickHandler}

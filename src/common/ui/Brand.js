@@ -1,7 +1,12 @@
 import styled, { style } from '@styled';
 
 import { asRem, breakpoints } from '@common/utils';
-import { CSS_VARS, GUTTER_WIDTH, NAV_WIDTH } from '@common/constants';
+import {
+  CONTENT_SPACER,
+  CSS_VARS,
+  GUTTER_WIDTH,
+  NAV_WIDTH
+} from '@common/constants';
 
 /** @type {import('@styled').StyledComponent<BrandProps>} */
 export const Brand = styled.div({
@@ -9,8 +14,8 @@ export const Brand = styled.div({
   [breakpoints.up.lg]: {
     // background: 'rgba(255, 204, 0, 0.4)', // FIXME: delete!
     marginLeft: asRem(-GUTTER_WIDTH),
-    paddingRight: asRem(24),
-    paddingLeft: asRem(24),
+    paddingRight: asRem(CONTENT_SPACER),
+    paddingLeft: asRem(CONTENT_SPACER),
     width: asRem(NAV_WIDTH),
     textAlign: 'right'
   },

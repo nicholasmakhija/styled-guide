@@ -1,11 +1,19 @@
 import styled, { style } from '@styled';
 
 import { asRem, breakpoints } from '@common/utils';
-import { BORDER_SIZE, CSS_VARS, NAV_WIDTH } from '@common/constants';
+import {
+  BORDER_SIZE,
+  CONTENT_SPACER,
+  CSS_VARS,
+  HEADER_HEIGHT,
+  NAV_LINK_PADDING,
+  NAV_WIDTH
+} from '@common/constants';
 
 /** @type {import('@styled').StyledComponent<NavProps>} */
 export const Nav = styled.nav({
   position: 'fixed',
+  top: asRem(HEADER_HEIGHT),
   left: asRem(-NAV_WIDTH),
   width: asRem(NAV_WIDTH),
   height: '100%',
@@ -43,7 +51,7 @@ export const NavContent = styled
   .div({
     position: 'relative',
     height: '100%',
-    padding: `${asRem(24)} ${asRem(24)} ${asRem(72)}`,
+    padding: `${asRem(CONTENT_SPACER)} ${asRem(CONTENT_SPACER)} ${asRem(72)}`,
     overflow: 'hidden',
     overflowY: 'auto',
     backgroundColor: CSS_VARS.BACKGROUND_PRIMARY
@@ -53,7 +61,6 @@ export const NavContent = styled
 export const NavList = styled.ul({
   position: 'relative',
   listStyle: 'none',
-  // margin: `0 0 ${asRem(24)}`, // FIXME: delete?
   margin: 0,
   padding: 0,
   [style.after]: {
@@ -70,15 +77,13 @@ export const NavList = styled.ul({
 });
 
 export const NavItem = styled.li({
-  // margin: `0 0 ${asRem(4)}`, // FIXME: delete?
-  // padding: 0 // FIXME: delete?
   margin: 0,
   padding: `0 0 ${asRem(4)}`,
   [style.or(
     style.firstChild,
     style.lastChild
   )]: {
-    paddingBottom: asRem(24)
+    paddingBottom: asRem(CONTENT_SPACER)
   }
 });
 
@@ -86,7 +91,7 @@ export const NavItem = styled.li({
 export const NavLink = styled.a({
   position: 'relative',
   display: 'inline-block',
-  padding: asRem(4),
+  padding: asRem(NAV_LINK_PADDING),
   textDecoration: 'none',
   background: 'transparent',
   // background: 'rgba(255, 204,0, 0.4)', // FIXME: alignment check

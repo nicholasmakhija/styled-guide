@@ -10,6 +10,8 @@ type HeaderLinkProps = HeaderActionProps & {
 };
 
 type HeaderButtonProps = HeaderActionProps & {
+  'aria-expanded'?: boolean;
+  'aria-controls'?: string;
   isToggle?: boolean;
   isOpen?: boolean;
   onClick?: (e: Event) => void;

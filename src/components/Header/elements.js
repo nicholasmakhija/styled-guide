@@ -1,9 +1,7 @@
 import styled, { style } from '@styled';
 
 import { asRem, breakpoints } from '@common/utils';
-import { CSS_VARS } from '@common/constants';
-
-const HEADER_HEIGHT = 60;
+import { CSS_VARS, HEADER_HEIGHT } from '@common/constants';
 
 export const HeaderRoot = styled.header({
   position: 'relative',

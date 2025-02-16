@@ -3,6 +3,7 @@ import styled, { style } from '@styled';
 import { asRem, breakpoints } from '@common/utils';
 import {
   BORDER_SIZE,
+  CONTENT_SPACER,
   CSS_VARS,
   GUTTER_WIDTH,
   NAV_WIDTH
@@ -37,14 +38,14 @@ export const Main = styled.main({
     '> *:not(section)',
     '> section > *'
   )]: {
-    margin: `0 0 ${asRem(24)}`,
+    margin: `0 0 ${asRem(CONTENT_SPACER)}`,
     [style.lastChild]: {
       marginBottom: 0
     }
   },
   [style.selector('h1')]: {
     // background: 'rgba(255, 204,0, 0.4)', // FIXME: alignment check
-    marginTop: asRem(24),
+    marginTop: asRem(CONTENT_SPACER),
     fontSize: asRem(32),
     lineHeight: asRem(40),
   },
@@ -59,12 +60,18 @@ export const Main = styled.main({
     lineHeight: asRem(32),
   },
   [style.selector('section')]: {
-    margin: `0 0 ${asRem(48)}`
+    margin: `0 0 ${asRem(CONTENT_SPACER * 2)}`,
+    [style.selector('> ul')]: {
+      paddingLeft: 0,
+      [style.selector('li')]: {
+        marginLeft: asRem(CONTENT_SPACER)
+      }
+    }
   },
   [style.selector('blockquote')]: {
     background: CSS_VARS.BACKGROUND_SECONDARY,
     padding: asRem(8),
-    paddingLeft: asRem(24),
+    paddingLeft: asRem(CONTENT_SPACER),
     fontSize: asRem(14),
     boxShadow: `
       0 ${asRem(BORDER_SIZE)} 0 0 ${CSS_VARS.BORDER_SECONDARY},
