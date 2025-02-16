@@ -17,31 +17,25 @@ export const Nav = styled.nav({
   left: asRem(-NAV_WIDTH),
   width: asRem(NAV_WIDTH),
   height: '100%',
-  // opacity: 0, // FIXME: delete?
   visibility: 'hidden',
   textAlign: 'right',
   transition: '0.3s cubic-bezier(0.2, 0, 0, 1)',
-  [style.before]: {
-    content: '',
-    position: 'fixed',
-    inset: 0,
-    opacity: 0,
-    visibility: 'hidden',
-    background: 'rgba(0, 0, 0, 0.6)',
-    transition: '0.3s cubic-bezier(0.2, 0, 0, 1)'
-  },
   [breakpoints.up.lg]: {
     left: 'auto',
-    // opacity: 1 // FIXME: delete?
     visibility: 'visible'
   },
   [style.prop('isOpen')]: {
-    zIndex: 2,
-    left: 0,
-    visibility: 'visible',
-    [style.before]: {
-      opacity: 1,
-      visibility: 'visible'
+    [breakpoints.down.lg]: {
+      zIndex: 2,
+      left: 0,
+      visibility: 'visible',
+      [style.before]: {
+        content: '',
+        position: 'fixed',
+        inset: 0,
+        background: 'rgba(0, 0, 0, 0.6)',
+        transition: '0.3s cubic-bezier(0.2, 0, 0, 1)'
+      }
     }
   },
 });
@@ -51,7 +45,8 @@ export const NavContent = styled
   .div({
     position: 'relative',
     height: '100%',
-    padding: `${asRem(CONTENT_SPACER)} ${asRem(CONTENT_SPACER)} ${asRem(72)}`,
+    paddingTop: asRem(CONTENT_SPACER),
+    paddingBottom: asRem(72),
     overflow: 'hidden',
     overflowY: 'auto',
     backgroundColor: CSS_VARS.BACKGROUND_PRIMARY
@@ -62,13 +57,13 @@ export const NavList = styled.ul({
   position: 'relative',
   listStyle: 'none',
   margin: 0,
-  padding: 0,
+  padding: `0 ${asRem(CONTENT_SPACER)}`,
   [style.after]: {
     [breakpoints.up.lg]: {
       content: '',
       position: 'absolute',
       top: 0,
-      right: asRem(-16),
+      right: 0,
       width: asRem(BORDER_SIZE),
       height: '100%',
       background: CSS_VARS.BORDER_PRIMARY
@@ -94,8 +89,6 @@ export const NavLink = styled.a({
   padding: asRem(NAV_LINK_PADDING),
   textDecoration: 'none',
   background: 'transparent',
-  // background: 'rgba(255, 204,0, 0.4)', // FIXME: alignment check
-  // boxShadow: `inset 0 0 0 4px ${CSS_VARS.BACKGROUND_PRIMARY}`, // FIXME: alignment check
   color: CSS_VARS.COLOR,
   cursor: 'pointer',
   transition: '0.3s cubic-bezier(0.2, 0, 0, 1)',
@@ -118,7 +111,7 @@ export const NavLink = styled.a({
     [style.after]: {
       content: '',
       position: 'absolute',
-      right: asRem(-16),
+      right: asRem(-CONTENT_SPACER),
       width: asRem(0),
       height: asRem(32),
       background: CSS_VARS.ACCENT_PALE,

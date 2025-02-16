@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 
 import { useEventListener } from '@common/hooks';
 import { dispatchCustomEvent } from '@common/utils';
@@ -58,28 +58,6 @@ export const Navigation = ({
 
   useEventListener(EVENT_NAV_OPENED, toggleHandler);
   useEventListener('click', closeHandler);
-
-  useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
-    
-    const { scrollY } = window;
-
-    const { body } = document;
-    const initialPosition = body.style.position;
-    const initialTop = body.style.top;
-
-    body.style.position = 'fixed';
-    body.style.top = `-${scrollY}px`;
-
-    return () => {
-      body.style.position = initialPosition;
-      body.style.top = initialTop;
-
-      window.scrollTo(0, scrollY);
-    };
-  }, [isOpen]);
 
   return (
     <Nav id={NAV_ID} isOpen={isOpen}>
