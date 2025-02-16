@@ -24,11 +24,6 @@ export const HeaderSticky = styled.div({
   boxShadow: `0 ${asRem(1)} ${asRem(2)} 0 ${CSS_VARS.BORDER_SECONDARY}`
 });
 
-export const HeaderBrand = styled.div({
-  padding: `${asRem(4)} 0`,
-  color: CSS_VARS.ACCENT
-});
-
 export const HeaderActions = styled.div();
 
 const HEADER_ICON_SIZE = 32;

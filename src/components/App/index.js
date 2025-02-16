@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Header } from '@components/Header';
 import { Router } from '@components/Router';
+import { Footer } from '@components/Footer';
 import { AppRoot } from './elements';
 
 /** 
@@ -13,6 +14,7 @@ export const App = (props) => {
     <AppRoot>
       <Header />
       <Router {...props} />
+      <Footer />
     </AppRoot>
   );
 }

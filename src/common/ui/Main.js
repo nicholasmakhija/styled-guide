@@ -19,9 +19,12 @@ export const Main = styled.main({
   },
   [style.selector('a')]: {
     color: CSS_VARS.ACCENT,
-    textDecoration: 'none',
-    [style.hover]: {
-      textDecoration: 'underline'
+    textDecoration: 'underline',
+    [style.or(
+      style.hover,
+      style.focus
+  )]: {
+      textDecoration: 'none'
     },
     [style.focus]: {
       outline: 0,

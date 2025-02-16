@@ -1,14 +1,13 @@
 import React from 'react';
 
 import { LazyIcon } from '@components/LazyIcon';
-import { Container } from '@common/ui';
+import { Brand, Container } from '@common/ui';
 import { HeaderThemeSwitcher } from './HeaderThemeSwitcher';
 import { HeaderHamburger } from './HeaderHamburger';
 import { Logo } from './Logo';
 import {
   HeaderRoot,
   HeaderSticky,
-  HeaderBrand,
   HeaderActions,
   HeaderLink
 } from './elements';
@@ -18,9 +17,9 @@ export const Header = () => (
   <HeaderRoot>
     <HeaderSticky>
       <Container flex='space-between'>
-        <HeaderBrand>
+        <Brand hasLogo>
           <Logo />
-        </HeaderBrand>
+        </Brand>
 
         <HeaderActions>
           <HeaderThemeSwitcher />

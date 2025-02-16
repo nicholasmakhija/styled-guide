@@ -6,7 +6,6 @@ import { BORDER_SIZE, CSS_VARS, NAV_WIDTH } from '@common/constants';
 /** @type {import('@styled').StyledComponent<NavProps>} */
 export const Nav = styled.nav({
   position: 'fixed',
-  zIndex: 2,
   left: asRem(-NAV_WIDTH),
   width: asRem(NAV_WIDTH),
   height: '100%',
@@ -29,6 +28,7 @@ export const Nav = styled.nav({
     visibility: 'visible'
   },
   [style.prop('isOpen')]: {
+    zIndex: 2,
     left: 0,
     visibility: 'visible',
     [style.before]: {

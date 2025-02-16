@@ -1,3 +1,8 @@
+type BrandProps = {
+  children?: React.ReactNode;
+  hasLogo?: boolean;
+};
+
 type JustifyContentOptions = 
   | 'start'
   | 'center'
