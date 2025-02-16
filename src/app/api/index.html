@@ -208,11 +208,17 @@
 
   <p><code>style.or</code> for creating nested selector lists <i>(comma separated)</i></p>
 
-<pre><code></code></pre>
+<pre><code><!--
+--><span data-variable>style</span>.<span data-function>or</span>(<span data-variable>style</span>.before, <span data-variable>style</span>.after)
+<span data-comment>// ::before, ::after</span>
+</code></pre>
 
   <p><code>style.and</code> for combining nested selectors</p>
 
-<pre><code></code></pre>
+<pre><code><!--
+--><span data-variable>style</span>.<span data-function>and</span>(<span data-variable>style</span>.hover, <span data-variable>style</span>.focus)
+<span data-comment>// :hover:focus</span>
+</code></pre>
 </section>
 
 <section>
@@ -394,19 +400,86 @@
 
   <p>To set default styles for body, headings etc. just use <code>withCSS</code> method which accepts normal CSS as its arguments.</p>
 
-<pre><code></code></pre>
+<pre><code><!--
+--><span data-keyword>const</span> <span data-variable>boxSizing</span> <span data-keyword>=</span> <span data-string>`
+  *,
+  :after,
+  :before {
+    box-sizing: border-box;
+  }
+`</span>;
+
+<span data-keyword>const</span> <span data-variable>htmlAndBody</span> <span data-keyword>=</span> <span data-string>`
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+`</span>;
+</span>
+
+<span data-keyword>const</span> <span data-variable>AppWrapper</span> <span data-keyword>=</span> <span data-variable>styled</span>
+  .<span data-function>div</span>()
+  .<span data-function>withCSS</span>(
+    <span data-variable>boxSizing</span>,
+    <span data-variable>htmlAndBody</span>
+  );
+</code></pre>
 
   <p>CSS variables can also be defined using this method</p>
 
-<pre><code></code></pre>
+<pre><code><!--
+--><span data-keyword>const</span> <span data-variable>AppWrapper</span> <span data-keyword>=</span> <span data-variable>styled</span>
+  .<span data-function>div</span>()
+  .<span data-function>withCSS</span>(
+    <span data-string>`:root {
+      --background-primary: #fff;
+      --color-primary: #262223;
+    }`</span>,
+
+    <span data-string>`@media (prefers-color-scheme: dark) {
+      :root {
+        --background-primary: #121212;
+        --color-primary: #fff;
+      } 
+    }`</span>
+  );
+</code></pre>
 
   <p>Keyframe animations can be declared and used like so</p>
 
-<pre><code></code></pre>
+<pre><code><!--
+--><span data-keyword>const</span> <span data-variable>shimmer</span> <span data-keyword>=</span> <span data-string>'shimmer'</span>;
+
+<span data-keyword>const</span> <span data-variable>SomeElement</span> <span data-keyword>=</span> <span data-variable>styled</span>
+  .<span data-function>div</span>(<span data-keyword>{</span>
+    animation<span data-keyword>:</span> <span data-string>`</span><span data-function>${</span><span data-variable>shimmer</span><span data-function>}</span> <span data-string>1.5s ease-in-out infinite`</span>
+  <span data-keyword>}</span>)
+  .<span data-function>withCSS</span>(<span data-string>`
+    @keyframes</span> <span data-function>${</span><span data-variable>shimmer</span><span data-function>}</span><span data-string> {
+      0% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+      100% { opacity: 0.5; }
+    }
+  `</span>);
+</code></pre>
 
   <p>Font face rules</p>
 
-<pre><code></code></pre>
+<pre><code><!--
+--><span data-keyword>const</span> <span data-variable>AppWrapper</span> <span data-keyword>=</span> <span data-variable>styled</span>
+  .<span data-function>div</span>()
+  .<span data-function>withCSS</span>(
+    <span data-string>`@font-face {
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('path/to/font/file.woff2') format('woff2');
+    }`</span>
+  );
+</code></pre>
 </section>
 
 <section>
