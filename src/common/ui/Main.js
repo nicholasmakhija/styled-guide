@@ -12,6 +12,7 @@ import {
 /** @type {import('@styled').StyledComponent<MainProps>} */
 export const Main = styled.main({
   flex: 1,
+  paddingTop: asRem(CONTENT_SPACER),
   paddingRight: asRem(GUTTER_WIDTH),
   paddingLeft: asRem(GUTTER_WIDTH),
   maxWidth: '100%',
@@ -24,7 +25,7 @@ export const Main = styled.main({
     [style.or(
       style.hover,
       style.focus
-  )]: {
+    )]: {
       textDecoration: 'none'
     },
     [style.focus]: {
@@ -45,7 +46,6 @@ export const Main = styled.main({
   },
   [style.selector('h1')]: {
     // background: 'rgba(255, 204,0, 0.4)', // FIXME: alignment check
-    marginTop: asRem(CONTENT_SPACER),
     fontSize: asRem(32),
     lineHeight: asRem(40),
   },
