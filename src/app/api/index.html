@@ -401,23 +401,19 @@
   <p>To set default styles for body, headings etc. just use <code>withCSS</code> method which accepts normal CSS as its arguments.</p>
 
 <pre><code><!--
---><span data-keyword>const</span> <span data-variable>boxSizing</span> <span data-keyword>=</span> <span data-string>`
-  *,
-  :after,
-  :before {
-    box-sizing: border-box;
-  }
-`</span>;
+--><span data-keyword>const</span> <span data-variable>boxSizing</span> <span data-keyword>=</span>
+  <span data-string>`*,
+    :after,
+    :before {
+      box-sizing: border-box;
+  }`</span>;
 
-<span data-keyword>const</span> <span data-variable>htmlAndBody</span> <span data-keyword>=</span> <span data-string>`
-  body,
-  html {
+<span data-keyword>const</span> <span data-variable>htmlAndBody</span> <span data-keyword>=</span>
+  <span data-string>`body, html {
     margin: 0;
     padding: 0;
     width: 100%;
-  }
-`</span>;
-</span>
+  }`</span>;
 
 <span data-keyword>const</span> <span data-variable>AppWrapper</span> <span data-keyword>=</span> <span data-variable>styled</span>
   .<span data-function>div</span>()
@@ -456,13 +452,13 @@
   .<span data-function>div</span>(<span data-keyword>{</span>
     animation<span data-keyword>:</span> <span data-string>`</span><span data-function>${</span><span data-variable>shimmer</span><span data-function>}</span> <span data-string>1.5s ease-in-out infinite`</span>
   <span data-keyword>}</span>)
-  .<span data-function>withCSS</span>(<span data-string>`
-    @keyframes</span> <span data-function>${</span><span data-variable>shimmer</span><span data-function>}</span><span data-string> {
+  .<span data-function>withCSS</span>(
+    <span data-string>`@keyframes</span> <span data-function>${</span><span data-variable>shimmer</span><span data-function>}</span><span data-string> {
       0% { opacity: 0.5; }
       50% { opacity: 0.8; }
       100% { opacity: 0.5; }
-    }
-  `</span>);
+    }`</span>
+  );
 </code></pre>
 
   <p>Font face rules</p>
