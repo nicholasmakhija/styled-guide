@@ -1,7 +1,13 @@
 import styled, { style } from '@styled';
 
 import { asRem, breakpoints } from '@common/utils';
-import { CSS_VARS, HEADER_HEIGHT } from '@common/constants';
+import {
+  CONTENT_SPACER,
+  CSS_VARS,
+  GUTTER_WIDTH,
+  HEADER_HEIGHT,
+  NAV_WIDTH
+} from '@common/constants';
 
 export const HeaderRoot = styled.header({
   position: 'relative',
@@ -20,6 +26,23 @@ export const HeaderSticky = styled.div({
   backdropFilter: 'saturate(180%) blur(8px)',
   WebkitBackdropFilter: 'blur(0.75rem)',
   boxShadow: `0 ${asRem(1)} ${asRem(2)} 0 ${CSS_VARS.BORDER_SECONDARY}`
+});
+
+export const HeaderBrand = styled.div({
+  padding: `${asRem(4)} 0`,
+  color: CSS_VARS.ACCENT,
+  [style.selector('> svg')]: {
+    // background: '#ccc', // FIXME: delete!
+    verticalAlign: 'middle'
+  },
+  [breakpoints.up.lg]: {
+    // background: 'rgba(255, 204, 0, 0.4)', // FIXME: delete!
+    marginLeft: asRem(-GUTTER_WIDTH),
+    paddingRight: asRem(CONTENT_SPACER),
+    paddingLeft: asRem(CONTENT_SPACER),
+    width: asRem(NAV_WIDTH),
+    textAlign: 'right'
+  }
 });
 
 export const HeaderActions = styled.div();

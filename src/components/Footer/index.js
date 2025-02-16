@@ -1,14 +1,18 @@
 import React from 'react';
 
-import { Brand, Container } from '@common/ui';
-import { FooterRoot, FooterHighlight } from './elements';
+import {
+  FooterRoot,
+  FooterContainer,
+  FooterContent,
+  FooterHighlight
+} from './elements';
 
 export const Footer = () => (
   <FooterRoot>
-    <Container>
-      <Brand>
+    <FooterContainer>
+      <FooterContent>
         Built using <FooterHighlight>Styled</FooterHighlight>.
-      </Brand>
-    </Container>
+      </FooterContent>
+    </FooterContainer>
   </FooterRoot>
 );
