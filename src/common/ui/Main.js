@@ -29,8 +29,8 @@ export const Main = styled.main({
     },
     [style.focus]: {
       outline: 0,
-      boxShadow: `0 0 0 ${asRem(4)} ${CSS_VARS.ACCENT_PALE}`,
-      background: CSS_VARS.ACCENT_PALE,
+      boxShadow: `0 0 0 ${asRem(4)} ${CSS_VARS.ACCENT}`,
+      background: CSS_VARS.ACCENT,
       color: CSS_VARS.COLOR
     }
   },

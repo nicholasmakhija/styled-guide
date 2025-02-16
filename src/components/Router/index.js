@@ -8,7 +8,7 @@ import {
   NAV_LINK_PADDING
 } from '@common/constants';
 
-const headerOffsetWithBuffer = HEADER_HEIGHT + CONTENT_SPACER + NAV_LINK_PADDING;
+const offset = HEADER_HEIGHT + CONTENT_SPACER + NAV_LINK_PADDING;
 
 /**
  * @param {string} id
@@ -19,7 +19,7 @@ const scrollToElement = (id) => {
   
   if (target) {
     const scrollY = window.scrollY;
-    const y = target.getBoundingClientRect().top + scrollY - headerOffsetWithBuffer;
+    const y = target.getBoundingClientRect().top + scrollY - offset;
     
     window.scrollTo(0, y);
   }

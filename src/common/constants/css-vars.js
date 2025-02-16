@@ -43,8 +43,5 @@ export const BORDER_SECONDARY =
 export const ACCENT =
   asVar(CSS_PROPS.ACCENT);
 
-export const ACCENT_PALE =
-  asVar(CSS_PROPS.ACCENT_PALE);
-
 export const SKELETON =
   asVar(CSS_PROPS.SKELETON);

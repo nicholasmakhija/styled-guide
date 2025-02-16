@@ -114,7 +114,7 @@ export const NavLink = styled.a({
       right: asRem(-CONTENT_SPACER),
       width: asRem(0),
       height: asRem(32),
-      background: CSS_VARS.ACCENT_PALE,
+      background: CSS_VARS.ACCENT,
       transition: 'width 0.3s cubic-bezier(0.2, 0, 0, 1)',
     },
     [style.and(

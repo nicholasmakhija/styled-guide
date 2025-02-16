@@ -38,7 +38,7 @@ const HeaderAction = styled.generic({
   transition: '0.3s cubic-bezier(0.2, 0, 0, 1)',
   [style.focus]: {
     outline: 0,
-    boxShadow: `0 0 0 ${asRem(4)} ${CSS_VARS.ACCENT_PALE}`
+    boxShadow: `0 0 0 ${asRem(4)} ${CSS_VARS.ACCENT}`
   },
   [style.not(style.firstChild)]: {
     marginLeft: asRem(16)

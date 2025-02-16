@@ -20,6 +20,4 @@ export const BORDER_SECONDARY = '--border-secondary';
 
 export const ACCENT = '--accent';
 
-export const ACCENT_PALE = '--accent-pale';
-
 export const SKELETON = '--skeleton';
