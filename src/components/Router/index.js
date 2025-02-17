@@ -49,9 +49,7 @@ export const Router = ({
    * @returns {void}
    */
   const changeHandler = (newRoute) => {
-    setTimeout(() => {
-      setRoute(newRoute);
-    }, 0);
+    setRoute(newRoute);
   };
 
   
@@ -63,18 +61,18 @@ export const Router = ({
   const clickHandler = (newPathname, newHash) => (e) => {
     e.preventDefault();
 
-    if (newPathname !== currentPage) {
+    if (newPathname !== route.pathname) {
       history.pushState({}, '', newPathname);
+
+      setRoute({
+        hash: newHash,
+        pathname: newPathname
+      });
     }
 
     if (!newHash) {
       window.scrollTo(0, 0);
     }
-
-    setRoute({
-      hash: newHash,
-      pathname: newPathname
-    });
   };
 
   /**
@@ -89,6 +87,27 @@ export const Router = ({
     });
   };
 
+  useEffect(() => {
+    const popstateHandler = () => {
+      const pathName = window.location.pathname;
+      const page = pages.find(({ path }) => 
+        path.includes(pathName)
+        ||
+        `${path}/`.includes(pathName)
+      );
+
+      if (page) {
+        setRoute({
+          hash: undefined,
+          pathname: page.path
+        });
+      }
+    };
+
+    window.addEventListener('popstate', popstateHandler);
+  }, []);
+
+  // FIXME: prevent this effect from firing twice in `StrictMode`
   useEffect(() => {
     if (route.hash) {
       scrollToElement(route.hash);

@@ -73,7 +73,7 @@ export const Navigation = ({
                   e.preventDefault();
 
                   if (path !== currentPath) {
-                    history.pushState(path, '', path);
+                    history.pushState({}, '', path);
 
                     onChange({
                       hash: undefined,
@@ -95,14 +95,14 @@ export const Navigation = ({
 
                     if (path !== currentPath) {
                       history.pushState({}, '', path);
-                    }
 
-                    onChange({
-                      hash: /** @type {HTMLAnchorElement} */(
-                        e.currentTarget
-                      ).hash,
-                      pathname: path
-                    });
+                      onChange({
+                        hash: /** @type {HTMLAnchorElement} */(
+                          e.currentTarget
+                        ).hash,
+                        pathname: path
+                      });
+                    }
                   }}
                 >{text}</NavLink>
               </NavItem>
