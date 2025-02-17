@@ -14,7 +14,7 @@
 <section>
   <h2 id="installation">Installation</h2>
 
-  <p>Install Styled using your favourite package manager</p>
+  <p>Install Styled using your favourite package manager:</p>
 
 <pre><code><!--
 --><span data-grey># with npm</span>
@@ -30,7 +30,7 @@
 <span data-green>bun</span> add @n3e/styled
 </code></pre>
 
-  <p>Once installed, just import like so</p>
+  <p>Once installed, just import like so:</p>
 
 <pre><code><!--
 --><span data-pink>import</span> styled <span data-pink>from</span> <span data-yellow>'@n3e/styled'</span>;
@@ -40,7 +40,7 @@
 <section>
   <h2 id="getting-started">Getting started</h2>
 
-  <p>Let's start by building a simple button.</p>
+  <p>Let's start by building a simple button:</p>
 
 <pre><code><!--
 --><span data-pink>const</span> <span data-purple>accent</span> <span data-pink>=</span> <span data-yellow>'#ff6995'</span>;
@@ -70,7 +70,7 @@
 <section>
   <h2 id="pseudo">Pseudo</h2>
 
-  <p>Styled comes with a <a href="/api">helper</a> for writing pseudo styles, below is an example of how to use <code>pseudo-classes</code>.</p>
+  <p>Styled comes with a <a href="/api">helper</a> for writing pseudo styles, below is an example of how to define <code>pseudo-classes</code> with the <code>style</code> helper:</p>
 
 <pre><code><!--
 --><span data-grey>const Button = styled.button({
@@ -106,7 +106,7 @@ const Composition = () => (
 );</span>
 </code></pre>
 
-  <p>Similarly <code>pseudo-element</code> styles are defined as shown below.</p>
+  <p>Similarly <code>pseudo-element</code> styles are defined as shown below:</p>
 
 <pre><code><!--
 --><span data-grey>const PrefixedUsingBefore = styled.span({</span>
@@ -122,7 +122,7 @@ const Composition = () => (
 
 const Composition = () => (
   &lt;PrefixedUsingBefore&gt;
-    I'm a button
+    dollar bucks
   &lt;/PrefixedUsingBefore&gt;
 );</span>
 </code></pre>
@@ -256,7 +256,7 @@ const Composition = () => (
 <section>
   <h2 id="at-rules">At-rules</h2>
 
-  <p>Nested at-rules such as <code>@media</code>, <code>@supports</code> and even <code>@container</code> are declared as demonstrated below.</p>
+  <p>Nested at-rules such as <code>@media</code>, <code>@supports</code> and even <code>@container</code> are declared as demonstrated below:</p>
 
 <pre><code><!--
 --><span data-grey>const Container = styled.div({
@@ -378,8 +378,8 @@ const Composition = () => (
     <span data-orange data-em>borderColour</span>,
     <span data-orange data-em>borderStyle</span>  
   <span data-green>}</span><span data-pink>:</span> <span data-blue data-em>ButtonProps</span>) <span data-pink>=></span> (<span data-green>{</span>
-    borderColor<span data-pink>:</span> <span data-orange data-em>borderColour</span><span data-pink>||</span> <span data-yellow>'purple'</span>,
-    borderStyle<span data-pink>:</span> <span data-orange data-em>borderStyle</span><span data-pink>||</span> <span data-yellow>'solid'</span>
+    borderColor<span data-pink>:</span> <span data-orange data-em>borderColour</span> <span data-pink>||</span> <span data-yellow>'purple'</span>,
+    borderStyle<span data-pink>:</span> <span data-orange data-em>borderStyle</span> <span data-pink>||</span> <span data-yellow>'solid'</span>
   <span data-green>}</span>)
 <span data-grey>});</span>
 </code></pre>
@@ -390,7 +390,7 @@ const Composition = () => (
 
   <p>Not to confuse with Typescript's Generics, there is a mechanism for defining Components that are <i>"generic"</i>, basically a Higher Order Component that takes a <code>Component</code> as its only argument.</p>
 
-  <p>To define a Generic component, simply call the <code>generic</code> method as shown below.</p>
+  <p>To define a Generic component, simply call the <code>generic</code> method as shown below:</p>
 
 <pre><code><!--
 --><span data-pink>type</span> <span data-blue data-em>SizeProp</span> <span data-pink>=</span> {

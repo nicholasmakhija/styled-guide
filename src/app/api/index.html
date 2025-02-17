@@ -206,14 +206,14 @@
 
   <h3>Combinators</h3>
 
-  <p><code>style.or</code> for creating nested selector lists <i>(comma separated)</i></p>
+  <p><code>style.or</code> for creating nested selector lists <i>(comma separated)</i>.</p>
 
 <pre><code><!--
 -->style.<span data-green>or</span>(style.before, style.after)
 <span data-grey>// ::before, ::after</span>
 </code></pre>
 
-  <p><code>style.and</code> for combining nested selectors</p>
+  <p><code>style.and</code> for combining nested selectors.</p>
 
 <pre><code><!--
 -->style.<span data-green>and</span>(style.hover, style.focus)
@@ -231,7 +231,7 @@
 
 <span data-pink>const</span> <span data-purple>Container</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>div</span>(<span data-pink>{</span>
   <span data-grey>// @media screen and (min-width: 768px) and (max-width: 991px) { ... }</span>
-  <span data-blue>[</span><span data-green>mq</span>().<span data-green>screen</span>().<span data-green>from</span>(<span data-purple>768</span>).<span data-green>to</span>(<span data-purple>992</span>)<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+  <span data-blue>[</span><span data-green>mq</span>().<span data-green>screen</span>().<span data-green>from</span>(<span data-purple>768</span>).<span data-green>to</span>(<span data-purple>991</span>)<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
     maxWidth<span data-pink>:</span> <span data-yellow>'45rem'</span>
   <span data-blue>}</span>
 <span data-pink>}</span>);
@@ -239,7 +239,7 @@
 
   <h3>Media Types</h3>
 
-  <p>The mq helper exposes 2 media type methods</p>
+  <p>The mq helper exposes 2 media type methods:</p>
 
   <ul>
     <li><code>screen</code> which outputs <code>@media screen</code></li>
@@ -248,7 +248,7 @@
 
   <h3>Defined media query features</h3>
 
-  <p>These methods accept a <code>string</code> argument which is of a pre-defined set</p>
+  <p>These methods accept a <code>string</code> argument which is from a pre-defined set.</p>
 
   <div data-table>
     <div>
@@ -335,7 +335,7 @@
 
   <h3>Range media query features</h3>
 
-  <p>As the CSS specification defines, these are features that are prefixed with <code>min</code> and <code>max</code>.</p>
+  <p>As the CSS specification defines, these are features prefixed with <code>min</code> or <code>max</code> and the joining hyphen.</p>
 
   <div data-table>
     <div>
@@ -380,9 +380,37 @@
     </div>
   </div>
 
-  <p>All the methods in the above table also have min and max versions. eg: <code>width(arg: string)</code> me can be used as <code>minWidth(arg: string)</code> as well as <code>maxWith(arg: string)</code>.</p>
+  <p>All the methods in the above table also have min and max versions. eg: <code>width(arg: string)</code> me can be used as <code>minWidth(arg: string)</code> as well as <code>maxWith(arg: string)</code></p>
 
-  <p>To help with <code>min-width</code> and <code>max-width</code> just use <code>from</code> and <code>to</code> accordingly. <strong>NOTE:</strong> <code>px</code> unit applied to number supplied to <code>to</code> or <code>from</code>.</p>
+  <p>You can also use the alias methods for <code>min-width</code> and <code>max-width</code></p>
+
+  <div data-table>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Method</th>
+            <th scope="col">Arg type</th>
+            <th scope="col">Alias to</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>from</td>
+            <td><span data-highlight>number</span></td>
+            <td>min-width</td>
+          </tr>
+          <tr>
+            <td>to</td>
+            <td><span data-highlight>number</span></td>
+            <td>max-width</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p><strong>NOTE:</strong> <code>number</code> argument supplied to the above methods is converted to a <code>px</code> value.</p>
 
   <h3>Escape hatch</h3>
 
@@ -398,7 +426,7 @@
 <section>
   <h2 id="global-styles">Global styles</h2>
 
-  <p>To set default styles for body, headings etc. just use <code>withCSS</code> method which accepts normal CSS as its arguments.</p>
+  <p>To set default styles for body, headings etc. just use the <code>withCSS</code> method which accepts normal CSS as its arguments.</p>
 
 <pre><code><!--
 --><span data-pink>const</span> <span data-purple>boxSizing</span> <span data-pink>=</span>
@@ -423,7 +451,7 @@
   );
 </code></pre>
 
-  <p>CSS variables can also be defined using this method</p>
+  <p>CSS variables can also be defined using this method.</p>
 
 <pre><code><!--
 --><span data-pink>const</span> <span data-purple>AppWrapper</span> <span data-pink>=</span> <span data-purple>styled</span>
@@ -443,7 +471,7 @@
   );
 </code></pre>
 
-  <p>Keyframe animations can be declared and used like so</p>
+  <p>Keyframe animations can be declared and used like so:</p>
 
 <pre><code><!--
 --><span data-pink>const</span> <span data-purple>shimmer</span> <span data-pink>=</span> <span data-yellow>'shimmer'</span>;
@@ -461,7 +489,7 @@
   );
 </code></pre>
 
-  <p>Font face rules</p>
+  <p>Font face rules:</p>
 
 <pre><code><!--
 --><span data-pink>const</span> <span data-purple>AppWrapper</span> <span data-pink>=</span> <span data-purple>styled</span>

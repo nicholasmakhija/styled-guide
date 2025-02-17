@@ -7,7 +7,7 @@
   <p>Use the <code>withRef</code> method to pass the <code>ref</code> down to the underlying DOM element. This uses React's <code>forwardRef</code> functionality behind the scenes. Then use the <code>useRef</code> hook to access its value.</p>
 
 <pre><code><!--
-  --><span data-pink>import</span> React, { useRef } <span data-pink>from</span> <span data-yellow>'react</span>;
+  --><span data-pink>import</span> React, { useRef } <span data-pink>from</span> <span data-yellow>'react'</span>;
 
 <span data-pink>const</span> <span data-purple>Div</span> <span data-pink>=</span> <span data-purple>styled</span>
   .<span data-green>div</span>()
@@ -68,7 +68,7 @@
   <span data-pink>}</span>)
   .<span data-green>withProps</span>(<span data-pink>{</span>
     isDisabled<span data-pink>:</span> PropTypes.bool,
-    colour<span data-pink>:</span> PropTypes.<span data-green>oneOf</span>([<span data-yellow>'blue'</span>, <span data-yellow>'green'</span>, <span data-yellow>'purple'</span>])
+    colour<span data-pink>:</span> PropTypes.<span data-green>oneOf</span>(<span data-blue>[</span><span data-yellow>'blue'</span>, <span data-yellow>'green'</span>, <span data-yellow>'purple'</span><span data-blue>]</span>)
   <span data-pink>}</span>);
 </code></pre>
 </section>
@@ -110,7 +110,7 @@
 <span data-pink>const</span> <span data-purple>app</span> <span data-pink>=</span> <span data-green>express</span>();
 
 <span data-purple>app</span>.<span data-green>use</span>((<span data-orange data-em>_</span>, <span data-orange data-em>res</span>) <span data-pink>=></span> {
-  <span data-grey>// render the component to a string.</span>
+  <span data-grey>// render the component to a string</span>
   <span data-pink>const</span> <span data-purple>html</span> <span data-pink>=</span> <span data-green>renderToString</span>(&lt;<span data-blue>App</span> /&gt;);
 
   <span data-grey>// get generated styles after component is rendered</span>
