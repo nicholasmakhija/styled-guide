@@ -25,6 +25,7 @@ export const HeaderHamburger = () => {
 
   return (
     <HeaderButton
+      aria-label='Menu'
       aria-expanded={isOpen}
       aria-controls={NAV_ID}
       isToggle

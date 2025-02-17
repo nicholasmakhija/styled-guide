@@ -26,10 +26,12 @@ export const Header = () => (
           <HeaderThemeSwitcher />
 
           <HeaderLink
-            canHover
-            isRounded
+            aria-label='GitHub'
             href='https://github.com/nicholasmakhija/styled-js' 
             target='_blank'
+            rel='noopener noreferrer'
+            canHover
+            isRounded
           >
             <LazyIcon src='/icons/github.svg' />
           </HeaderLink>

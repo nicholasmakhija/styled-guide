@@ -17,6 +17,7 @@ export const HeaderThemeSwitcher = () => {
 
   return (
     <HeaderButton
+      aria-label='Toggle dark mode'
       canHover
       isRounded
       onClick={clickHandler}

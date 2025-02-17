@@ -1,4 +1,5 @@
 type HeaderActionProps = {
+  'aria-label'?: string;
   children?: React.ReactNode;
   canHover?: boolean;
   isRounded?: boolean;
@@ -7,6 +8,7 @@ type HeaderActionProps = {
 type HeaderLinkProps = HeaderActionProps & {
   href: string;
   target?: string;
+  rel?: string;
 };
 
 type HeaderButtonProps = HeaderActionProps & {
