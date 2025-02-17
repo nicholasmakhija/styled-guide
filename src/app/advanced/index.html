@@ -6,7 +6,32 @@
 
   <p>Use the <code>withRef</code> method to pass the <code>ref</code> down to the underlying DOM element. This uses React's <code>forwardRef</code> functionality behind the scenes. Then use the <code>useRef</code> hook to access its value.</p>
 
-<pre><code></code></pre>
+<pre><code><!--
+  --><span data-keyword>import</span> React, { useRef } <span data-keyword>from</span> <span data-string>'react</span>;
+
+<span data-keyword>const</span> <span data-variable>Div</span> <span data-keyword>=</span> <span data-variable>styled</span>
+  .<span data-function>div</span>()
+  .<span data-function>withRef</span>();
+
+<span data-keyword>const</span> <span data-variable>Button</span> <span data-keyword>=</span> <span data-variable>styled</span>.<span data-function>button</span>();
+
+<span data-keyword>const</span> <span data-function>Composition</span> <span data-keyword>=</span> () <span data-keyword>=></span> {
+  <span data-keyword>const</span> <span data-variable>divRef</span> <span data-keyword>=</span> <span data-function>useRef</span>();
+
+  <span data-keyword>const</span> <span data-variable>clickHandler</span> <span data-keyword>=</span> () <span data-keyword>=></span> {
+    <span data-variable>console</span>.<span data-function>log</span>(<span data-string>'divRef'</span>, <span data-variable>divRef</span>.current);
+  };
+
+  <span data-keyword>return</span> (
+    &lt;&gt;
+      &lt;<span data-jsx>Div</span> <span data-function>ref</span><span data-keyword>=</span>{<span data-variable>divRef</span>} /&gt;
+      &lt;<span data-jsx>Button</span> <span data-function>onClick</span><span data-keyword>=</span>{<span data-function>clickHandler</span>}&gt;
+        click me!
+      &lt;/<span data-jsx>Button</span>&gt;
+    &lt;/&gt;
+  );
+};
+</code></pre>
 </section>
 
 <section>
@@ -14,7 +39,38 @@
 
   <p>Built-in typechecking support for React propsTypes. Just chain the <code>withProps</code> method to an already defined Styled Component and pass the propTypes object as its only argument. This is the same as assigning the <code>propTypes</code> property on a Component.</p>
 
-<pre><code></code></pre>
+<pre><code><!--
+--><span data-keyword>import</span> PropTypes <span data-keyword>from</span> <span data-string>'prop-types'</span>;
+
+<span data-keyword>type</span> <span data-type>ButtonColour</span> <span data-keyword>=</span>
+  <span data-keyword>|</span> <span data-string>'blue'</span>
+  <span data-keyword>|</span> <span data-string>'blue'</span>
+  <span data-keyword>|</span> <span data-string>'purple'</span>;
+
+<span data-keyword>type</span> <span data-type>ButtonProps</span> <span data-keyword>=</span> {
+  isDisabled<span data-keyword>?:</span> <span data-type>boolean</span>;
+  colour<span data-keyword>?:</span> <span data-type>ButtonColour</span>;
+};
+
+<span data-keyword>export const</span> <span data-variable>Button</span> <span data-keyword>=</span> <span data-variable>styled</span>
+  .<span data-function>button</span>&lt;<span data-type>ButtonProps</span>&gt;(<span data-keyword>{</span>
+    <span data-comment>// base button styles</span>
+
+    [<span data-variable>style</span>.<span data-function>prop</span>(<span data-string>'isDisabled'</span>)]<span data-keyword>:</span> {
+      color<span data-keyword>:</span> <span data-string>'light grey'</span>,
+      cursor<span data-keyword>:</span> <span data-string>'not-allowed'</span>
+    },
+
+    [<span data-variable>style</span>.<span data-function>prop</span>(<span data-string>'colour'</span>)]<span data-keyword>:</span> (<span data-arg>colour</span><span data-keyword>:</span> <span data-type>ButtonColour</span>) <span data-keyword>=></span> (<span data-keyword>{</span>
+      backgroundColor<span data-keyword>:</span> <span data-arg>colour</span>,
+      borderColour<span data-keyword>:</span> <span data-arg>colour</span>
+    <span data-keyword>}</span>)
+  <span data-keyword>}</span>)
+  .<span data-function>withProps</span>(<span data-keyword>{</span>
+    isDisabled<span data-keyword>:</span> PropTypes.bool,
+    colour<span data-keyword>:</span> PropTypes.<span data-function>oneOf</span>([<span data-string>'blue'</span>, <span data-string>'green'</span>, <span data-string>'purple'</span>])
+  <span data-keyword>}</span>);
+</code></pre>
 </section>
 
 <section>
@@ -22,7 +78,52 @@
 
   <p>SSR is supported out of the box, no extra setup required. To get the CSS rendered <em>(including their wrapping style tags)</em>, just import and invoke the <code>getStyles</code> method.</p>
 
-<pre><code></code></pre>
+<pre><code><!--
+--><span data-keyword>import</span> express <span data-keyword>from</span> <span data-string>'express'</span>;
+<span data-keyword>import</span> React <span data-keyword>from</span> <span data-string>'react'</span>;
+<span data-keyword>import</span> { renderToString } <span data-keyword>from</span> <span data-string>'react-dom/server'</span>;
+<span data-keyword>import</span> { getStyles } <span data-keyword>from</span> <span data-string>'@n3e/styled'</span>;
+
+<span data-keyword>import</span> App <span data-keyword>from</span> <span data-string>'path/to/App'</span>;
+
+<span data-comment>/**
+ * <span data-keyword>@param</span> <span data-unset>{</span><span data-type>string</span><span data-unset>}</span> <span data-arg>html</span>
+ * <span data-keyword>@param</span> <span data-unset>{</span><span data-type>string</span><span data-unset>}</span> <span data-arg>sheets</span>
+ * <span data-keyword>@returns</span> <span data-unset>{</span><span data-type>string</span><span data-unset>}</span>
+ */</span>
+<span data-keyword>export const</span> <span data-variable>renderPage</span> <span data-keyword>=</span> (<span data-arg>html</span>, <span data-arg>sheets</span>) <span data-keyword>=></span>
+  <span data-string>`&lt;!DOCTYPE html&gt;
+  &lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt;
+    &lt;title&gt;App: served by express&lt;/title&gt;
+    <span data-unset>${</span><span data-arg>sheets</span><span data-unset>}</span>
+    &lt;script defer src="path/to/script.js"&gt;&lt;/script&gt;
+  &lt;head&gt;
+  &lt;body&gt;
+    &lt;div id="root"&gt;<span data-unset>${</span><span data-arg>html</span><span data-unset>}</span>&lt;/div&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;`</span>;
+
+<span data-keyword>const</span> <span data-variable>app</span> <span data-keyword>=</span> <span data-function>express</span>();
+
+<span data-variable>app</span>.<span data-function>use</span>((<span data-arg>_</span>, <span data-arg>res</span>) <span data-keyword>=></span> {
+  <span data-comment>// render the component to a string.</span>
+  <span data-keyword>const</span> <span data-variable>html</span> <span data-keyword>=</span> <span data-function>renderToString</span>(&lt;<span data-jsx>App</span> /&gt;);
+
+  <span data-comment>// get generated styles after component is rendered</span>
+  <span data-keyword>const</span> <span data-variable>sheets</span> <span data-keyword>=</span> <span data-function>getStyles</span>();
+
+  <span data-keyword>return</span> <span data-arg>res</span>
+    .<span data-function>express</span>(<span data-variable>200</span>)
+    .<span data-function>contentType</span>(<span data-string>'text/html'</span>)
+    .<span data-function>send</span>(<span data-function>renderPage</span>(<span data-variable>html</span>, <span data-variable>sheets</span>));
+});
+
+<span data-variable>app</span>.<span data-function>listen</span>(<span data-string>'9000'</span>);
+</code></pre>
 </section>
 
 <section>
@@ -32,9 +133,41 @@
 
   <p>First, create a component at the root directory, it can be called anything you like.</p>
 
-<pre><code></code></pre>
+<pre><code><!--
+--><span data-keyword>import</span> { ServerStyles } <span data-keyword>from</span> <span data-string>'@n3e/styled'</span>;
 
-  <p>Then in the <code>layout.(js|tsx)</code> file, import the component created above and insert it as a child of the <code>head</code> tag.</p>
+<span data-keyword>export default async function</span> <span data-function>RootStyles</span>() {
+  <span data-keyword>return</span> &lt;<span data-jsx>ServerStyles</span> /&gt;;
+}
+</code></pre>
 
-<pre><code></code></pre>
+  <p>Then in the <code>layout.tsx</code> file, import the component created above and insert it as a child of the <code>head</code> tag.</p>
+
+<pre><code><!--
+--><span data-keyword>import type</span> { Metadata } <span data-keyword>from</span> <span data-string>'next'</span>;
+<span data-keyword>import</span> RootStyles <span data-keyword>from</span> <span data-string>'./RootStyles'</span>;
+
+<span data-keyword>export const</span> <span data-variable>metadata</span><span data-keyword>:</span> <span data-type>Metadata</span> <span data-keyword>=</span> {
+  <span data-comment>// meta data properties</span>
+};
+
+<span data-keyword>type</span> <span data-type>RootLayoutProps</span> <span data-keyword>=</span> <span data-type>Readonly</span>&lt;<span data-keyword>{</span>
+  children<span data-keyword>?:</span> <span data-type>React</span>.<span data-type>ReactNode</span>;
+<span data-keyword>}</span>&gt;;
+
+<span data-keyword>export default async RootLayout</span> <span data-function>RootStyles</span>(<span data-keyword>{</span>
+  <span data-arg>children</span>
+<span data-keyword>}:</span> <span data-type>RootLayoutProps</span>) {
+  <span data-keyword>return</span> (
+    &lt;<span data-keyword>html</span> <span data-function>land</span><span data-keyword>=</span><span data-string>'en'</span>&gt;
+      &lt;<span data-keyword>head</span>&gt;
+        &lt;<span data-jsx>RootStyles</span> /&gt;
+      &lt;/<span data-keyword>head</span>&gt;
+      &lt;<span data-keyword>body</span>&gt;
+        {<span data-arg>children</span>}
+      &lt;/<span data-keyword>body</span>&gt;
+    &lt;/<span data-keyword>html</span>&gt;
+  );
+}
+</code></pre>
 </section>

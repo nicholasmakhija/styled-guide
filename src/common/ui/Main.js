@@ -90,12 +90,23 @@ export const Main = styled.main({
     overflow: 'hidden',
     fontSize: asRem(14),
     lineHeight: asRem(16),
+    [style.selector('[data-unset]')]: { color: CSS_VARS.COLOR_CODE },
     [style.selector('[data-comment]')]: { color: '#697098' },
     [style.selector('[data-function]')]: { color: '#61e884' },
     [style.selector('[data-keyword]')]: { color: '#eb82bf' },
     [style.selector('[data-string]')]: { color: '#e7ee98' },
     [style.selector('[data-variable]')]: { color: '#bf9eee' },
-    [style.selector('[data-type]')]: { color: '#96dfef', fontStyle: 'italic' },
+    [style.selector('[data-arg]')]: { color: '#ffb86c' },
+    [style.or(
+      style.selector('[data-type]'),
+      style.selector('[data-jsx]')
+    )]: { color: '#96dfef' },
+    [style.or(
+      style.selector('[data-arg]'),
+      style.selector('[data-type]'),
+    )]: {
+      fontStyle: 'italic'
+    }
   },
   [style.selector('pre')]: {
     // margin: 0, // FIXME: delete?
