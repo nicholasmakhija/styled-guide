@@ -7,13 +7,13 @@
   <p>Styled also exposes a helper for writing pseudo, attribute and prop selectors.</p>
 
 <pre><code><!--
---><span data-keyword>import</span> styled, { style } <span data-keyword>from</span> <span data-string>'@n3e/styled'</span>;
+--><span data-pink>import</span> styled, { style } <span data-pink>from</span> <span data-yellow>'@n3e/styled'</span>;
 
-<span data-keyword>export const</span> <span data-variable>SomeElement</span> <span data-keyword>=</span> <span data-variable>styled</span>.<span data-function>button</span>(<span data-keyword>{</span>
-  [<span data-variable>style</span>.disabled]<span data-keyword>:</span> {
-    <span data-comment>// disabled ui styles</span>
-  }
-<span data-keyword>}</span>);
+<span data-pink>const</span> <span data-purple>SomeElement</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>button</span>(<span data-pink>{</span>
+  <span data-blue>[</span>style.disabled<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    <span data-grey>// disabled ui styles</span>
+  <span data-blue>}</span>
+<span data-pink>}</span>);
 </code></pre>
 
   <h3>Pseudo Elements</h3>
@@ -209,15 +209,15 @@
   <p><code>style.or</code> for creating nested selector lists <i>(comma separated)</i></p>
 
 <pre><code><!--
---><span data-variable>style</span>.<span data-function>or</span>(<span data-variable>style</span>.before, <span data-variable>style</span>.after)
-<span data-comment>// ::before, ::after</span>
+-->style.<span data-green>or</span>(style.before, style.after)
+<span data-grey>// ::before, ::after</span>
 </code></pre>
 
   <p><code>style.and</code> for combining nested selectors</p>
 
 <pre><code><!--
---><span data-variable>style</span>.<span data-function>and</span>(<span data-variable>style</span>.hover, <span data-variable>style</span>.focus)
-<span data-comment>// :hover:focus</span>
+-->style.<span data-green>and</span>(style.hover, style.focus)
+<span data-grey>// :hover:focus</span>
 </code></pre>
 </section>
 
@@ -227,14 +227,14 @@
   <p>Writing media queries can be made easy with the help of the <code>mq</code> helper that provides a nice DSL. Simply chain the exposed methods to build the desired media query string.</p>
 
 <pre><code><!--
---><span data-keyword>import</span> styled, { mq } <span data-keyword>from</span> <span data-string>'@n3e/styled'</span>;
+--><span data-pink>import</span> styled, { mq } <span data-pink>from</span> <span data-yellow>'@n3e/styled'</span>;
 
-<span data-keyword>export const</span> <span data-variable>Container</span> <span data-keyword>=</span> <span data-variable>styled</span>.<span data-function>div</span>(<span data-keyword>{</span>
-  <span data-comment>// @media screen and (min-width: 768px) and (max-width: 991px) { ... }</span>
-  [<span data-function>mq</span>().<span data-function>screen</span>().<span data-function>from</span>(<span data-variable>768</span>).<span data-function>to</span>(<span data-variable>992</span>)]<span data-keyword>:</span> {
-    maxWidth<span data-keyword>:</span> <span data-string>'45rem'</span>
-  }
-<span data-keyword>}</span>);
+<span data-pink>const</span> <span data-purple>Container</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>div</span>(<span data-pink>{</span>
+  <span data-grey>// @media screen and (min-width: 768px) and (max-width: 991px) { ... }</span>
+  <span data-blue>[</span><span data-green>mq</span>().<span data-green>screen</span>().<span data-green>from</span>(<span data-purple>768</span>).<span data-green>to</span>(<span data-purple>992</span>)<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    maxWidth<span data-pink>:</span> <span data-yellow>'45rem'</span>
+  <span data-blue>}</span>
+<span data-pink>}</span>);
 </code></pre>
 
   <h3>Media Types</h3>
@@ -391,7 +391,7 @@
   <p>The <code>feature</code> method takes 2 arguments, the feature name <code>string</code> and the feature value <code>number</code> or <code>string</code>.</p>
 
 <pre><code><!--
---><span data-function>mq</span>().<span data-function>feature</span>(<span data-string>'awesome-new-feature'</span>, <span data-string>'100ghz'</span>)
+--><span data-green>mq</span>().<span data-green>feature</span>(<span data-yellow>'awesome-new-feature'</span>, <span data-yellow>'100ghz'</span>)
 </code></pre>
 </section>
 
@@ -401,40 +401,40 @@
   <p>To set default styles for body, headings etc. just use <code>withCSS</code> method which accepts normal CSS as its arguments.</p>
 
 <pre><code><!--
---><span data-keyword>const</span> <span data-variable>boxSizing</span> <span data-keyword>=</span>
-  <span data-string>`*,
+--><span data-pink>const</span> <span data-purple>boxSizing</span> <span data-pink>=</span>
+  <span data-yellow>`*,
     :after,
     :before {
       box-sizing: border-box;
   }`</span>;
 
-<span data-keyword>const</span> <span data-variable>htmlAndBody</span> <span data-keyword>=</span>
-  <span data-string>`body, html {
+<span data-pink>const</span> <span data-purple>htmlAndBody</span> <span data-pink>=</span>
+  <span data-yellow>`body, html {
     margin: 0;
     padding: 0;
     width: 100%;
   }`</span>;
 
-<span data-keyword>const</span> <span data-variable>AppWrapper</span> <span data-keyword>=</span> <span data-variable>styled</span>
-  .<span data-function>div</span>()
-  .<span data-function>withCSS</span>(
-    <span data-variable>boxSizing</span>,
-    <span data-variable>htmlAndBody</span>
+<span data-pink>const</span> <span data-purple>AppWrapper</span> <span data-pink>=</span> <span data-purple>styled</span>
+  .<span data-green>div</span>()
+  .<span data-green>withCSS</span>(
+    <span data-purple>boxSizing</span>,
+    <span data-purple>htmlAndBody</span>
   );
 </code></pre>
 
   <p>CSS variables can also be defined using this method</p>
 
 <pre><code><!--
---><span data-keyword>const</span> <span data-variable>AppWrapper</span> <span data-keyword>=</span> <span data-variable>styled</span>
-  .<span data-function>div</span>()
-  .<span data-function>withCSS</span>(
-    <span data-string>`:root {
+--><span data-pink>const</span> <span data-purple>AppWrapper</span> <span data-pink>=</span> <span data-purple>styled</span>
+  .<span data-green>div</span>()
+  .<span data-green>withCSS</span>(
+    <span data-yellow>`:root {
       --background-primary: #fff;
       --color-primary: #262223;
     }`</span>,
 
-    <span data-string>`@media (prefers-color-scheme: dark) {
+    <span data-yellow>`@media (prefers-color-scheme: dark) {
       :root {
         --background-primary: #121212;
         --color-primary: #fff;
@@ -446,14 +446,14 @@
   <p>Keyframe animations can be declared and used like so</p>
 
 <pre><code><!--
---><span data-keyword>const</span> <span data-variable>shimmer</span> <span data-keyword>=</span> <span data-string>'shimmer'</span>;
+--><span data-pink>const</span> <span data-purple>shimmer</span> <span data-pink>=</span> <span data-yellow>'shimmer'</span>;
 
-<span data-keyword>const</span> <span data-variable>SomeElement</span> <span data-keyword>=</span> <span data-variable>styled</span>
-  .<span data-function>div</span>(<span data-keyword>{</span>
-    animation<span data-keyword>:</span> <span data-string>`</span><span data-function>${</span><span data-variable>shimmer</span><span data-function>}</span> <span data-string>1.5s ease-in-out infinite`</span>
-  <span data-keyword>}</span>)
-  .<span data-function>withCSS</span>(
-    <span data-string>`@keyframes</span> <span data-function>${</span><span data-variable>shimmer</span><span data-function>}</span><span data-string> {
+<span data-pink>const</span> <span data-purple>SomeElement</span> <span data-pink>=</span> <span data-purple>styled</span>
+  .<span data-green>div</span>(<span data-pink>{</span>
+    animation<span data-pink>:</span> <span data-yellow>`</span><span data-blue>${</span><span data-purple>shimmer</span><span data-blue>}</span> <span data-yellow>1.5s ease-in-out infinite`</span>
+  <span data-pink>}</span>)
+  .<span data-green>withCSS</span>(
+    <span data-yellow>`@keyframes</span> <span data-pink>${</span><span data-purple>shimmer</span><span data-pink>}</span><span data-yellow> {
       0% { opacity: 0.5; }
       50% { opacity: 0.8; }
       100% { opacity: 0.5; }
@@ -464,10 +464,10 @@
   <p>Font face rules</p>
 
 <pre><code><!--
---><span data-keyword>const</span> <span data-variable>AppWrapper</span> <span data-keyword>=</span> <span data-variable>styled</span>
-  .<span data-function>div</span>()
-  .<span data-function>withCSS</span>(
-    <span data-string>`@font-face {
+--><span data-pink>const</span> <span data-purple>AppWrapper</span> <span data-pink>=</span> <span data-purple>styled</span>
+  .<span data-green>div</span>()
+  .<span data-green>withCSS</span>(
+    <span data-yellow>`@font-face {
       font-family: 'Montserrat';
       font-style: normal;
       font-weight: 500;

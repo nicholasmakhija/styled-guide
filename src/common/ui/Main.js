@@ -89,27 +89,21 @@ export const Main = styled.main({
     boxShadow: `0 0 0 ${asRem(2)} ${CSS_VARS.BORDER_SECONDARY}`,
     overflow: 'hidden',
     fontSize: asRem(14),
-    lineHeight: asRem(16),
-    [style.selector('[data-unset]')]: { color: CSS_VARS.COLOR_CODE },
-    [style.selector('[data-comment]')]: { color: '#697098' },
-    [style.selector('[data-function]')]: { color: '#61e884' },
-    [style.selector('[data-keyword]')]: { color: '#eb82bf' },
-    [style.selector('[data-string]')]: { color: '#e7ee98' },
-    [style.selector('[data-variable]')]: { color: '#bf9eee' },
-    [style.selector('[data-arg]')]: { color: '#ffb86c' },
-    [style.or(
-      style.selector('[data-type]'),
-      style.selector('[data-jsx]')
-    )]: { color: '#96dfef' },
-    [style.or(
-      style.selector('[data-arg]'),
-      style.selector('[data-type]'),
-    )]: {
+    // lineHeight: asRem(16), // FIXME: DELETE!
+    lineHeight: asRem(20),
+    [style.selector('[data-em]')]: {
       fontStyle: 'italic'
-    }
+    },
+    [style.selector('[data-blue]')]: { color: '#96dfef' }, // type, jsx, {}
+    [style.selector('[data-green]')]: { color: '#61e884' }, // function, {}
+    [style.selector('[data-grey]')]: { color: '#697098' }, // comment
+    [style.selector('[data-orange]')]: { color: '#ffb86c' }, // arg, ${}
+    [style.selector('[data-pink]')]: { color: '#eb82bf' }, // keyword, {}
+    [style.selector('[data-purple]')]: { color: '#bf9eee' }, // variable, number
+    [style.selector('[data-white]')]: { color: CSS_VARS.COLOR_CODE },
+    [style.selector('[data-yellow]')]: { color: '#e7ee98' }, // string
   },
   [style.selector('pre')]: {
-    // margin: 0, // FIXME: delete?
     padding: 0,
     overflow: 'hidden',
     overflowX: 'auto',
@@ -168,14 +162,3 @@ export const Main = styled.main({
     }
   }
 }).withRef();
-
-/* FIXME: DELETE
-.c { color: #697098; }
-.s { color: #e7ee98; }
-.k, .o { color: #eb82bf; }
-.f { color: #61e884; }
-.b { color: #96dfef; }
-.p { color: #ffb86c; }
-.n { color: #bfc7d5; } // TODO: change??
-.v { color: #bf9eee; }
-*/

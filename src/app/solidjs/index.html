@@ -5,11 +5,11 @@
   <p>SolidJS users need to import Styled from the the <code>solid</code> output folder as shown below:</p>
 
 <pre><code><!--
---><span data-comment># as ES module</span>
-<span data-keyword>import</span> styled <span data-keyword>from</span> <span data-string>'@n3e/styled/solid/esm'</span>;
+--><span data-grey># as ES module</span>
+<span data-pink>import</span> styled <span data-pink>from</span> <span data-yellow>'@n3e/styled/solid/esm'</span>;
 
-<span data-comment># as CommonJS module</span>
-<span data-keyword>import</span> styled <span data-keyword>from</span> <span data-string>'@n3e/styled/solid/cjs'</span>;
+<span data-grey># as CommonJS module</span>
+<span data-pink>import</span> styled <span data-pink>from</span> <span data-yellow>'@n3e/styled/solid/cjs'</span>;
 </code></pre>
 
   <blockquote>
@@ -18,16 +18,16 @@
   </blockquote>
 
 <pre><code><!--
---><span data-keyword>import type</span> { JSXElement } <span data-keyword>from</span> <span data-string>'solid-js'</span>;
+--><span data-pink>import type</span> { JSXElement } <span data-pink>from</span> <span data-yellow>'solid-js'</span>;
 
-<span data-keyword>export const</span> <span data-variable>Content</span> <span data-keyword>=</span> <span data-variable>styled</span>.<span data-function>div</span>&lt;<span data-keyword>{</span>
-  children<span data-keyword>?:</span> <span data-type>JSXElement</span>;
-  isTransparent<span data-keyword>?:</span> <span data-type>boolean</span>;
-<span data-keyword>}</span>&gt;(<span data-keyword>{</span>
-  position<span data-keyword>:</span> <span data-string>'relative'</span>,
-  [<span data-variable>style</span>.<span data-function>prop</span>(<span data-string>'isTransparent'</span>)]<span data-keyword>:</span> {
-    opacity<span data-keyword>:</span> <span data-variable>0.4</span>
-  }
-<span data-keyword>}</span>);
+<span data-pink>export const</span> <span data-purple>Content</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>div</span>&lt;<span data-pink>{</span>
+  children<span data-pink>?:</span> <span data-blue data-em>JSXElement</span>;
+  isTransparent<span data-pink>?:</span> <span data-blue data-em>boolean</span>;
+<span data-pink>}</span>&gt;(<span data-pink>{</span>
+  position<span data-pink>:</span> <span data-yellow>'relative'</span>,
+  <span data-blue>[</span>style.<span data-green>prop</span>(<span data-yellow>'isTransparent'</span>)<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    opacity<span data-pink>:</span> <span data-purple>0.4</span>
+  <span data-blue>}</span>
+<span data-pink>}</span>);
 </code></pre>
 </section>
