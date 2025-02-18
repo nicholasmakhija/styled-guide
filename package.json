@@ -9,6 +9,7 @@
     "clean": "run-p clean:**",
     "copy": "copyfiles -u 2 \"src/assets/**/*.*\" dist",
     "scaffold": "node -r @babel/register scripts/scaffold",
+    "lint": "eslint",
     "bundle": "rollup --config --exports named",
     "build": "run-s clean copy scaffold bundle",
     "dev": "NODE_ENV=development run-s --silent build",
@@ -26,15 +27,19 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.26.8",
+    "@babel/eslint-parser": "^7.26.8",
     "@babel/preset-env": "^7.26.8",
     "@babel/preset-react": "^7.26.3",
     "@babel/register": "^7.25.9",
+    "@eslint/js": "^9.20.0",
+    "@rbnlffl/rollup-plugin-eslint": "^6.0.0",
     "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-replace": "^6.0.2",
     "@rollup/plugin-terser": "^0.4.4",
+    "@stylistic/eslint-plugin": "^4.0.0",
     "@types/html-minifier": "^4.0.5",
     "@types/node": "^22.13.1",
     "@types/react": "^18.3.1",
@@ -42,7 +47,11 @@
     "babel-plugin-module-resolver": "^5.0.2",
     "browser-sync": "^3.0.3",
     "copyfiles": "^2.4.1",
+    "eslint": "^9.20.1",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
     "glob": "^11.0.1",
+    "globals": "^15.15.0",
     "html-minifier": "^4.0.0",
     "npm-run-all": "^4.1.5",
     "onchange": "^7.1.0",
@@ -51,7 +60,7 @@
     "rollup-plugin-gzip": "^4.0.1"
   },
   "dependencies": {
-    "@n3e/styled": "^1.0.0",
+    "@n3e/styled": "^1.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   }

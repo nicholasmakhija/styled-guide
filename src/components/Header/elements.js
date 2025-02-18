@@ -66,7 +66,7 @@ const HeaderAction = styled.generic({
   color: CSS_VARS.COLOR,
   [style.focus]: {
     ...boxShadowBorder(4, CSS_VARS.ACCENT),
-    outline: 0,
+    outline: 0
   },
   [style.not(style.firstChild)]: {
     marginLeft: asRem(16)
@@ -87,7 +87,7 @@ const HeaderAction = styled.generic({
 export const HeaderLink = styled
   .a()
   .extend(HeaderAction, {
-    textDecoration: 'none',
+    textDecoration: 'none'
   });
 
 export const Line = styled.span({
@@ -103,7 +103,7 @@ export const Line = styled.span({
   },
   [style.nthChild(2)]: {
     top: asRem(15),
-    left: asRem(4),
+    left: asRem(4)
   },
   [style.nthChild(3)]: {
     top: asRem(23)

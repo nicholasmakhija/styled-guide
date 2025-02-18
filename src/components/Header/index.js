@@ -13,7 +13,6 @@ import {
   HeaderLink
 } from './elements';
 
-
 export const Header = () => (
   <HeaderRoot>
     <HeaderSticky>

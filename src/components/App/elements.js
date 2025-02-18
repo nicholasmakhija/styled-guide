@@ -3,7 +3,7 @@ import styled, { style } from '@styled';
 import { CLASS_NAME_IS_DARK_MODE } from '@common/utils';
 import {
   CSS_PROPS,
-  CSS_VARS,
+  CSS_VARS
 } from '@common/constants';
 
 const boxSizing = `
@@ -78,5 +78,5 @@ export const AppRoot = styled
     rootDarkTheme,
     html,
     htmlAndBody,
-    body,
+    body
   );

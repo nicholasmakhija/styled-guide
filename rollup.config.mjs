@@ -1,8 +1,7 @@
-
-import { resolve } from 'path';
 import { brotliCompress } from 'zlib';
 import { promisify } from 'util';
 import alias from '@rollup/plugin-alias';
+import eslint from '@rbnlffl/rollup-plugin-eslint';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import { babel } from '@rollup/plugin-babel';
@@ -24,6 +23,7 @@ export default {
         '@styled': './node_modules/@n3e/styled'
       }
     }),
+    eslint(),
     nodeResolve({
       dedupe: ['react'],
       extensions: ['.js']

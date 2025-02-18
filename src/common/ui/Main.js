@@ -108,7 +108,7 @@ export const Main = styled.main({
     [style.selector('[data-pink]')]: { color: '#eb82bf' }, // keyword, {}
     [style.selector('[data-purple]')]: { color: '#bf9eee' }, // variable, number
     [style.selector('[data-white]')]: { color: CSS_VARS.COLOR_CODE },
-    [style.selector('[data-yellow]')]: { color: '#e7ee98' }, // string
+    [style.selector('[data-yellow]')]: { color: '#e7ee98' } // string
   },
   [style.selector('pre')]: {
     padding: 0,
@@ -162,7 +162,7 @@ export const Main = styled.main({
     [style.selector('th', 'td')]: {
       margin: 0,
       padding: `${asRem(12)} ${asRem(8)}`,
-      border: 0,
+      border: 0
     },
     [style.selector('[data-highlight]')]: {
       color: 'rgb(79, 159, 207)'

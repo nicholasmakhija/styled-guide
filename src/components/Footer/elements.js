@@ -19,7 +19,7 @@ export const FooterRoot = styled.footer({
   background: CSS_VARS.BACKGROUND_SECONDARY,
   [breakpoints.up.lg]: {
     boxShadow: 'none',
-    background: 'transparent',
+    background: 'transparent'
   }
 });
 

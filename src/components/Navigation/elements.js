@@ -39,10 +39,10 @@ export const Nav = styled.nav({
         content: '',
         position: 'fixed',
         inset: 0,
-        background: 'rgba(0, 0, 0, 0.6)',
+        background: 'rgba(0, 0, 0, 0.6)'
       }
     }
-  },
+  }
 });
 
 /** @type {import('@styled').StyledComponent<NavContentProps>} */
@@ -119,7 +119,7 @@ export const NavLink = styled.a({
       right: asRem(-CONTENT_SPACER),
       width: 0,
       height: asRem(32),
-      background: CSS_VARS.ACCENT,
+      background: CSS_VARS.ACCENT
     },
     [style.and(
       style.not(style.hover),

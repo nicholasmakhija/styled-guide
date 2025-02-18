@@ -25,7 +25,6 @@ const scrollToElement = (id) => {
   }
 };
 
-
 /** 
  * @param {AppProps} props
  * @returns {JSX.Element}
@@ -51,7 +50,6 @@ export const Router = ({
   const changeHandler = (newRoute) => {
     setRoute(newRoute);
   };
-
   
   /**
    * @param {string} newPathname 
@@ -105,6 +103,8 @@ export const Router = ({
     };
 
     window.addEventListener('popstate', popstateHandler);
+  // FIXME: ??
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // FIXME: prevent this effect from firing twice in `StrictMode`
@@ -128,6 +128,8 @@ export const Router = ({
     return () => {
       toggleEventListener(anchors, 'removeEventListener');
     };
+  // FIXME: ??
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route, mainRef]);
   
   return (

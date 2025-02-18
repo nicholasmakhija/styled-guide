@@ -1,6 +1,5 @@
-
 import { sync } from 'glob';
-import { dirname, sep } from 'path';
+import { dirname } from 'path';
 import {
   existsSync,
   mkdirSync,
@@ -26,6 +25,7 @@ import {
  * @returns {string}
  */
 export const renderHTML = (sheets, data, html) =>
+// eslint-disable-next-line @stylistic/indent
 `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,9 +66,6 @@ export const renderHTML = (sheets, data, html) =>
       } else {
         html.classList.remove('${CLASS_NAME_IS_DARK_MODE}');
       }
-
-      // FIXME: DELETE!
-      console.log("DOM content loaded");
     })();
   </script>
   <script defer src="/js/index.js"></script>
@@ -130,12 +127,6 @@ sync('src/app/**/index.html').map((file) => {
     collapseWhitespace: true,
     removeComments: true
   });
-
-  // DEBUG:
-  // console.group(file);
-  // console.log('sections', sections);
-  // console.log('content (minified)', content);
-  // console.groupEnd();
 
   return {
     content,

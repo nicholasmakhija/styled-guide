@@ -10,7 +10,7 @@ export const isDarkModeSet = () => {
   if (!isBrowser) return false;
 
   return window.localStorage.getItem(KEY_IS_DARK_MODE) === 'true';
-}
+};
 
 /**
  * @param {boolean} isDark 
