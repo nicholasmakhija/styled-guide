@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 
 import { useEventListener } from '@common/hooks';
 import { dispatchCustomEvent } from '@common/utils';
-import { NAV_ID } from '@common/constants';
+import { BREAKPOINTS, KEYS, NAV_ID } from '@common/constants';
 import {
   Nav,
   NavContent,
@@ -26,6 +26,31 @@ export const Navigation = ({
 
   /** @type {{ current: HTMLDivElement }} */
   const navContentRef = useRef();
+
+  /**
+   * @param {string} pathname 
+   * @returns {(e: Event) => void}
+   */
+  const clickHandler = (pathname) => (e) => {
+    e.preventDefault();
+
+    if (pathname !== currentPath) {
+      history.pushState({}, '', pathname);
+    }
+
+    const { hash } = /** @type {HTMLAnchorElement} */(
+      e.currentTarget
+    );
+
+    onChange({
+      hash,
+      pathname
+    });
+
+    if (!hash) {
+      window.scrollTo(0, 0);
+    }
+  };
 
   /**
    * @param {CustomEvent} e 
@@ -56,8 +81,48 @@ export const Navigation = ({
     dispatchCustomEvent(EVENT_NAV_OPENED, false);
   };
 
+  /**
+   * @param {KeyboardEvent} e
+   * @returns {void}
+   */
+  const keydownHandler = (e) => {
+    if (window.innerWidth >= BREAKPOINTS.LG) {
+      return;
+    }
+
+    if (e.key === KEYS.ESC && isOpen) {
+      setIsOpen(false);
+
+      dispatchCustomEvent(EVENT_NAV_OPENED, false);
+    }
+
+    if (e.key === KEYS.TAB) {
+      const anchors = /** @type {HTMLElement[]} */([
+        ...navContentRef
+          .current
+          .querySelectorAll('a')
+      ]);
+      const firstElement = anchors[0];
+      const lastElement = anchors[anchors.length - 1];
+      const { activeElement } = document;
+  
+      if (e.shiftKey) {
+        if (activeElement === firstElement) {
+          lastElement.focus();
+  
+          e.preventDefault();
+        }
+      } else if (activeElement === lastElement) {
+        firstElement.focus();
+  
+        e.preventDefault();
+      }
+    }
+  };
+
   useEventListener(EVENT_NAV_OPENED, toggleHandler);
   useEventListener('click', closeHandler);
+  useEventListener('keydown', keydownHandler);
 
   return (
     <Nav id={NAV_ID} isOpen={isOpen}>
@@ -69,20 +134,7 @@ export const Navigation = ({
                 href={path}
                 isTitle
                 isActive={path === currentPath}
-                onClick={(e) => {
-                  e.preventDefault();
-
-                  if (path !== currentPath) {
-                    history.pushState({}, '', path);
-
-                    onChange({
-                      hash: undefined,
-                      pathname: path
-                    });
-                  }
-
-                  window.scrollTo(0, 0);
-                }}
+                onClick={clickHandler(path)}
               >{title}</NavLink>
             </NavItem>
            
@@ -90,20 +142,7 @@ export const Navigation = ({
               <NavItem key={id}>
                 <NavLink
                   href={`#${id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-
-                    if (path !== currentPath) {
-                      history.pushState({}, '', path);
-                    }
-
-                    onChange({
-                      hash: /** @type {HTMLAnchorElement} */(
-                        e.currentTarget
-                      ).hash,
-                      pathname: path
-                    });
-                  }}
+                  onClick={clickHandler(path)}
                 >{text}</NavLink>
               </NavItem>
             ))}

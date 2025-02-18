@@ -132,7 +132,6 @@ export const NavLink = styled.a({
     }
   },
   [style.props.all('isTitle', 'isActive')]: {
-    cursor: 'default',
     color: CSS_VARS.ACCENT,
     [style.after]: {
       width: asRem(8)
