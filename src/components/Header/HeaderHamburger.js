@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useEventListener } from '@common/hooks';
 import { dispatchCustomEvent } from '@common/utils';
-import { NAV_ID } from '@common/constants';
-import { EVENT_NAV_OPENED } from '@components/Navigation';
+import { EVENTS, NAV_ID } from '@common/constants';
 import { HeaderButton, Line } from './elements';
 
 export const HeaderHamburger = () => {
@@ -18,10 +17,10 @@ export const HeaderHamburger = () => {
   };
 
   useEffect(() => {
-    dispatchCustomEvent(EVENT_NAV_OPENED, isOpen);
+    dispatchCustomEvent(EVENTS.NAV_TOGGLED, isOpen);
   }, [isOpen]);
 
-  useEventListener(EVENT_NAV_OPENED, closeHandler);
+  useEventListener(EVENTS.NAV_CLOSED, closeHandler);
 
   return (
     <HeaderButton

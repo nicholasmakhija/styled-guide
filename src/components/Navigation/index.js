@@ -2,7 +2,12 @@ import React, { useState, useRef } from 'react';
 
 import { useEventListener } from '@common/hooks';
 import { dispatchCustomEvent } from '@common/utils';
-import { BREAKPOINTS, KEYS, NAV_ID } from '@common/constants';
+import {
+  BREAKPOINTS,
+  EVENTS,
+  KEYS,
+  NAV_ID
+} from '@common/constants';
 import {
   Nav,
   NavContent,
@@ -10,8 +15,6 @@ import {
   NavItem,
   NavLink
 } from './elements';
-
-export const EVENT_NAV_OPENED = 'nav:opened';
 
 /** 
  * @param {NavigationProps} props
@@ -78,7 +81,7 @@ export const Navigation = ({
       setIsOpen(false);
     }
 
-    dispatchCustomEvent(EVENT_NAV_OPENED, false);
+    dispatchCustomEvent(EVENTS.NAV_CLOSED, false);
   };
 
   /**
@@ -93,7 +96,7 @@ export const Navigation = ({
     if (e.key === KEYS.ESC && isOpen) {
       setIsOpen(false);
 
-      dispatchCustomEvent(EVENT_NAV_OPENED, false);
+      dispatchCustomEvent(EVENTS.NAV_CLOSED, false);
     }
 
     if (e.key === KEYS.TAB) {
@@ -120,7 +123,7 @@ export const Navigation = ({
     }
   };
 
-  useEventListener(EVENT_NAV_OPENED, toggleHandler);
+  useEventListener(EVENTS.NAV_TOGGLED, toggleHandler);
   useEventListener('click', closeHandler);
   useEventListener('keydown', keydownHandler);
 
