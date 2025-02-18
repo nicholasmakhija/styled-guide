@@ -16,7 +16,7 @@
 
   <p>Install Styled using your favourite package manager:</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-grey># with npm</span>
 <span data-green>npm</span> install @n3e/styled
 
@@ -32,7 +32,7 @@
 
   <p>Once installed, just import like so:</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-pink>import</span> styled <span data-pink>from</span> <span data-yellow>'@n3e/styled'</span>;
 </code></pre>
 </section>
@@ -42,7 +42,7 @@
 
   <p>Let's start by building a simple button:</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-pink>const</span> <span data-purple>accent</span> <span data-pink>=</span> <span data-yellow>'#ff6995'</span>;
 
 <span data-pink>const</span> <span data-purple>asRem</span> <span data-pink>=</span> (
@@ -72,7 +72,7 @@
 
   <p>Styled comes with a <a href="/api">helper</a> for writing pseudo styles, below is an example of how to define <code>pseudo-classes</code> with the <code>style</code> helper:</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-grey>const Button = styled.button({
   // button base styles</span>
 
@@ -108,7 +108,7 @@ const Composition = () => (
 
   <p>Similarly <code>pseudo-element</code> styles are defined as shown below:</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-grey>const PrefixedUsingBefore = styled.span({</span>
   <span data-blue>[</span>style.before<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
     content<span data-pink>:</span> <span data-yellow>'$'</span>
@@ -133,7 +133,7 @@ const Composition = () => (
 
   <h3>Descendant combinator</h3>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-pink>const</span> <span data-purple>Paragraph</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>p</span>(<span data-pink>{</span>
   margin<span data-pink>:</span> <span data-purple>0</span>
 <span data-pink>}</span>);
@@ -159,7 +159,7 @@ const Composition = () => (
 
   <h3>Child combinator (>)</h3>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-pink>const</span> <span data-purple>Image</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>img</span>(<span data-pink>{</span>
   display<span data-pink>:</span> <span data-yellow>'block'</span>,
   maxWith<span data-pink>:</span> <span data-yellow>'100%'</span>
@@ -186,7 +186,7 @@ const Composition = () => (
 
   <h3>Sibling combinators (~ or +)</h3>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-pink>const</span> <span data-purple>Label</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>label</span>(<span data-pink>{</span>
   display<span data-pink>:</span> <span data-yellow>'inline-block'</span>,
   cursor<span data-pink>:</span> <span data-yellow>'pointer'</span>,
@@ -220,7 +220,7 @@ const Composition = () => (
 
   <p>You can event create selectors based on attributes and yes, Styled does comes with a <a href="/api#attribute-builder">helper</a> for creating these.</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-grey>const Anchor = styled.a({
   // base styles</span>
 
@@ -258,7 +258,7 @@ const Composition = () => (
 
   <p>Nested at-rules such as <code>@media</code>, <code>@supports</code> and even <code>@container</code> are declared as demonstrated below:</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-grey>const Container = styled.div({
   // base styles</span>
 
@@ -292,7 +292,7 @@ const Composition = () => (
 
   <p>Property matching or pattern matching can be achieved by calling the <code>prop</code> method on the <code>style</code> helper.</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-grey>const Anchor = styled.a({
   display: 'inline-block',
   textTransform: 'uppercase',
@@ -313,7 +313,7 @@ const Composition = () => (
 
   <p>You can even specify a function that takes the prop being matched as its only argument and also type the props for the same.</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-pink>type</span> <span data-blue data-em>IconProps</span> <span data-pink>=</span> {
   width<span data-pink>?:</span> <span data-blue data-em>number</span>;
   height<span data-pink>?:</span> <span data-blue data-em>number</span>;
@@ -350,7 +350,7 @@ const Composition = () => (
 
   <p>To match against multiple properties, just use one of <code>all</code>, <code>any</code> or <code>not</code> methods on the <code>style.props</code> helper.</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-pink>type</span> <span data-blue data-em>CheckboxUIProps</span> <span data-pink>=</span> {
   isChecked<span data-pink>?:</span> <span data-blue data-em>boolean</span>;
   isDisabled<span data-pink>?:</span> <span data-blue data-em>boolean</span>;
@@ -367,7 +367,7 @@ const Composition = () => (
 
   <p>When using a function for matching multiple props, be sure to pass in <strong>all</strong> props or the props object if not destructuring.</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-pink>type</span> <span data-blue data-em>ButtonProps</span> <span data-pink>=</span> {
   borderColour<span data-pink>?:</span> <span data-blue data-em>string</span>;
   borderStyle<span data-pink>?:</span> <span data-yellow>'solid'</span> <span data-pink>|</span> <span data-yellow>'dashed'</span> <span data-pink>|</span> <span data-yellow>'none'</span>;
@@ -392,7 +392,7 @@ const Composition = () => (
 
   <p>To define a Generic component, simply call the <code>generic</code> method as shown below:</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-pink>type</span> <span data-blue data-em>SizeProp</span> <span data-pink>=</span> {
   size<span data-pink>?:</span> <span data-blue data-em>number</span>;
 };
@@ -409,7 +409,7 @@ const Composition = () => (
 
   <p>Then wrap a component with it as shown below.</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-pink>const</span> <span data-purple>Heading</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>h1</span>(<span data-pink>{</span>
   <span data-grey>// styles ...</span>
 <span data-pink>}</span>);
@@ -425,7 +425,7 @@ const Composition = () => (
 
   <p>Generic components will pass all props received down to the wrapped component. Ensure that the <code>className</code> prop is passed down to the underlying DOM node when using custom components.</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-pink>type</span> <span data-blue data-em>CustomHeadingProps</span> <span data-pink>=</span> {
   children<span data-pink>?:</span> <span data-blue data-em>React</span>.<span data-blue data-em>ReactNode</span>;
   className<span data-pink>?:</span> <span data-blue data-em>string</span>;
@@ -451,7 +451,7 @@ const Composition = () => (
 
   <p>To avoid nesting when trying to use multiple generic components, simply call the <code>extend</code> method.</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 --><span data-pink>const</span> <span data-purple>GenericContentParadigm</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>generic</span>(<span data-pink>{</span>
   margin<span data-pink>:</span> <span data-yellow>'0 0 1.5rem'</span>,
   <span data-blue>[</span>style.lastChild<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
@@ -478,7 +478,7 @@ const Composition = () => (
 
   <p>You can also extend from other Styled Components and even plain object literal styles. The <code>extend</code> method performs a deep merge, so nested styles containing duplicate keys will be combined.</p>
 
-<pre><code><span data-pink>const</span> <span data-purple>GenericClearFloat</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>generic</span>(<span data-pink>{</span>
+<pre tabindex="-1"><code><span data-pink>const</span> <span data-purple>GenericClearFloat</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>generic</span>(<span data-pink>{</span>
   float<span data-pink>:</span> <span data-yellow>'left'</span>,
   <span data-blue>[</span>style.after<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
     content<span data-pink>:</span> <span data-yellow>''</span>,
@@ -521,7 +521,7 @@ const Composition = () => (
 
   <p>The resulting object styles for <code>&lt;ExtendMayhem&gt;</code> will be</p>
 
-<pre><code><!--
+<pre tabindex="-1"><code><!--
 -->{
   float<span data-pink>:</span> <span data-yellow>'left'</span>,
   color<span data-pink>:</span> <span data-yellow>'red'</span>,
