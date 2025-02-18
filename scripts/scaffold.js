@@ -7,6 +7,7 @@ import {
   readFileSync,
   writeFileSync
 } from 'fs';
+import minifier from 'html-minifier';
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -114,20 +115,26 @@ sync('src/app/**/index.html').map((file) => {
     });
   }
 
-  const content = readFileSync(file, 'utf8');
-  const order = +execData(content, /<!--order:([^$]+?)-->/).matched;
+  const raw = readFileSync(file, 'utf8');
+  const order = +execData(raw, /<!--order:([^$]+?)-->/).matched;
 
-  const title = execData(content, /<h1>([^$]+?)<\/h1>/).matched;
+  const title = execData(raw, /<h1>([^$]+?)<\/h1>/).matched;
   const route = title.toLowerCase().replace('basics', '');
   const path = `/${route}`;
 
   // for all h2 and h3 use /<h[2-3] id="(.*?)">([^$]+?)<\/h[2-3]>/g
-  const headings = execData(content, /<h2 id="(.*?)">([^$]+?)<\/h2>/g).list;
+  const headings = execData(raw, /<h2 id="(.*?)">([^$]+?)<\/h2>/g).list;
   const sections = headings.map(getSectionData);
+
+  const content = minifier.minify(raw, {
+    collapseWhitespace: true,
+    removeComments: true
+  });
 
   // DEBUG:
   // console.group(file);
   // console.log('sections', sections);
+  // console.log('content (minified)', content);
   // console.groupEnd();
 
   return {
