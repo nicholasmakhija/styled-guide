@@ -6,7 +6,7 @@
 
   <p>Styled also exposes a helper for writing pseudo, attribute and prop selectors.</p>
 
-<pre tabindex="-1"><code><!--
+<pre><code><!--
 --><span data-pink>import</span> styled, { style } <span data-pink>from</span> <span data-yellow>'@n3e/styled'</span>;
 
 <span data-pink>const</span> <span data-purple>SomeElement</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>button</span>(<span data-pink>{</span>
@@ -37,7 +37,7 @@
   <p>Pseudo element functions:</p>
 
   <div data-table>
-    <div tabindex="-1">
+    <div>
       <table>
         <thead>
           <tr>
@@ -111,7 +111,7 @@
   <p>Pseudo class functions:</p>
 
   <div data-table>
-    <div tabindex="-1">
+    <div>
       <table>
         <thead>
           <tr>
@@ -166,7 +166,7 @@
   <p>Methods available on the <code>style.attribute('...')</code> builder are:</p>
 
   <div data-table>
-    <div tabindex="-1">
+    <div>
       <table>
         <thead>
           <tr>
@@ -210,14 +210,14 @@
 
   <p><code>style.or</code> for creating nested selector lists <i>(comma separated)</i>.</p>
 
-<pre tabindex="-1"><code><!--
+<pre><code><!--
 -->style.<span data-green>or</span>(style.before, style.after)
 <span data-grey>// ::before, ::after</span>
 </code></pre>
 
   <p><code>style.and</code> for combining nested selectors.</p>
 
-<pre tabindex="-1"><code><!--
+<pre><code><!--
 -->style.<span data-green>and</span>(style.hover, style.focus)
 <span data-grey>// :hover:focus</span>
 </code></pre>
@@ -228,7 +228,7 @@
 
   <p>Writing media queries can be made easy with the help of the <code>mq</code> helper that provides a nice DSL. Simply chain the exposed methods to build the desired media query string.</p>
 
-<pre tabindex="-1"><code><!--
+<pre><code><!--
 --><span data-pink>import</span> styled, { mq } <span data-pink>from</span> <span data-yellow>'@n3e/styled'</span>;
 
 <span data-pink>const</span> <span data-purple>Container</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>div</span>(<span data-pink>{</span>
@@ -253,7 +253,7 @@
   <p>These methods accept a <code>string</code> argument which is from a pre-defined set.</p>
 
   <div data-table>
-    <div tabindex="-1">
+    <div>
       <table>
         <thead>
           <tr>
@@ -340,7 +340,7 @@
   <p>As the CSS specification defines, these are features prefixed with <code>min</code> or <code>max</code> and the joining hyphen.</p>
 
   <div data-table>
-    <div tabindex="-1">
+    <div>
       <table>
         <thead>
           <tr>
@@ -387,7 +387,7 @@
   <p>There is also:</p>
 
   <div data-table>
-    <div tabindex="-1">
+    <div>
       <table>
         <thead>
           <tr>
@@ -420,7 +420,7 @@
 
   <p>The <code>feature</code> method takes 2 arguments, the feature name <code>string</code> and the feature value <code>number</code> or <code>string</code>.</p>
 
-<pre tabindex="-1"><code><!--
+<pre><code><!--
 --><span data-green>mq</span>().<span data-green>feature</span>(<span data-yellow>'awesome-new-feature'</span>, <span data-yellow>'100ghz'</span>)
 </code></pre>
 </section>
@@ -430,7 +430,7 @@
 
   <p>To set default styles for body, headings etc. just use the <code>withCSS</code> method which accepts normal CSS as its arguments.</p>
 
-<pre tabindex="-1"><code><!--
+<pre><code><!--
 --><span data-pink>const</span> <span data-purple>boxSizing</span> <span data-pink>=</span>
   <span data-yellow>`*,
     :after,
@@ -455,7 +455,7 @@
 
   <p>CSS variables can also be defined using this method.</p>
 
-<pre tabindex="-1"><code><!--
+<pre><code><!--
 --><span data-pink>const</span> <span data-purple>AppWrapper</span> <span data-pink>=</span> <span data-purple>styled</span>
   .<span data-green>div</span>()
   .<span data-green>withCSS</span>(
@@ -475,7 +475,7 @@
 
   <p>Keyframe animations can be declared and used like so:</p>
 
-<pre tabindex="-1"><code><!--
+<pre><code><!--
 --><span data-pink>const</span> <span data-purple>shimmer</span> <span data-pink>=</span> <span data-yellow>'shimmer'</span>;
 
 <span data-pink>const</span> <span data-purple>SomeElement</span> <span data-pink>=</span> <span data-purple>styled</span>
@@ -493,7 +493,7 @@
 
   <p>Font face rules:</p>
 
-<pre tabindex="-1"><code><!--
+<pre><code><!--
 --><span data-pink>const</span> <span data-purple>AppWrapper</span> <span data-pink>=</span> <span data-purple>styled</span>
   .<span data-green>div</span>()
   .<span data-green>withCSS</span>(

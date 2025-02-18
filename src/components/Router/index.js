@@ -113,15 +113,22 @@ export const Router = ({
       scrollToElement(route.hash);
     }
 
+    const mainElement = mainRef.current;
+
+    /** @type {NodeListOf<HTMLDivElement | HTMLPreElement>} */
+    const overflowXElements = mainElement.querySelectorAll('pre, [data-table] > div');
+
+    overflowXElements.forEach((element) => element.setAttribute('tabindex', '-1'));
+
     /** @type {NodeListOf<HTMLAnchorElement>} */
-    const anchors = mainRef.current.querySelectorAll('a:not([target])');
+    const anchors = mainElement.querySelectorAll('a:not([target])');
 
     toggleEventListener(anchors, 'addEventListener');
 
     return () => {
       toggleEventListener(anchors, 'removeEventListener');
     };
-  }, [route]);
+  }, [route, mainRef]);
   
   return (
     <Container isFluid flex='start'>

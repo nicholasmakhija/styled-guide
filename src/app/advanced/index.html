@@ -6,7 +6,7 @@
 
   <p>Use the <code>withRef</code> method to pass the <code>ref</code> down to the underlying DOM element. This uses React's <code>forwardRef</code> functionality behind the scenes. Then use the <code>useRef</code> hook to access its value.</p>
 
-<pre tabindex="-1"><code><!--
+<pre><code><!--
   --><span data-pink>import</span> React, { useRef } <span data-pink>from</span> <span data-yellow>'react'</span>;
 
 <span data-pink>const</span> <span data-purple>Div</span> <span data-pink>=</span> <span data-purple>styled</span>
@@ -39,7 +39,7 @@
 
   <p>Built-in typechecking support for React propsTypes. Just chain the <code>withProps</code> method to an already defined Styled Component and pass the propTypes object as its only argument. This is the same as assigning the <code>propTypes</code> property on a Component.</p>
 
-<pre tabindex="-1"><code><!--
+<pre><code><!--
 --><span data-pink>import</span> PropTypes <span data-pink>from</span> <span data-yellow>'prop-types'</span>;
 
 <span data-pink>type</span> <span data-blue data-em>ButtonColour</span> <span data-pink>=</span>
@@ -78,7 +78,7 @@
 
   <p>SSR is supported out of the box, no extra setup required. To get the CSS rendered <em>(including their wrapping style tags)</em>, just import and invoke the <code>getStyles</code> method.</p>
 
-<pre tabindex="-1"><code><!--
+<pre><code><!--
 --><span data-pink>import</span> express <span data-pink>from</span> <span data-yellow>'express'</span>;
 <span data-pink>import</span> React <span data-pink>from</span> <span data-yellow>'react'</span>;
 <span data-pink>import</span> { renderToString } <span data-pink>from</span> <span data-yellow>'react-dom/server'</span>;
@@ -133,7 +133,7 @@
 
   <p>First, create a component at the root directory, it can be called anything you like.</p>
 
-<pre tabindex="-1"><code><!--
+<pre><code><!--
 --><span data-pink>import</span> { ServerStyles } <span data-pink>from</span> <span data-yellow>'@n3e/styled'</span>;
 
 <span data-pink>export default async function</span> <span data-green>RootStyles</span>() {
@@ -143,7 +143,7 @@
 
   <p>Then import the component created above and insert it as a child of the <code>head</code> tag.</p>
 
-<pre tabindex="-1"><code><!--
+<pre><code><!--
 --><span data-pink>import type</span> { Metadata } <span data-pink>from</span> <span data-yellow>'next'</span>;
 <span data-pink>import</span> RootStyles <span data-pink>from</span> <span data-yellow>'./RootStyles'</span>;
 
