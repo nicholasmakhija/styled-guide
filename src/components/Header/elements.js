@@ -1,6 +1,10 @@
 import styled, { style } from '@styled';
 
-import { asRem, breakpoints } from '@common/utils';
+import {
+  asRem,
+  boxShadowBorder,
+  breakpoints
+} from '@common/utils';
 import {
   CONTENT_SPACER,
   CSS_VARS,
@@ -60,8 +64,8 @@ const HeaderAction = styled.generic({
   color: CSS_VARS.COLOR,
   transition: '0.3s cubic-bezier(0.2, 0, 0, 1)',
   [style.focus]: {
+    ...boxShadowBorder(4, CSS_VARS.ACCENT),
     outline: 0,
-    boxShadow: `0 0 0 ${asRem(4)} ${CSS_VARS.ACCENT}`
   },
   [style.not(style.firstChild)]: {
     marginLeft: asRem(16)

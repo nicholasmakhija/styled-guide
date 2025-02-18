@@ -9,9 +9,13 @@ import {
   NAV_WIDTH
 } from '@common/constants';
 
+const boxShadowBorderTop = {
+  boxShadow: `0 ${asRem(-BORDER_SIZE)} 0 0 ${CSS_VARS.BORDER_SECONDARY}`
+};
+
 export const FooterRoot = styled.footer({
+  ...boxShadowBorderTop,
   position: 'relative',
-  boxShadow: `0 ${asRem(-BORDER_SIZE)} 0 0 ${CSS_VARS.BORDER_SECONDARY}`,
   background: CSS_VARS.BACKGROUND_SECONDARY,
   [breakpoints.up.lg]: {
     boxShadow: 'none',
@@ -30,7 +34,7 @@ export const FooterContent = styled.div({
   padding: `${asRem(12)} 0`,
   fontSize: asRem(14),
   [breakpoints.up.lg]: {
-    boxShadow: `0 ${asRem(-BORDER_SIZE)} 0 0 ${CSS_VARS.BORDER_SECONDARY}`,
+    ...boxShadowBorderTop
   }
 });
 

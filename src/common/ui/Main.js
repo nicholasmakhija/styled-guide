@@ -1,6 +1,10 @@
 import styled, { style } from '@styled';
 
-import { asRem, breakpoints } from '@common/utils';
+import {
+  asRem,
+  boxShadowBorder,
+  breakpoints
+} from '@common/utils';
 import {
   BORDER_SIZE,
   CONTENT_SPACER,
@@ -29,8 +33,8 @@ export const Main = styled.main({
       textDecoration: 'none'
     },
     [style.focus]: {
+      ...boxShadowBorder(4, CSS_VARS.ACCENT),
       outline: 0,
-      boxShadow: `0 0 0 ${asRem(4)} ${CSS_VARS.ACCENT}`,
       background: CSS_VARS.ACCENT,
       color: CSS_VARS.COLOR
     }
@@ -83,10 +87,10 @@ export const Main = styled.main({
     }
   },  
   [style.selector('code')]: {
+    ...boxShadowBorder(2, CSS_VARS.BORDER_SECONDARY),
     padding: `0 ${asRem(4)}`,
     borderRadius: asRem(4),
     background: CSS_VARS.BACKGROUND_CODE,
-    boxShadow: `0 0 0 ${asRem(2)} ${CSS_VARS.BORDER_SECONDARY}`,
     overflow: 'hidden',
     fontSize: asRem(14),
     // lineHeight: asRem(16), // FIXME: DELETE!
@@ -121,8 +125,8 @@ export const Main = styled.main({
     whiteSpace: 'pre'
   },
   [style.selector('[data-table]')]: {
+    ...boxShadowBorder(BORDER_SIZE, CSS_VARS.BORDER_SECONDARY, 'inset '),
     padding: `0 ${asRem(8)}`,
-    boxShadow: `inset 0 0 0 ${asRem(BORDER_SIZE)} ${CSS_VARS.BORDER_SECONDARY}`,
     background: CSS_VARS.BACKGROUND_SECONDARY_PALE,
     [style.selector('> div')]: {
       overflow: 'hidden',
