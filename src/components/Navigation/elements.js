@@ -1,10 +1,15 @@
 import styled, { style } from '@styled';
 
-import { asRem, breakpoints } from '@common/utils';
+import {
+  asRem,
+  breakpoints,
+  typography
+} from '@common/utils';
 import {
   BORDER_SIZE,
   CONTENT_SPACER,
   CSS_VARS,
+  CUBIC_BEZIER_TRANSITION,
   HEADER_HEIGHT,
   NAV_LINK_PADDING,
   NAV_WIDTH
@@ -12,6 +17,7 @@ import {
 
 /** @type {import('@styled').StyledComponent<NavProps>} */
 export const Nav = styled.nav({
+  ...CUBIC_BEZIER_TRANSITION,
   position: 'fixed',
   top: asRem(HEADER_HEIGHT),
   left: asRem(-NAV_WIDTH),
@@ -19,7 +25,6 @@ export const Nav = styled.nav({
   height: '100%',
   visibility: 'hidden',
   textAlign: 'right',
-  transition: '0.3s cubic-bezier(0.2, 0, 0, 1)',
   [breakpoints.up.lg]: {
     left: 'auto',
     visibility: 'visible'
@@ -30,11 +35,11 @@ export const Nav = styled.nav({
       left: 0,
       visibility: 'visible',
       [style.before]: {
+        ...CUBIC_BEZIER_TRANSITION,
         content: '',
         position: 'fixed',
         inset: 0,
         background: 'rgba(0, 0, 0, 0.6)',
-        transition: '0.3s cubic-bezier(0.2, 0, 0, 1)'
       }
     }
   },
@@ -84,6 +89,7 @@ export const NavItem = styled.li({
 
 /** @type {import('@styled').StyledComponent<NavLinkProps>} */
 export const NavLink = styled.a({
+  ...CUBIC_BEZIER_TRANSITION,
   position: 'relative',
   display: 'inline-block',
   padding: asRem(NAV_LINK_PADDING),
@@ -91,7 +97,6 @@ export const NavLink = styled.a({
   background: 'transparent',
   color: CSS_VARS.COLOR,
   cursor: 'pointer',
-  transition: '0.3s cubic-bezier(0.2, 0, 0, 1)',
   [style.hover]: {
     color: CSS_VARS.ACCENT
   },
@@ -105,17 +110,16 @@ export const NavLink = styled.a({
     background: CSS_VARS.ACCENT
   },
   [style.prop('isTitle')]: {
+    ...typography(24, 32),
     fontWeight: 'bold',
-    fontSize: asRem(24),
-    lineHeight: asRem(32),
     [style.after]: {
+      ...CUBIC_BEZIER_TRANSITION,
       content: '',
       position: 'absolute',
       right: asRem(-CONTENT_SPACER),
-      width: asRem(0),
+      width: 0,
       height: asRem(32),
       background: CSS_VARS.ACCENT,
-      transition: 'width 0.3s cubic-bezier(0.2, 0, 0, 1)',
     },
     [style.and(
       style.not(style.hover),

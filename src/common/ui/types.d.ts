@@ -20,3 +20,8 @@ type MainProps = {
   };
   ref?: React.ForwardedRef<HTMLElement>;
 };
+
+type Typography = {
+  fontSize: string;
+  lineHeight: string;
+};

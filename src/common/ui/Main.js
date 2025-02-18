@@ -3,7 +3,8 @@ import styled, { style } from '@styled';
 import {
   asRem,
   boxShadowBorder,
-  breakpoints
+  breakpoints,
+  typography
 } from '@common/utils';
 import {
   BORDER_SIZE,
@@ -13,8 +14,27 @@ import {
   NAV_WIDTH
 } from '@common/constants';
 
+/**
+ * @param {(1 | 2 | 3)} level 
+ * @param {number} size 
+ * @param {number} leading 
+ * @returns {{
+ *  [key: string]: Typography
+ * }}
+ */
+const headingTypography = (
+  level,
+  size,
+  leading
+) => ({
+  [style.selector(`h${level}`)]: typography(size, leading)
+});
+
 /** @type {import('@styled').StyledComponent<MainProps>} */
 export const Main = styled.main({
+  ...headingTypography(1, 32, 40),
+  ...headingTypography(2, 24, 32),
+  ...headingTypography(3, 18, 32),
   flex: 1,
   paddingTop: asRem(CONTENT_SPACER),
   paddingRight: asRem(GUTTER_WIDTH),
@@ -48,21 +68,6 @@ export const Main = styled.main({
       marginBottom: 0
     }
   },
-  [style.selector('h1')]: {
-    // background: 'rgba(255, 204,0, 0.4)', // FIXME: alignment check
-    fontSize: asRem(32),
-    lineHeight: asRem(40),
-  },
-  [style.selector('h2')]: {
-    // background: 'rgba(255, 204,0, 0.4)', // FIXME: alignment check
-    fontSize: asRem(24),
-    lineHeight: asRem(32),
-  },
-  [style.selector('h3')]: {
-    // background: 'rgba(255, 204,0, 0.4)', // FIXME: alignment check
-    fontSize: asRem(18),
-    lineHeight: asRem(32),
-  },
   [style.selector('section')]: {
     margin: `0 0 ${asRem(CONTENT_SPACER * 2)}`,
     [style.selector('> ul')]: {
@@ -88,13 +93,11 @@ export const Main = styled.main({
   },  
   [style.selector('code')]: {
     ...boxShadowBorder(2, CSS_VARS.BORDER_SECONDARY),
+    ...typography(14, 20),
     padding: `0 ${asRem(4)}`,
     borderRadius: asRem(4),
     background: CSS_VARS.BACKGROUND_CODE,
     overflow: 'hidden',
-    fontSize: asRem(14),
-    // lineHeight: asRem(16), // FIXME: DELETE!
-    lineHeight: asRem(20),
     [style.selector('[data-em]')]: {
       fontStyle: 'italic'
     },

@@ -8,6 +8,7 @@ import {
 import {
   CONTENT_SPACER,
   CSS_VARS,
+  CUBIC_BEZIER_TRANSITION,
   GUTTER_WIDTH,
   HEADER_HEIGHT,
   NAV_WIDTH
@@ -54,6 +55,7 @@ export const HeaderActions = styled.div();
 const HEADER_ICON_SIZE = 32;
 
 const HeaderAction = styled.generic({
+  ...CUBIC_BEZIER_TRANSITION,
   margin: 0,
   padding: asRem(4),
   width: asRem(HEADER_ICON_SIZE),
@@ -62,7 +64,6 @@ const HeaderAction = styled.generic({
   textAlign: 'center',
   verticalAlign: 'middle',
   color: CSS_VARS.COLOR,
-  transition: '0.3s cubic-bezier(0.2, 0, 0, 1)',
   [style.focus]: {
     ...boxShadowBorder(4, CSS_VARS.ACCENT),
     outline: 0,
