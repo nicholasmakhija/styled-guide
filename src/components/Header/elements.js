@@ -37,11 +37,9 @@ export const HeaderBrand = styled.div({
   padding: `${asRem(4)} 0`,
   color: CSS_VARS.ACCENT,
   [style.selector('> svg')]: {
-    // background: '#ccc', // FIXME: delete!
     verticalAlign: 'middle'
   },
   [breakpoints.up.lg]: {
-    // background: 'rgba(255, 204, 0, 0.4)', // FIXME: delete!
     marginLeft: asRem(-GUTTER_WIDTH),
     paddingRight: asRem(CONTENT_SPACER),
     paddingLeft: asRem(CONTENT_SPACER),
@@ -74,8 +72,8 @@ const HeaderAction = styled.generic({
   [style.prop('canHover')]: {
     [style.hover]: {
       textDecoration: 'none',
-      color: '#303846', // FIXME: update to use css variable
-      backgroundColor: '#ebedf0' // FIXME: update to use css variable
+      color: '#303846',
+      backgroundColor: '#ebedf0'
     }
   },
   [style.prop('isRounded')]: {

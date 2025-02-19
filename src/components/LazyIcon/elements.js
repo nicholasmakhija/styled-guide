@@ -11,7 +11,6 @@ export const SkeletonSvg = styled
     display: 'inline-block',
     stroke: 'transparent',
     fill: 'currentColor',
-    // verticalAlign: 'middle', // FIXME: delete?
     pointerEvents: 'none',
     cursor: 'inherit',
     [style.not(':root')]:{

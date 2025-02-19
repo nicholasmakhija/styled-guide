@@ -103,9 +103,7 @@ export const Router = ({
     };
 
     window.addEventListener('popstate', popstateHandler);
-  // FIXME: ??
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [pages]);
 
   // FIXME: prevent this effect from firing twice in `StrictMode`
   useEffect(() => {
