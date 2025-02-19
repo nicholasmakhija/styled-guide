@@ -143,9 +143,9 @@ export const Main = styled.main({
     whiteSpace: 'pre'
   },
   [style.selector('[data-table]')]: {
-    ...boxShadowBorder(BORDER_SIZE, CSS_VARS.BORDER_SECONDARY, 'inset '),
     padding: `0 ${asRem(8)}`,
     background: CSS_VARS.BACKGROUND_SECONDARY_PALE,
+    boxShadow:  'inset ' + boxShadowBorder(BORDER_SIZE, CSS_VARS.BORDER_SECONDARY).boxShadow,
     [style.selector('> div')]: {
       overflow: 'hidden',
       overflowX: 'auto'
