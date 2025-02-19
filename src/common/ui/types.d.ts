@@ -26,6 +26,14 @@ type Typography = {
   lineHeight: string;
 };
 
+type BoxShadow = {
+  boxShadow: string;
+}
+
+type Color = {
+  color: string;
+}
+
 type CodeBlockColours =
   | 'blue'
   | 'green'

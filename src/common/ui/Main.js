@@ -18,9 +18,7 @@ import {
  * @param {(1 | 2 | 3)} level 
  * @param {number} size 
  * @param {number} leading 
- * @returns {{
- *  [key: string]: Typography
- * }}
+ * @returns {Record<string, Typography>}
  */
 const headingTypography = (
   level,
@@ -33,11 +31,7 @@ const headingTypography = (
 /**
  * @param {CodeBlockColours} name 
  * @param {string} hex 
- * @returns {{
- *  [key: string]: {
- *    color: string
- *  }
- * }}
+ * @returns {Record<string, Color>}
  */
 const dataColor = (name, hex) => ({
   [style.selector(`[data-${name}]`)]: {
