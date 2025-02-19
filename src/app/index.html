@@ -70,10 +70,12 @@
 <section>
   <h2 id="pseudo">Pseudo</h2>
 
-  <p>Styled comes with a <a href="/api">helper</a> for writing pseudo styles, below is an example of how to define <code>pseudo-classes</code> with the <code>style</code> helper:</p>
+  <p>Styled comes with a helper for writing pseudo styles, below is an example on how to define <code>pseudo-class</code> selectors:</p>
 
 <pre><code><!--
---><span data-grey>const Button = styled.button({
+  --><span data-pink>import</span> styled, { style } <span data-pink>from</span> <span data-yellow>'@n3e/styled'</span>;
+  
+  <span data-grey>const Button = styled.button({
   // button base styles</span>
 
   <span data-blue>[</span>style.hover<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
@@ -106,7 +108,7 @@ const Composition = () => (
 );</span>
 </code></pre>
 
-  <p>Similarly <code>pseudo-element</code> styles are defined as shown below:</p>
+  <p>Similarly <code>pseudo-element</code> selectors are defined as shown below:</p>
 
 <pre><code><!--
 --><span data-grey>const PrefixedUsingBefore = styled.span({</span>
@@ -218,8 +220,6 @@ const Composition = () => (
 <section>
   <h2 id="attribute-selector">Attribute selectors</h2>
 
-  <p>You can event create selectors based on attributes and yes, Styled does comes with a <a href="/api#attribute-builder">helper</a> for creating these.</p>
-
 <pre><code><!--
 --><span data-grey>const Anchor = styled.a({
   // base styles</span>
@@ -284,7 +284,7 @@ const Composition = () => (
 
   <p>For examples of <code>@keyframes</code> and <code>@font-face</code>, refer to <a href="/api#global-styles">API</a> section.</p>
 
-  <p>Styled also exposes a <a href="/api#media-query-builder">API</a> for building media queries.</p>
+  <p>Styled exposes another <a href="/api#media-query-builder">helper</a> for building media queries.</p>
 </section>
 
 <section>
