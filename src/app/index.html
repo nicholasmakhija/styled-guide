@@ -397,7 +397,7 @@ const Composition = () => (
   size<span data-pink>?:</span> <span data-blue data-em>number</span>;
 };
 
-<span data-pink>const</span> <span data-purple>GenericSize</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>generic</span><span data-white>&lt;</span><span data-blue data-em>SizeProp</span><span data-white>&gt;</span>(<span data-pink>{</span>
+<span data-pink>const</span> <span data-purple>GenericSize</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>generic</span>&lt;<span data-blue data-em>SizeProp</span>&gt;(<span data-pink>{</span>
   boxSizing<span data-pink>:</span> <span data-yellow>'border-box'</span>,
   
   <span data-blue>[</span>style.<span data-green>prop</span>(<span data-yellow>'size'</span>)<span data-blue>]</span><span data-pink>:</span> (<span data-orange data-em>size</span><span data-pink>:</span> <span data-blue data-em>number</span>) <span data-pink>=></span> (<span data-green>{</span>
@@ -417,7 +417,7 @@ const Composition = () => (
 <span data-pink>const</span> <span data-purple>Wrapped</span> <span data-pink>=</span> <span data-green>GenericSize</span>(<span data-purple>Heading</span>);
 
 <span data-pink>const</span> <span data-green>Composition</span> <span data-pink>=</span> () <span data-pink>=></span> (
-  &lt;<span data-blue>Wrapped</span> <span data-green>size</span><span data-pink>=</span><span data-white>{</span><span data-purple>64</span><span data-white>}</span>&gt;
+  &lt;<span data-blue>Wrapped</span> <span data-green>size</span><span data-pink>=</span>{<span data-purple>64</span>}&gt;
     Wrapped Heading Component
   &lt;/<span data-blue>Wrapped</span>&gt;
 );
@@ -435,7 +435,7 @@ const Composition = () => (
   <span data-orange data-em>children</span>,
   <span data-orange data-em>className</span>  
 <span data-pink>}</span><span data-pink>:</span> <span data-blue data-em>CustomHeadingProps</span>) <span data-pink>=></span> (
-  &lt;<span data-pink>h2</span> <span data-green>className</span><span data-pink>=</span><span data-white>{</span><span data-orange data-em>className</span><span data-white>}</span>&gt;
+  &lt;<span data-pink>h2</span> <span data-green>className</span><span data-pink>=</span>{<span data-orange data-em>className</span>}&gt;
     <span data-pink>{</span><span data-orange data-em>children</span><span data-pink>}</span>
   &lt;/<span data-pink>h2</span>&gt;
 );
@@ -443,7 +443,7 @@ const Composition = () => (
 <span data-pink>const</span> <span data-purple>Wrapped</span> <span data-pink>=</span> <span data-green>GenericSize</span>(<span data-purple>CustomHeading</span>);
 
 <span data-pink>const</span> <span data-green>Composition</span> <span data-pink>=</span> () <span data-pink>=></span> (
-  &lt;<span data-blue>Wrapped</span> <span data-green>size</span><span data-pink>=</span><span data-white>{</span><span data-purple>64</span><span data-white>}</span>&gt;
+  &lt;<span data-blue>Wrapped</span> <span data-green>size</span><span data-pink>=</span>{<span data-purple>64</span>}&gt;
     Wrapped CustomHeading Component
   &lt;/<span data-blue>Wrapped</span>&gt;
 );

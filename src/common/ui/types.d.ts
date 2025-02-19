@@ -25,3 +25,13 @@ type Typography = {
   fontSize: string;
   lineHeight: string;
 };
+
+type CodeBlockColours =
+  | 'blue'
+  | 'green'
+  | 'grey'
+  | 'orange'
+  | 'pink'
+  | 'purple'
+  | 'white'
+  | 'yellow';

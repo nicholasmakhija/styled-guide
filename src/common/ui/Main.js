@@ -30,6 +30,21 @@ const headingTypography = (
   [style.selector(`h${level}`)]: typography(size, leading)
 });
 
+/**
+ * @param {CodeBlockColours} name 
+ * @param {string} hex 
+ * @returns {{
+ *  [key: string]: {
+ *    color: string
+ *  }
+ * }}
+ */
+const dataColor = (name, hex) => ({
+  [style.selector(`[data-${name}]`)]: {
+    color: hex
+  }
+});
+
 /** @type {import('@styled').StyledComponent<MainProps>} */
 export const Main = styled.main({
   ...headingTypography(1, 32, 40),
@@ -95,21 +110,21 @@ export const Main = styled.main({
   [style.selector('code')]: {
     ...boxShadowBorder(2, CSS_VARS.BORDER_SECONDARY),
     ...typography(14, 20),
+    ...dataColor('blue', '#96dfef'), // type, jsx, {}
+    ...dataColor('green', '#61e884'), // function, {}
+    ...dataColor('grey', '#697098'), // comment
+    ...dataColor('orange', '#ffb86c'), // arg, ${}
+    ...dataColor('pink', '#eb82bf'), // keyword, {}
+    ...dataColor('purple', '#bf9eee'), // variable, number
+    ...dataColor('white', CSS_VARS.COLOR_CODE ), // base 
+    ...dataColor('yellow', '#e7ee98'), // string
     padding: `0 ${asRem(4)}`,
     borderRadius: asRem(4),
     background: CSS_VARS.BACKGROUND_CODE,
     overflow: 'hidden',
     [style.selector('[data-em]')]: {
       fontStyle: 'italic'
-    },
-    [style.selector('[data-blue]')]: { color: '#96dfef' }, // type, jsx, {}
-    [style.selector('[data-green]')]: { color: '#61e884' }, // function, {}
-    [style.selector('[data-grey]')]: { color: '#697098' }, // comment
-    [style.selector('[data-orange]')]: { color: '#ffb86c' }, // arg, ${}
-    [style.selector('[data-pink]')]: { color: '#eb82bf' }, // keyword, {}
-    [style.selector('[data-purple]')]: { color: '#bf9eee' }, // variable, number
-    [style.selector('[data-white]')]: { color: CSS_VARS.COLOR_CODE },
-    [style.selector('[data-yellow]')]: { color: '#e7ee98' } // string
+    }
   },
   [style.selector('pre')]: {
     padding: `0 ${asRem(16)}`,
