@@ -41,7 +41,8 @@ export const Main = styled.main({
   paddingLeft: asRem(GUTTER_WIDTH),
   maxWidth: '100%',
   [breakpoints.up.lg]: {
-    marginLeft: asRem(NAV_WIDTH)
+    marginLeft: asRem(NAV_WIDTH),
+    maxWidth: `calc(100% - ${asRem(NAV_WIDTH)})`
   },
   [style.selector('a')]: {
     color: CSS_VARS.ACCENT,
@@ -111,19 +112,18 @@ export const Main = styled.main({
     [style.selector('[data-yellow]')]: { color: '#e7ee98' } // string
   },
   [style.selector('pre')]: {
-    padding: 0,
-    overflow: 'hidden',
-    overflowX: 'auto',
+    padding: `0 ${asRem(16)}`,
     background: CSS_VARS.BACKGROUND_PRE,
     color: CSS_VARS.COLOR_CODE,
     whiteSpace: 'pre'
   },
   [style.selector('pre > code')]: {
-    padding: asRem(16),
+    padding: `${asRem(16)} 0`,
     borderRadius: 0,
     background: 'transparent',
     boxShadow: 'none',
-    overflow: 'visible',
+    overflow: 'hidden',
+    overflowX: 'auto',
     display: 'block',
     whiteSpace: 'pre'
   },

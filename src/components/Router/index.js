@@ -116,7 +116,7 @@ export const Router = ({
     const mainElement = mainRef.current;
 
     /** @type {NodeListOf<HTMLDivElement | HTMLPreElement>} */
-    const overflowXElements = mainElement.querySelectorAll('pre, [data-table] > div');
+    const overflowXElements = mainElement.querySelectorAll('pre > code, [data-table] > div');
 
     overflowXElements.forEach((element) => element.setAttribute('tabindex', '-1'));
 
