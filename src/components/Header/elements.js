@@ -11,6 +11,7 @@ import {
   CUBIC_BEZIER_TRANSITION,
   GUTTER_WIDTH,
   HEADER_HEIGHT,
+  ICON_SIZE,
   NAV_WIDTH
 } from '@common/constants';
 
@@ -50,14 +51,12 @@ export const HeaderBrand = styled.div({
 
 export const HeaderActions = styled.div();
 
-const HEADER_ICON_SIZE = 32;
-
 const HeaderAction = styled.generic({
   ...CUBIC_BEZIER_TRANSITION,
   margin: 0,
   padding: asRem(4),
-  width: asRem(HEADER_ICON_SIZE),
-  height: asRem(HEADER_ICON_SIZE),
+  width: asRem(ICON_SIZE),
+  height: asRem(ICON_SIZE),
   display: 'inline-block',
   textAlign: 'center',
   verticalAlign: 'middle',
