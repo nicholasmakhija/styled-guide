@@ -18,6 +18,37 @@ import {
   KEY_IS_DARK_MODE
 } from '@common/utils/theme.js';
 
+const encoding = 'utf8';
+
+/**
+ * @param {string} dir 
+ * @returns {void}
+ */
+const createFolder = (dir) => {
+  if (!existsSync(dir)) {
+    mkdirSync(dir, {
+      recursive: true
+    });
+  }
+};
+
+/**
+ * @param {AppProps} data
+ * @param {number} index 
+ * @returns {void}
+ */
+const createJSON = (data, index) => {
+  if (index > 0) return;
+
+  const dir = 'dist/json';
+  
+  createFolder(dir);
+
+  writeFileSync(`${dir}/pages.json`, JSON.stringify({
+    pages: data.pages
+  }));
+};
+
 /**
  * @param {string} sheets
  * @param {string} data
@@ -106,13 +137,9 @@ sync('src/app/**/index.html').map((file) => {
   const output = file.replace('src/app', 'dist');
   const dir = dirname(output);
 
-  if (!existsSync(dir)) {
-    mkdirSync(dir, {
-      recursive: true
-    });
-  }
+  createFolder(dir);
 
-  const raw = readFileSync(file, 'utf8');
+  const raw = readFileSync(file, encoding);
   const order = +execData(raw, /<!--order:([^$]+?)-->/).matched;
 
   const title = execData(raw, /<h1>([^$]+?)<\/h1>/).matched;
@@ -141,7 +168,7 @@ sync('src/app/**/index.html').map((file) => {
 )).forEach(({
   output,
   path
-}, _, array) => {
+}, index, array) => {
   const data = {
     currentPage: path,
     pages: array.map(({
@@ -157,7 +184,12 @@ sync('src/app/**/index.html').map((file) => {
     }))
   };
 
-  const stringifiedData = JSON.stringify(data);
+  createJSON(data, index);
+
+  const stringifiedData = JSON.stringify({
+    ...data,
+    pages: []
+  });
   const renderedHTML = renderToString(<App {...data} />);
   const sheets = getStyles();
   const html = renderHTML(sheets, stringifiedData, renderedHTML);

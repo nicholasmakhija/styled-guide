@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { getResource } from '@common/utils';
 import { SkeletonSvg } from './elements';
 
 const MIME_TYPE = 'image/svg+xml';
@@ -15,49 +16,21 @@ const createIconCache = () => {
    * @returns {Promise<IconState>}
    */
   const getIcon = (url) => {
-    /**
-     * @param {string} message
-     * @returns {void}
-     */
-    const showError = (message) => {
+    const makePromise = () => getResource(url, MIME_TYPE, () => {
       cache.delete(url);
-
-      throw new Error(message);
-    };
-
-    const makePromise = () => fetch(url, {
-      method: 'GET',
-      mode: 'same-origin',
-      headers: new Headers({
-        'Accept': MIME_TYPE,
-        'Content-Type': MIME_TYPE,
-        'X-Content-Type-Options': 'nosniff'
-      })
-    }).then((response) => {
-      if (!response.ok) {
-        showError(`${response.status}`);
-      }
-
-      const contentType = response.headers.get('content-type');
-
-      if (contentType !== MIME_TYPE) {
-        showError(
-          `MIME Type "${contentType}" not allowed, expected "${MIME_TYPE}"`
+    })
+      .then((res) => res.text())
+      .then((content) => {
+        const parser = new DOMParser();
+        const svg = /** @type {SVGElement} */(
+          parser.parseFromString(content, MIME_TYPE).firstChild
         );
-      }
 
-      return response.text();
-    }).then((content) => {
-      const parser = new DOMParser();
-      const svg = /** @type {SVGElement} */(
-        parser.parseFromString(content, MIME_TYPE).firstChild
-      );
-
-      return {
-        viewBox: svg.getAttribute('viewBox'),
-        innerHTML: svg.innerHTML
-      };
-    });
+        return {
+          viewBox: svg.getAttribute('viewBox'),
+          innerHTML: svg.innerHTML
+        };
+      });
 
     if (!cache.has(url)) {
       cache.set(url, makePromise());
