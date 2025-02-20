@@ -103,6 +103,15 @@ export const renderHTML = (sheets, data, html) =>
 </head>
 <body>
   <div id="root">${html}</div>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NJPJ25DGQH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-NJPJ25DGQH');
+  </script>
 </body>
 </html>`;
 
