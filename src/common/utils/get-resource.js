@@ -32,12 +32,16 @@ export const getResource = (
       showError(`${response.status}`);
     }
 
-    const contentType = response.headers.get('content-type');
+    const contentType = response
+      .headers
+      .get('content-type')
+      .toLowerCase();
+    const mediaType = mimeType.toLowerCase();
     
-    if (contentType !== mimeType) {
+    if (contentType !== mediaType) {
       onError();
       showError(
-        `MIME Type "${contentType}" not allowed, expected "${mimeType}"`
+        `MIME Type "${contentType}" not allowed, expected "${mediaType}"`
       );
     }
   
