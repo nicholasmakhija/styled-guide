@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import { useEventListener } from '@common/hooks';
 import { dispatchCustomEvent } from '@common/utils';
@@ -8,12 +8,23 @@ import { HeaderButton, Line } from './elements';
 export const HeaderHamburger = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  /** @type {{ current: HTMLButtonElement }} */
+  const buttonRef = useRef();
+
   const clickHandler = () => {
     setIsOpen((prevState) => !prevState);
   };
 
-  const closeHandler = () => {
+  /**
+   * @param {CustomEvent} e
+   * @returns {void}
+   */
+  const closeHandler = (e) => {
     setIsOpen(false);
+
+    if (e.detail && buttonRef.current) {
+      buttonRef.current.focus();
+    }
   };
 
   useEffect(() => {
@@ -29,6 +40,7 @@ export const HeaderHamburger = () => {
       aria-controls={NAV_ID}
       isToggle
       isOpen={isOpen}
+      ref={buttonRef}
       onClick={clickHandler}
     >
       <Line />

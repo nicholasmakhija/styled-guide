@@ -4,9 +4,7 @@ import { hydrateRoot } from 'react-dom/client';
 import { App } from '@components/App';
 import { getResource } from '@common/utils';
 
-const MIME_TYPE = 'application/json; charset=utf-8';
-
-getResource('/json/pages.json', MIME_TYPE)
+getResource('/json/pages.json', 'application/json; charset=utf-8')
   .then(((response) => response.json()))
   .then((response) => {
     const data = {

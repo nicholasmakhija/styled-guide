@@ -17,4 +17,5 @@ type HeaderButtonProps = HeaderActionProps & {
   isToggle?: boolean;
   isOpen?: boolean;
   onClick?: (e: Event) => void;
+  ref?: React.ForwardedRef<HTMLButtonElement>;
 };

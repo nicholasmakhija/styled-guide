@@ -96,7 +96,7 @@ export const Navigation = ({
     if (e.key === KEYS.ESC && isOpen) {
       setIsOpen(false);
 
-      dispatchCustomEvent(EVENTS.NAV_CLOSED, false);
+      dispatchCustomEvent(EVENTS.NAV_CLOSED, true);
     }
 
     if (e.key === KEYS.TAB) {

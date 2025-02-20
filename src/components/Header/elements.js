@@ -138,4 +138,5 @@ export const HeaderButton = styled
         }
       }
     }
-  });
+  })
+  .withRef();
