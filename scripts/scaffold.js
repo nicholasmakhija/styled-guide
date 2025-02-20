@@ -133,8 +133,10 @@ const getSectionData = (heading) => ({
   text: execData(heading, />(.*?)<\//).matched
 });
 
-sync('src/app/**/index.html').map((file) => {
-  const output = file.replace('src/app', 'dist');
+const templates = 'src/pages';
+
+sync(`${templates}/**/index.html`).map((file) => {
+  const output = file.replace(templates, 'dist');
   const dir = dirname(output);
 
   createFolder(dir);

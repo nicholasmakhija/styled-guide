@@ -52,7 +52,7 @@ export default {
       fileName: '.br'
     })
   ],
-	input: 'src/app/index.js',
+	input: 'src/index.js',
 	cache: !isProd,
   strictDeprecations: true,
   watch: {
