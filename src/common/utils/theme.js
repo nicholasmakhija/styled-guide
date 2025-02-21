@@ -6,17 +6,15 @@ export const KEY_IS_DARK_MODE = 'styled.docs.isDarkMode';
 /**
  * @returns {boolean}
  */
-export const isDarkModeSet = () => {
-  if (!isBrowser) return false;
-
-  return window.localStorage.getItem(KEY_IS_DARK_MODE) === 'true';
-};
+export const isDarkModeSet = () => isBrowser
+  ? window.localStorage.getItem(KEY_IS_DARK_MODE) === 'true'
+  : false;
 
 /**
  * @param {boolean} isDark 
  * @returns {void}
  */
-export const setUsersMode = (isDark) => {
+export const setDarkMode = (isDark) => {
   const html = document.documentElement;
 
   window.localStorage.setItem(KEY_IS_DARK_MODE, `${isDark}`);

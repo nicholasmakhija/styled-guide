@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { LazyIcon } from '@components/LazyIcon';
-import { isDarkModeSet, setUsersMode } from '@common/utils';
+import { isDarkModeSet, setDarkMode } from '@common/utils';
 import { HeaderButton } from './elements';
 
 export const HeaderThemeSwitcher = () => {
@@ -12,7 +12,7 @@ export const HeaderThemeSwitcher = () => {
   };
 
   useEffect(() => {
-    setUsersMode(isDarkMode);
+    setDarkMode(isDarkMode);
   }, [isDarkMode]);
 
   return (
