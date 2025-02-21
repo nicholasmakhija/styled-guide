@@ -13,7 +13,13 @@ import {
   HeaderLink
 } from './elements';
 
-export const Header = () => (
+/** 
+ * @param {IsDarkProp} props
+ * @returns {JSX.Element}
+ */
+export const Header = ({
+  isDark
+}) => (
   <HeaderRoot>
     <HeaderSticky>
       <Container flex='space-between'>
@@ -22,7 +28,7 @@ export const Header = () => (
         </HeaderBrand>
 
         <HeaderActions>
-          <HeaderThemeSwitcher />
+          <HeaderThemeSwitcher isDark={isDark} />
 
           <HeaderLink
             aria-label='GitHub'

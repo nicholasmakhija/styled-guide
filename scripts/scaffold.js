@@ -14,9 +14,10 @@ import { getStyles } from '@styled';
 
 import { App } from '@components/App';
 import {
+  APP_DATA,
   CLASS_NAME_IS_DARK_MODE,
   KEY_IS_DARK_MODE
-} from '@common/utils/theme.js';
+} from '@common/constants';
 
 const encoding = 'utf8';
 
@@ -84,13 +85,14 @@ export const renderHTML = (sheets, data, html) =>
   <meta property="og:image" content="https://styled.guide/images/og-image.jpg">
 
   ${sheets}
-  <script>var data = ${data};</script>
+  <script>var ${APP_DATA} = ${data};</script>
   <script>
     (function () {
       const html = document.documentElement;
       const isDark = window.localStorage.getItem('${KEY_IS_DARK_MODE}') === 'true';
 
       window.localStorage.setItem('${KEY_IS_DARK_MODE}', isDark);
+      window['${APP_DATA}'].isDark = isDark;
 
       if (isDark) {
         html.classList.add('${CLASS_NAME_IS_DARK_MODE}');
@@ -179,8 +181,10 @@ sync(`${templates}/**/index.html`).map((file) => {
   output,
   path
 }, index, array) => {
+  /** @type {AppProps} */
   const data = {
     currentPage: path,
+    isDark: false,
     pages: array.reduce((acc, {
       content,
       path,

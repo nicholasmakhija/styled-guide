@@ -1,7 +1,7 @@
 import styled, { style } from '@styled';
 
-import { CLASS_NAME_IS_DARK_MODE } from '@common/utils';
 import {
+  CLASS_NAME_IS_DARK_MODE,
   CSS_PROPS,
   CSS_VARS
 } from '@common/constants';

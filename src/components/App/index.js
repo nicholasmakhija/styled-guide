@@ -12,7 +12,7 @@ import { AppRoot } from './elements';
 export const App = (props) => {
   return (
     <AppRoot>
-      <Header />
+      <Header isDark={props.isDark} />
       <Router {...props} />
       <Footer />
     </AppRoot>

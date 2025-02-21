@@ -10,9 +10,11 @@ type Page = {
   sections: Section[];
 };
 
-type AppProps = {
+type AppProps = IsDarkProp & {
   currentPage: string;
   pages: Record<string, Page>;
 };
 
-declare var data: AppProps;
+// NOTE: keep below in sync with `common/constants/globals`
+declare var __APP_DATA: AppProps;
+
