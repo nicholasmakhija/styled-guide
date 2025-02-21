@@ -10,7 +10,7 @@ type Page = {
   sections: Section[];
 };
 
-type AppProps = IsDarkProp & {
+type AppProps = Partial<IsDarkProp> & {
   currentPage: string;
   pages: Record<string, Page>;
 };

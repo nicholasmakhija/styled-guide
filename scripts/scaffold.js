@@ -184,7 +184,6 @@ sync(`${templates}/**/index.html`).map((file) => {
   /** @type {AppProps} */
   const data = {
     currentPage: path,
-    isDark: false,
     pages: array.reduce((acc, {
       content,
       path,
