@@ -107,9 +107,8 @@ export const renderHTML = (sheets, data, html) =>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NJPJ25DGQH"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-NJPJ25DGQH');
   </script>
 </body>
@@ -182,24 +181,27 @@ sync(`${templates}/**/index.html`).map((file) => {
 }, index, array) => {
   const data = {
     currentPage: path,
-    pages: array.map(({
+    pages: array.reduce((acc, {
       content,
       path,
       title,
       sections
     }) => ({
-      content,
-      path,
-      title,
-      sections
-    }))
+      ...acc,
+      [path]: {
+        content,
+        path,
+        title,
+        sections
+      }
+    }), {})
   };
 
   createJSON(data, index);
 
   const stringifiedData = JSON.stringify({
     ...data,
-    pages: []
+    pages: {}
   });
   const renderedHTML = renderToString(<App {...data} />);
   const sheets = getStyles();

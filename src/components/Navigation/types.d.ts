@@ -20,6 +20,6 @@ type NavLinkProps = {
 
 type NavigationProps = {
   currentPath: string;
-  pages: Page[];
+  pageList: Page[];
   onChange: (arg: Route) => void;
 };

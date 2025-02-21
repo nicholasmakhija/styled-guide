@@ -31,7 +31,7 @@ const scrollToElement = (id) => {
  */
 export const Router = ({
   currentPage,
-  pages = []
+  pages = {}
 }) => {
   const [route, setRoute] = useState({
     hash: undefined,
@@ -40,8 +40,6 @@ export const Router = ({
 
   /** @type {{ current: HTMLElement }} */
   const mainRef = useRef();
-
-  const content = pages.find(({ path }) => path === route.pathname).content;
 
   /**
    * @param {Route} newRoute 
@@ -88,16 +86,16 @@ export const Router = ({
   useEffect(() => {
     const popstateHandler = () => {
       const pathName = window.location.pathname;
-      const page = pages.find(({ path }) => 
+      const newPath = Object.keys(pages).find((path) => 
         path.includes(pathName)
         ||
         `${path}/`.includes(pathName)
       );
 
-      if (page) {
+      if (newPath) {
         setRoute({
           hash: undefined,
-          pathname: page.path
+          pathname: newPath
         });
       }
     };
@@ -134,14 +132,14 @@ export const Router = ({
     <Container isFluid flex='start'>
       <Navigation
         currentPath={route.pathname}
-        pages={pages}
+        pageList={Object.values(pages)}
         onChange={changeHandler}
       />
 
       <Main
         ref={mainRef}
         dangerouslySetInnerHTML={{
-          __html: content
+          __html: pages[route.pathname].content
         }}
       />
     </Container>

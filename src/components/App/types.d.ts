@@ -12,7 +12,7 @@ type Page = {
 
 type AppProps = {
   currentPage: string;
-  pages: Page[]
+  pages: Record<string, Page>;
 };
 
 declare var data: AppProps;

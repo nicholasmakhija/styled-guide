@@ -22,7 +22,7 @@ import {
  */
 export const Navigation = ({
   currentPath,
-  pages = [],
+  pageList = [],
   onChange
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -130,7 +130,7 @@ export const Navigation = ({
   return (
     <Nav id={NAV_ID} isOpen={isOpen}>
       <NavContent ref={navContentRef}>
-        {pages.map(({ path, sections, title }, index) => (
+        {pageList.map(({ path, sections, title }, index) => (
           <NavList key={`${index}-${title}`}>
             <NavItem>
               <NavLink
