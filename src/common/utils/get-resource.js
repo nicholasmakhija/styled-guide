@@ -2,7 +2,7 @@
  * @param {string} message
  * @returns {void}
  */
-const showError = (message) => {
+const throwError = (message) => {
   throw new Error(message);
 };
 
@@ -10,14 +10,9 @@ const showError = (message) => {
  * @template T
  * @param {string} url
  * @param {string} mimeType
- * @param {() => void} [onError]
  * @returns {Promise<T>}
  */
-export const getResource = (
-  url,
-  mimeType,
-  onError = () => {}
-) =>
+export const getResource = (url, mimeType) =>
   fetch(url, {
     method: 'GET',
     mode: 'same-origin',
@@ -28,8 +23,7 @@ export const getResource = (
     })
   }).then((response) => {
     if (!response.ok) {
-      onError();
-      showError(`${response.status}`);
+      throwError(`${response.status}`);
     }
 
     const contentType = response
@@ -39,8 +33,7 @@ export const getResource = (
     const mediaType = mimeType.toLowerCase();
     
     if (contentType !== mediaType) {
-      onError();
-      showError(
+      throwError(
         `MIME Type "${contentType}" not allowed, expected "${mediaType}"`
       );
     }

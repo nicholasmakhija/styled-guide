@@ -16,9 +16,7 @@ const createIconCache = () => {
    * @returns {Promise<IconState>}
    */
   const getIcon = (url) => {
-    const makePromise = () => getResource(url, MIME_TYPE, () => {
-      cache.delete(url);
-    })
+    const makePromise = () => getResource(url, MIME_TYPE)
       .then((res) => res.text())
       .then((content) => {
         const parser = new DOMParser();
@@ -30,6 +28,11 @@ const createIconCache = () => {
           viewBox: svg.getAttribute('viewBox'),
           innerHTML: svg.innerHTML
         };
+      })
+      .catch((error) => {
+        cache.delete(url);
+
+        throw new Error(error);
       });
 
     if (!cache.has(url)) {
