@@ -15,17 +15,17 @@ import {
 } from '@common/constants';
 
 /**
- * @param {(1 | 2 | 3)} level 
- * @param {number} size 
- * @param {number} leading 
+ * @param {('h1' | 'h2' | 'h3')} heading
+ * @param {number} size
+ * @param {number} leading
  * @returns {Record<string, Typography>}
  */
 const headingTypography = (
-  level,
+  heading,
   size,
   leading
 ) => ({
-  [style.selector(`h${level}`)]: typography(size, leading)
+  [style.selector(heading)]: typography(size, leading)
 });
 
 /**
@@ -41,9 +41,7 @@ const dataColor = (name, hex) => ({
 
 /** @type {import('@styled').StyledComponent<MainProps>} */
 export const Main = styled.main({
-  ...headingTypography(1, 32, 40),
-  ...headingTypography(2, 24, 32),
-  ...headingTypography(3, 18, 32),
+  ...headingTypography('h1', 32, 40),
   flex: 1,
   paddingTop: asRem(CONTENT_SPACER),
   paddingRight: asRem(GUTTER_WIDTH),
@@ -70,7 +68,7 @@ export const Main = styled.main({
     }
   },
   [style.selector(
-    '> *:not(section)',
+    '> h1',
     '> section > *'
   )]: {
     margin: `0 0 ${asRem(CONTENT_SPACER)}`,
@@ -79,6 +77,8 @@ export const Main = styled.main({
     }
   },
   [style.selector('section')]: {
+    ...headingTypography('h2', 24, 32),
+    ...headingTypography('h3', 18, 32),
     margin: `0 0 ${asRem(CONTENT_SPACER * 2)}`,
     [style.selector('> ul')]: {
       paddingLeft: 0,
@@ -124,17 +124,17 @@ export const Main = styled.main({
     padding: `0 ${asRem(16)}`,
     background: CSS_VARS.BACKGROUND_PRE,
     color: CSS_VARS.COLOR_CODE,
-    whiteSpace: 'pre'
-  },
-  [style.selector('pre > code')]: {
-    padding: `${asRem(16)} 0`,
-    borderRadius: 0,
-    background: 'transparent',
-    boxShadow: 'none',
-    overflow: 'hidden',
-    overflowX: 'auto',
-    display: 'block',
-    whiteSpace: 'pre'
+    whiteSpace: 'pre',
+    [style.selector('> code')]: {
+      padding: `${asRem(16)} 0`,
+      borderRadius: 0,
+      background: 'transparent',
+      boxShadow: 'none',
+      overflow: 'hidden',
+      overflowX: 'auto',
+      display: 'block',
+      whiteSpace: 'pre'
+    }
   },
   [style.selector('[data-table]')]: {
     padding: `0 ${asRem(8)}`,
