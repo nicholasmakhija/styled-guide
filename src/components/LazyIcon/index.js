@@ -17,7 +17,7 @@ const createIconCache = () => {
    */
   const getIcon = (url) => {
     const makePromise = () => getResource(url, MIME_TYPE)
-      .then((res) => res.text())
+      .then((response) => response.text())
       .then((content) => {
         const parser = new DOMParser();
         const svg = /** @type {SVGElement} */(

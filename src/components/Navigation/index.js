@@ -70,7 +70,7 @@ export const Navigation = ({
    * @returns {void}
    */
   const closeHandler = (e) => {
-    if (!isOpen) {
+    if (!isOpen || !navContentRef.current) {
       return;
     }
 
@@ -89,7 +89,7 @@ export const Navigation = ({
    * @returns {void}
    */
   const keydownHandler = (e) => {
-    if (window.innerWidth >= BREAKPOINTS.LG) {
+    if (window.innerWidth >= BREAKPOINTS.LG || !navContentRef.current) {
       return;
     }
 
@@ -101,9 +101,7 @@ export const Navigation = ({
 
     if (e.key === KEYS.TAB) {
       const anchors = /** @type {HTMLElement[]} */([
-        ...navContentRef
-          .current
-          .querySelectorAll('a')
+        ...navContentRef.current.querySelectorAll('a')
       ]);
       const firstElement = anchors[0];
       const lastElement = anchors[anchors.length - 1];

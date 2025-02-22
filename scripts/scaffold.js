@@ -16,7 +16,7 @@ import { App } from '@components/App';
 import {
   APP_DATA,
   CLASS_NAME_IS_DARK_MODE,
-  KEY_IS_DARK_MODE
+  DOCS_IS_DARK_MODE
 } from '@common/constants';
 
 const encoding = 'utf8';
@@ -89,10 +89,10 @@ export const renderHTML = (sheets, data, html) =>
   <script>
     (function () {
       const html = document.documentElement;
-      const isDark = window.localStorage.getItem('${KEY_IS_DARK_MODE}') === 'true';
+      const isDark = window.localStorage.getItem('${DOCS_IS_DARK_MODE}') === 'true';
 
-      window.localStorage.setItem('${KEY_IS_DARK_MODE}', isDark);
-      window['${APP_DATA}'].isDark = isDark;
+      window.localStorage.setItem('${DOCS_IS_DARK_MODE}', isDark);
+      window.${APP_DATA}.isDark = isDark;
 
       if (isDark) {
         html.classList.add('${CLASS_NAME_IS_DARK_MODE}');
@@ -182,7 +182,7 @@ sync(`${templates}/**/index.html`).map((file) => {
   path
 }, index, array) => {
   /** @type {AppProps} */
-  const data = {
+  const apiData = {
     currentPage: path,
     pages: array.reduce((acc, {
       content,
@@ -200,15 +200,21 @@ sync(`${templates}/**/index.html`).map((file) => {
     }), {})
   };
 
-  createJSON(data, index);
-
   const stringifiedData = JSON.stringify({
-    ...data,
+    currentPage: path,
     pages: {}
   });
+
+  const data = {
+    ...apiData,
+    isDark: false
+  };
+
   const renderedHTML = renderToString(<App {...data} />);
   const sheets = getStyles();
   const html = renderHTML(sheets, stringifiedData, renderedHTML);
 
   writeFileSync(output, html);
+
+  createJSON(apiData, index);
 });

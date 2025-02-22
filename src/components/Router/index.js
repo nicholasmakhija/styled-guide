@@ -111,10 +111,13 @@ export const Router = ({
 
     const mainElement = mainRef.current;
 
-    /** @type {NodeListOf<HTMLElement>} */
-    const overflowXElements = mainElement.querySelectorAll('pre > code, [data-table] > div');
+    if (!mainElement) {
+      return;
+    }
 
-    overflowXElements.forEach((element) => element.setAttribute('tabindex', '-1'));
+    mainElement
+      .querySelectorAll('pre > code, [data-table] > div')
+      .forEach((element) => element.setAttribute('tabindex', '-1'));
 
     /** @type {NodeListOf<HTMLAnchorElement>} */
     const anchors = mainElement.querySelectorAll('a:not([target])');
