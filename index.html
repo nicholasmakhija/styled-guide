@@ -32,7 +32,7 @@
       const isDark = window.localStorage.getItem('styled.docs.isDarkMode') === 'true';
 
       window.localStorage.setItem('styled.docs.isDarkMode', isDark);
-      window['__ADD_DATA'].isDark = isDark;
+      window.__ADD_DATA.isDark = isDark;
 
       if (isDark) {
         html.classList.add('isDarkMode');
