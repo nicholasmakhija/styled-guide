@@ -70,7 +70,7 @@ export const Navigation = ({
    * @returns {void}
    */
   const closeHandler = (e) => {
-    if (!isOpen || !navContentRef.current) {
+    if (!isOpen) {
       return;
     }
 
