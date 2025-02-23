@@ -34,7 +34,7 @@ const createFolder = (dir) => {
 };
 
 /**
- * @param {AppProps} data
+ * @param {Record<string, Page>} data
  * @param {number} index 
  * @returns {void}
  */
@@ -46,7 +46,7 @@ const createJSON = (data, index) => {
   createFolder(dir);
 
   writeFileSync(`${dir}/pages.json`, JSON.stringify({
-    pages: data.pages
+    pages: data
   }));
 };
 
@@ -181,33 +181,32 @@ sync(`${templates}/**/index.html`).map((file) => {
   output,
   path
 }, index, array) => {
-  /** @type {AppProps} */
-  const apiData = {
-    currentPage: path,
-    pages: array.reduce((acc, {
+
+  /** @type {Record<string, Page>} */
+  const pages = array.reduce((acc, {
+    content,
+    path,
+    title,
+    sections
+  }) => ({
+    ...acc,
+    [path]: {
       content,
       path,
       title,
       sections
-    }) => ({
-      ...acc,
-      [path]: {
-        content,
-        path,
-        title,
-        sections
-      }
-    }), {})
-  };
+    }
+  }), {});
 
   const stringifiedData = JSON.stringify({
-    currentPage: path,
-    pages: {}
+    currentPage: path
   });
 
+  /** @type {AppProps} */
   const data = {
-    ...apiData,
-    isDark: false
+    isDark: false,
+    currentPage: path,
+    pages
   };
 
   const renderedHTML = renderToString(<App {...data} />);
@@ -216,5 +215,5 @@ sync(`${templates}/**/index.html`).map((file) => {
 
   writeFileSync(output, html);
 
-  createJSON(apiData, index);
+  createJSON(pages, index);
 });

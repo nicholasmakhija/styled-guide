@@ -1,1 +1,1 @@
-export const APP_DATA = '__ADD_DATA';
+export const APP_DATA = '__APP_DATA';
