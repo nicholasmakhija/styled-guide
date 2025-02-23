@@ -34,7 +34,7 @@ const headingTypography = (
  * @returns {Record<string, Color>}
  */
 const dataColor = (name, hex) => ({
-  [style.selector(`[data-${name}]`)]: {
+  [style.selector(style.data(name))]: {
     color: hex
   }
 });
