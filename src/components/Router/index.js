@@ -48,36 +48,6 @@ export const Router = ({
   const changeHandler = (newRoute) => {
     setRoute(newRoute);
   };
-  
-  /**
-   * @param {string} newPathname 
-   * @param {string} newHash 
-   * @returns {(e: Event) => void}
-   */
-  const clickHandler = (newPathname, newHash) => (e) => {
-    e.preventDefault();
-
-    if (newPathname !== route.pathname) {
-      history.pushState({}, '', newPathname);
-
-      setRoute({
-        hash: newHash,
-        pathname: newPathname
-      });
-    }
-  };
-
-  /**
-   * @param {NodeListOf<HTMLAnchorElement>} nodeList 
-   * @param {('addEventListener' | 'removeEventListener')} method 
-   */
-  const toggleEventListener = (nodeList, method) => {
-    nodeList.forEach((anchor) => {
-      const { hash, pathname } = anchor;
-
-      anchor[method]('click', clickHandler(pathname, hash));
-    });
-  };
 
   useEffect(() => {
     const popstateHandler = () => {
@@ -99,7 +69,6 @@ export const Router = ({
     window.addEventListener('popstate', popstateHandler);
   }, [pages]);
 
-  // FIXME: prevent this effect from firing twice in `StrictMode`
   useEffect(() => {
     scrollToElement(route.hash);
 
@@ -116,14 +85,34 @@ export const Router = ({
     /** @type {NodeListOf<HTMLAnchorElement>} */
     const anchors = mainElement.querySelectorAll('a:not([target])');
 
-    toggleEventListener(anchors, 'addEventListener');
+    /**
+     * @param {('addEventListener' | 'removeEventListener')} method 
+     */
+    const toggleEventListener = (method) => {
+      anchors.forEach((anchor) => {
+        const { hash, pathname } = anchor;
+
+        anchor[method]('click', (e) => {
+          e.preventDefault();
+
+          if (pathname !== route.pathname) {
+            history.pushState({}, '', pathname);
+
+            setRoute({
+              hash,
+              pathname
+            });
+          }
+        });
+      });
+    };
+
+    toggleEventListener('addEventListener');
 
     return () => {
-      toggleEventListener(anchors, 'removeEventListener');
+      toggleEventListener('removeEventListener');
     };
-  // FIXME: ??
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [route, mainRef]);
+  }, [route]);
   
   return (
     <Container isFluid flex='start'>
