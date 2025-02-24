@@ -107,10 +107,10 @@ export const Router = ({
       }
     };
   
-    anchors.forEach((anchor) => anchor.addEventListener('click', clickHandler));
+    anchors.forEach((a) => a.addEventListener('click', clickHandler));
   
     return () => {
-      anchors.forEach((anchor) => anchor.removeEventListener('click', clickHandler));
+      anchors.forEach((a) => a.removeEventListener('click', clickHandler));
     };
   }, [route]);
   
