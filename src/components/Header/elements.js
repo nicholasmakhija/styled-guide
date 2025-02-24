@@ -38,7 +38,7 @@ export const HeaderBrand = styled.div({
   padding: `${asRem(4)} 0`,
   color: CSS_VARS.ACCENT,
   [style.selector('> svg')]: {
-    verticalAlign: 'middle'
+    verticalAlign: 'top'
   },
   [breakpoints.up.lg]: {
     marginLeft: asRem(-GUTTER_WIDTH),
