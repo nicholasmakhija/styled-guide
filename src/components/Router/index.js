@@ -15,14 +15,14 @@ const offset = HEADER_HEIGHT + CONTENT_SPACER + NAV_LINK_PADDING;
  * @returns {void}
  */
 const scrollToElement = (id) => {
-  const target = document.querySelector(id);
-  
-  if (target) {
-    const scrollY = window.scrollY;
-    const y = target.getBoundingClientRect().top + scrollY - offset;
-    
-    window.scrollTo(0, y);
-  }
+  const y = id
+    ? document
+      .querySelector(id)
+      .getBoundingClientRect()
+      .top + window.scrollY - offset
+    : 0;
+
+  window.scrollTo(0, y);
 };
 
 /** 
@@ -65,10 +65,6 @@ export const Router = ({
         pathname: newPathname
       });
     }
-
-    if (!newHash) {
-      window.scrollTo(0, 0);
-    }
   };
 
   /**
@@ -105,9 +101,7 @@ export const Router = ({
 
   // FIXME: prevent this effect from firing twice in `StrictMode`
   useEffect(() => {
-    if (route.hash) {
-      scrollToElement(route.hash);
-    }
+    scrollToElement(route.hash);
 
     const mainElement = mainRef.current;
 

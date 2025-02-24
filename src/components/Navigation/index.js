@@ -49,10 +49,6 @@ export const Navigation = ({
       hash,
       pathname
     });
-
-    if (!hash) {
-      window.scrollTo(0, 0);
-    }
   };
 
   /**
