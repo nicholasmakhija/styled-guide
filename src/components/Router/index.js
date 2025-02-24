@@ -86,31 +86,31 @@ export const Router = ({
     const anchors = mainElement.querySelectorAll('a:not([target])');
 
     /**
-     * @param {('addEventListener' | 'removeEventListener')} method 
+     * @param {Event} e
+     * @returns {void}
      */
-    const toggleEventListener = (method) => {
-      anchors.forEach((anchor) => {
-        const { hash, pathname } = anchor;
+    const clickHandler = (e) => {
+      e.preventDefault();
+  
+      const {
+        hash,
+        pathname
+      } = /** @type {HTMLAnchorElement} */(e.currentTarget);
+  
+      if (pathname !== route.pathname) {
+        history.pushState({}, '', pathname);
 
-        anchor[method]('click', (e) => {
-          e.preventDefault();
-
-          if (pathname !== route.pathname) {
-            history.pushState({}, '', pathname);
-
-            setRoute({
-              hash,
-              pathname
-            });
-          }
+        setRoute({
+          hash,
+          pathname
         });
-      });
+      }
     };
-
-    toggleEventListener('addEventListener');
-
+  
+    anchors.forEach((anchor) => anchor.addEventListener('click', clickHandler));
+  
     return () => {
-      toggleEventListener('removeEventListener');
+      anchors.forEach((anchor) => anchor.removeEventListener('click', clickHandler));
     };
   }, [route]);
   
