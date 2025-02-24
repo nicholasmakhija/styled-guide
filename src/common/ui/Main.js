@@ -39,6 +39,17 @@ const dataColor = (name, hex) => ({
   }
 });
 
+/**
+ * @param {keyof import('@common/utils').Breakpoints} breakpoint 
+ * @param {number} columns 
+ * @returns 
+ */
+const asColumns = (breakpoint, columns) => ({
+  [breakpoints.up[breakpoint]]: {
+    columns: columns
+  }
+});
+
 /** @type {import('@styled').StyledComponent<MainProps>} */
 export const Main = styled.main({
   ...headingTypography('h1', 32, 40),
@@ -82,6 +93,11 @@ export const Main = styled.main({
     margin: `0 0 ${asRem(CONTENT_SPACER * 2)}`,
     [style.selector('> ul')]: {
       paddingLeft: 0,
+      // @ts-ignore
+      [style.data('column')]: {
+        ...asColumns('sm', 2),
+        ...asColumns('md', 3)
+      },
       [style.selector('li')]: {
         marginLeft: asRem(CONTENT_SPACER)
       }
