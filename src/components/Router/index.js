@@ -56,9 +56,7 @@ export const Router = ({
       hash
     } = /** @type {HTMLAnchorElement} */(e.currentTarget);
 
-    history.pushState({
-      hash
-    }, '', pathname);
+    history.pushState(hash, '', pathname);
 
     setRoute({
       hash,
@@ -77,7 +75,7 @@ export const Router = ({
 
       if (newPath) {
         setRoute({
-          hash: (e.state || {}).hash,
+          hash: e.state || undefined,
           pathname: newPath
         });
       }
