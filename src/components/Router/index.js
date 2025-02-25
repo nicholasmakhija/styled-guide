@@ -55,11 +55,9 @@ export const Router = ({
       hash
     } = /** @type {HTMLAnchorElement} */(e.currentTarget);
 
-    if (pathname !== route.pathname) {
-      history.pushState({
-        hash
-      }, '', pathname);
-    }
+    history.pushState({
+      hash
+    }, '', pathname);
 
     setRoute({
       hash,
@@ -101,16 +99,11 @@ export const Router = ({
     /** @type {NodeListOf<HTMLAnchorElement>} */
     const anchors = mainElement.querySelectorAll('a:not([target])');
   
-    anchors.forEach(
-      (a) => a.addEventListener('click', clickHandler(a.pathname))
-    );
+    anchors.forEach((a) => a.onclick = clickHandler(a.pathname));
   
     return () => {
-      anchors.forEach(
-        (a) => a.removeEventListener('click', clickHandler(a.pathname))
-      );
+      anchors.forEach((a) => a.removeAttribute('onclick'));
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route]);
   
   return (
