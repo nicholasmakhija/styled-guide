@@ -11,19 +11,21 @@ import {
 const offset = HEADER_HEIGHT + CONTENT_SPACER + NAV_LINK_PADDING;
 
 /**
+ * @template T
+ * @param {T} value 
+ * @returns {T | undefined}
+ */
+const orUndefined = (value) => value || undefined;
+
+/**
  * @param {string} id
  * @returns {void}
  */
 const scrollToElement = (id) => {
-  let y = 0;
-
-  if (id) {
-    const target = document.querySelector(id);
-
-    if (target) {
-      y = target.getBoundingClientRect().top + window.scrollY - offset;
-    }
-  }
+  const target = document.querySelector(id);
+  const y = target
+    ? target.getBoundingClientRect().top + window.scrollY - offset
+    : 0;
 
   window.scrollTo(0, y);
 };
@@ -51,10 +53,9 @@ export const Router = ({
   const clickHandler = (e) => {
     e.preventDefault();
 
-    const {
-      pathname,
-      hash
-    } = /** @type {HTMLAnchorElement} */(e.currentTarget);
+    const anchor = /** @type {HTMLAnchorElement} */(e.currentTarget);
+    const { pathname } = anchor;
+    const hash = orUndefined(anchor.hash);
 
     history.pushState(hash, '', pathname);
 
@@ -75,7 +76,7 @@ export const Router = ({
 
       if (newPath) {
         setRoute({
-          hash: e.state || undefined,
+          hash: orUndefined(e.state),
           pathname: newPath
         });
       }
