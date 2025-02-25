@@ -110,15 +110,15 @@ export const Navigation = ({
                 href={path}
                 isTitle
                 isActive={path === currentPath}
-                onClick={onClick(path)}
+                onClick={onClick}
               >{title}</NavLink>
             </NavItem>
            
             {sections.map(({ id, text }) => (
               <NavItem key={id}>
                 <NavLink
-                  href={`#${id}`}
-                  onClick={onClick(path)}
+                  href={`${path}#${id}`}
+                  onClick={onClick}
                 >{text}</NavLink>
               </NavItem>
             ))}

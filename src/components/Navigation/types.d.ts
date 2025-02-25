@@ -21,5 +21,5 @@ type NavLinkProps = {
 type NavigationProps = {
   currentPath: string;
   pageList: Page[];
-  onClick?: (pathname: string) => (e: Event) => void;
+  onClick?: (e: Event) => void;
 };

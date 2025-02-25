@@ -45,13 +45,14 @@ export const Router = ({
   const mainRef = useRef();
 
   /**
-   * @param {string} pathname 
-   * @returns {(e: Event) => void}
+   * @param {Event} e 
+   * @returns {void}
    */
-  const clickHandler = (pathname) => (e) => {
+  const clickHandler = (e) => {
     e.preventDefault();
 
     const {
+      pathname,
       hash
     } = /** @type {HTMLAnchorElement} */(e.currentTarget);
 
@@ -99,7 +100,7 @@ export const Router = ({
     /** @type {NodeListOf<HTMLAnchorElement>} */
     const anchors = mainElement.querySelectorAll('a:not([target])');
   
-    anchors.forEach((a) => a.onclick = clickHandler(a.pathname));
+    anchors.forEach((a) => a.onclick = clickHandler);
   
     return () => {
       anchors.forEach((a) => a.removeAttribute('onclick'));
