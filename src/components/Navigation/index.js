@@ -23,33 +23,12 @@ import {
 export const Navigation = ({
   currentPath,
   pageList = [],
-  onChange
+  onClick
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   /** @type {{ current: HTMLDivElement }} */
   const navContentRef = useRef();
-
-  /**
-   * @param {string} pathname 
-   * @returns {(e: Event) => void}
-   */
-  const clickHandler = (pathname) => (e) => {
-    e.preventDefault();
-
-    if (pathname !== currentPath) {
-      history.pushState({}, '', pathname);
-    }
-
-    const { hash } = /** @type {HTMLAnchorElement} */(
-      e.currentTarget
-    );
-
-    onChange({
-      hash,
-      pathname
-    });
-  };
 
   /**
    * @param {CustomEvent} e 
@@ -131,7 +110,7 @@ export const Navigation = ({
                 href={path}
                 isTitle
                 isActive={path === currentPath}
-                onClick={clickHandler(path)}
+                onClick={onClick(path)}
               >{title}</NavLink>
             </NavItem>
            
@@ -139,7 +118,7 @@ export const Navigation = ({
               <NavItem key={id}>
                 <NavLink
                   href={`#${id}`}
-                  onClick={clickHandler(path)}
+                  onClick={onClick(path)}
                 >{text}</NavLink>
               </NavItem>
             ))}

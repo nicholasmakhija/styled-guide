@@ -15,12 +15,15 @@ const offset = HEADER_HEIGHT + CONTENT_SPACER + NAV_LINK_PADDING;
  * @returns {void}
  */
 const scrollToElement = (id) => {
-  const y = id
-    ? document
-      .querySelector(id)
-      .getBoundingClientRect()
-      .top + window.scrollY - offset
-    : 0;
+  let y = 0;
+
+  if (id) {
+    const target = document.querySelector(id);
+
+    if (target) {
+      y = target.getBoundingClientRect().top + window.scrollY - offset;
+    }
+  }
 
   window.scrollTo(0, y);
 };
@@ -42,15 +45,30 @@ export const Router = ({
   const mainRef = useRef();
 
   /**
-   * @param {Route} newRoute 
-   * @returns {void}
+   * @param {string} pathname 
+   * @returns {(e: Event) => void}
    */
-  const changeHandler = (newRoute) => {
-    setRoute(newRoute);
+  const clickHandler = (pathname) => (e) => {
+    e.preventDefault();
+
+    const {
+      hash
+    } = /** @type {HTMLAnchorElement} */(e.currentTarget);
+
+    if (pathname !== route.pathname) {
+      history.pushState({
+        hash
+      }, '', pathname);
+    }
+
+    setRoute({
+      hash,
+      pathname
+    });
   };
 
   useEffect(() => {
-    const popstateHandler = () => {
+    window.addEventListener('popstate', (e) => {
       const pathName = window.location.pathname;
       const newPath = Object.keys(pages).find((path) => 
         path.includes(pathName)
@@ -60,13 +78,11 @@ export const Router = ({
 
       if (newPath) {
         setRoute({
-          hash: undefined,
+          hash: (e.state || {}).hash,
           pathname: newPath
         });
       }
-    };
-
-    window.addEventListener('popstate', popstateHandler);
+    });
   }, [pages]);
 
   useEffect(() => {
@@ -84,34 +100,17 @@ export const Router = ({
 
     /** @type {NodeListOf<HTMLAnchorElement>} */
     const anchors = mainElement.querySelectorAll('a:not([target])');
-
-    /**
-     * @param {Event} e
-     * @returns {void}
-     */
-    const clickHandler = (e) => {
-      e.preventDefault();
   
-      const {
-        hash,
-        pathname
-      } = /** @type {HTMLAnchorElement} */(e.currentTarget);
-  
-      if (pathname !== route.pathname) {
-        history.pushState({}, '', pathname);
-
-        setRoute({
-          hash,
-          pathname
-        });
-      }
-    };
-  
-    anchors.forEach((a) => a.addEventListener('click', clickHandler));
+    anchors.forEach(
+      (a) => a.addEventListener('click', clickHandler(a.pathname))
+    );
   
     return () => {
-      anchors.forEach((a) => a.removeEventListener('click', clickHandler));
+      anchors.forEach(
+        (a) => a.removeEventListener('click', clickHandler(a.pathname))
+      );
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route]);
   
   return (
@@ -119,7 +118,7 @@ export const Router = ({
       <Navigation
         currentPath={route.pathname}
         pageList={Object.values(pages)}
-        onChange={changeHandler}
+        onClick={clickHandler}
       />
 
       <Main
