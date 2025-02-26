@@ -28,16 +28,12 @@
   <script>var __APP_DATA = {"currentPage":"/"};</script>
   <script>
     (function () {
-      const html = document.documentElement;
       const isDark = window.localStorage.getItem('styled.docs.isDarkMode') === 'true';
 
-      window.localStorage.setItem('styled.docs.isDarkMode', isDark);
       window.__APP_DATA.isDark = isDark;
 
       if (isDark) {
-        html.classList.add('isDarkMode');
-      } else {
-        html.classList.remove('isDarkMode');
+        document.documentElement.classList.add('isDarkMode');
       }
     })();
   </script>
