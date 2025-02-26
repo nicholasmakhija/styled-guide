@@ -88,16 +88,12 @@ export const renderHTML = (sheets, data, html) =>
   <script>var ${APP_DATA} = ${data};</script>
   <script>
     (function () {
-      const html = document.documentElement;
       const isDark = window.localStorage.getItem('${DOCS_IS_DARK_MODE}') === 'true';
 
-      window.localStorage.setItem('${DOCS_IS_DARK_MODE}', isDark);
       window.${APP_DATA}.isDark = isDark;
 
       if (isDark) {
-        html.classList.add('${CLASS_NAME_IS_DARK_MODE}');
-      } else {
-        html.classList.remove('${CLASS_NAME_IS_DARK_MODE}');
+        document.documentElement.classList.add('${CLASS_NAME_IS_DARK_MODE}');
       }
     })();
   </script>
