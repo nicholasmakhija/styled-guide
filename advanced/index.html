@@ -132,7 +132,7 @@
   <span data-pink>const</span> <span data-purple>sheets</span> <span data-pink>=</span> <span data-green>getStyles</span>();
 
   <span data-pink>return</span> <span data-orange data-em>res</span>
-    .<span data-green>express</span>(<span data-purple>200</span>)
+    .<span data-green>status</span>(<span data-purple>200</span>)
     .<span data-green>contentType</span>(<span data-yellow>'text/html'</span>)
     .<span data-green>send</span>(<span data-green>renderPage</span>(<span data-purple>html</span>, <span data-purple>sheets</span>));
 });
