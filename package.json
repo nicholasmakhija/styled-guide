@@ -20,7 +20,7 @@
     "watch:rollup": "rollup -c -w --watch.onEnd=\"npm run update\"",
     "watch": "run-p --silent watch:**",
     "start": "npm-run-all --silent dev -p watch bs:serve",
-    "bs:serve": "browser-sync start -s dist --port 8088",
+    "bs:serve": "browser-sync start -s dist --no-ghost-mode --port 8088",
     "bs:reload": "browser-sync reload --port 8088"
   },
   "author": "Nicholas Makhija",
