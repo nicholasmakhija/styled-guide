@@ -14,6 +14,9 @@ const brotliPromise = promisify(brotliCompress);
 const nodeEnv = process.env.NODE_ENV;
 const isProd = nodeEnv === 'production';
 
+/**
+ * @type {import('rollup').RollupOptions}
+ */
 export default {
   plugins: [
     alias({
@@ -24,10 +27,6 @@ export default {
       }
     }),
     eslint(),
-    nodeResolve({
-      dedupe: ['react'],
-      extensions: ['.js']
-    }),
     replace({
       preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify(nodeEnv)
@@ -37,6 +36,10 @@ export default {
       exclude: 'node_modules/**'
     }),
     commonjs(),
+    nodeResolve({
+      dedupe: ['react'],
+      extensions: ['.js']
+    }),
     isProd && terser({
       ecma: 2019,
       mangle: { toplevel: true },
