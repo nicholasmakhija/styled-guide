@@ -17,7 +17,7 @@
     "update": "npm run scaffold -- vite-hmr",
     "vite": "vite --port 8088",
     "watch:assets": "onchange -k \"src/assets/**/*.*\" -- npm run copy",
-    "watch:html": "onchange -k \"src/pages/**/*.html\" -- npm run update",
+    "watch:html": "onchange -k \"src/**/*.html\" -- npm run update",
     "watch:js": "onchange -k \"src/**/*.js+(x)\" -- npm run update",
     "watch": "run-p watch:**",
     "start": "npm-run-all -s clean copy update -p watch vite"

@@ -28,25 +28,25 @@ if (isHMR) {
 
 getTemplateData().forEach(({ page, path }) => {
   /** @type {AppProps} */
-  const data = {
+  const props = {
     isDark: false,
     currentPage: path,
     pages
   };
 
-  const renderedHTML = renderToString(<App {...data} />);
+  const html = renderToString(<App {...props} />);
   const sheets = getStyles();
-  const stringifiedData = JSON.stringify({
+  const data = JSON.stringify({
     currentPage: path
   });
   const scriptAttr = isHMR
     ? 'type="module" src="/index.jsx"'
     : 'defer src="/js/index.js"';
 
-  const html = renderHTML(renderedHTML, sheets, stringifiedData, scriptAttr);
+  const renderedHTML = renderHTML(html, sheets, data, scriptAttr);
 
   const outDir = isHMR ? 'bin' : 'dist';
   const output = outDir + page;
 
-  createResource(output, html);
+  createResource(output, renderedHTML);
 });
