@@ -2,7 +2,7 @@ import globals from 'globals';
 import babelParser from '@babel/eslint-parser';
 import pluginJs from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
-import react from 'eslint-plugin-react';
+import stylisticJsx from '@stylistic/eslint-plugin-jsx'
 import reactHooks from 'eslint-plugin-react-hooks';
 
 export default [
@@ -10,7 +10,10 @@ export default [
     ignores: ['dist/*']
   }, 
   {
-    files: ['**/*.js'],
+    files: [
+      '**/*.js',
+      '**/*.jsx'
+    ],
     languageOptions: {
       globals: {
         ...globals.browser
@@ -25,9 +28,9 @@ export default [
     },
     plugins: {
       ...pluginJs.configs.recommended,
-      'react': react,
       'react-hooks': reactHooks,
-      '@stylistic': stylistic
+      '@stylistic': stylistic,
+      '@stylistic/jsx': stylisticJsx
     },
     rules: {
       'no-console': 1,
@@ -51,17 +54,36 @@ export default [
       '@stylistic/quotes': [2, 'single'],
       '@stylistic/semi': [2, 'always'],
       '@stylistic/space-before-blocks': ['error', 'always'],
-
-      'react/boolean-prop-naming': ['error', { 
-        rule: '^(is|has|can)[A-Z]([A-Za-z0-9]?)+' 
+      
+      '@stylistic/jsx-closing-bracket-location': [1, 'tag-aligned'],
+      '@stylistic/jsx/jsx-curly-spacing': [2, 'never'],
+      '@stylistic/jsx/jsx-equals-spacing': [2, 'never'],
+      '@stylistic/jsx/jsx-max-props-per-line': [2, {
+        maximum: {
+          single: 2,
+          multi: 1
+        }
       }],
-      'react/jsx-no-duplicate-props': 2,
-      'react/jsx-tag-spacing': ['error', { 
-        beforeSelfClosing: 'always'
+      '@stylistic/jsx/jsx-pascal-case': [2, {
+        allowNamespace: true  
       }],
-      'react/no-unused-prop-types': 2,
-      'react/prop-types': [0, { 
-        ignore: ['children', 'className', 'style', 'defaultChecked']
+      '@stylistic/jsx/jsx-props-no-multi-spaces': 2,
+      // FIXME:
+      // '@stylistic/jsx/jsx-tag-spacing': ['error', { 
+      //   closingSlash: 'never',
+      //   beforeSelfClosing: 'never',
+      //   afterOpening: 'never',
+      //   beforeClosing: 'proportional-always'
+      // }],
+      '@stylistic/jsx/jsx-wrap-multilines': [2, {
+        declaration: 'parens-new-line',
+        assignment: 'parens-new-line',
+        return: 'parens-new-line',
+        arrow: 'parens-new-line',
+        condition: 'parens-new-line',
+        logical: 'parens-new-line',
+        prop: 'parens-new-line',
+        propertyValue: 'parens-new-line'
       }],
 
       'react-hooks/rules-of-hooks': 'error',

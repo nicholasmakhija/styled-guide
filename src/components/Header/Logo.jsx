@@ -1,3 +1,4 @@
+/* eslint-disable @stylistic/jsx/jsx-max-props-per-line */
 import React from 'react';
 
 export const Logo = () => (

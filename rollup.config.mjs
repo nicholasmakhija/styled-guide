@@ -1,3 +1,4 @@
+import { resolve } from 'path'; 
 import { brotliCompress } from 'zlib';
 import { promisify } from 'util';
 import alias from '@rollup/plugin-alias';
@@ -8,6 +9,9 @@ import { babel } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import gzipPlugin from 'rollup-plugin-gzip';
+
+// @ts-ignore
+const __dirname = import.meta.dirname;
 
 const brotliPromise = promisify(brotliCompress);
 
@@ -21,9 +25,9 @@ export default {
   plugins: [
     alias({
       entries: {
-        '@common': './src/common',
-        '@components': './src/components',
-        '@styled': './node_modules/@n3e/styled'
+        '@common': resolve(__dirname, './src/common'),
+        '@components': resolve(__dirname, './src/components'),
+        '@styled': resolve(__dirname, './node_modules/@n3e/styled'),
       }
     }),
     eslint(),
@@ -38,7 +42,7 @@ export default {
     commonjs(),
     nodeResolve({
       dedupe: ['react'],
-      extensions: ['.js']
+      extensions: ['.js', '.jsx']
     }),
     isProd && terser({
       ecma: 2019,
@@ -55,7 +59,7 @@ export default {
       fileName: '.br'
     })
   ],
-	input: 'src/index.js',
+	input: 'src/index.jsx',
 	cache: !isProd,
   strictDeprecations: true,
   watch: {
