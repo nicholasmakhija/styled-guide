@@ -12,7 +12,6 @@ import { renderHTML } from './render-html';
 import { App } from '@components/App';
 
 const isHMR = process.argv.includes('vite-hmr');
-const outDir = isHMR ? 'bin' : 'dist';
 const pages = getServerSideProps();
 
 createResource('dist/json/pages.json', JSON.stringify({
@@ -24,7 +23,7 @@ if (isHMR) {
   const entry = readFileSync(`src/${file}`, 'utf8');
   const viteEntry = entry.replace('; charset=utf-8', '');
 
-  createResource(`${outDir}/${file}`, viteEntry);
+  createResource(`bin/${file}`, viteEntry);
 }
 
 getTemplateData().forEach(({ page, path }) => {
@@ -46,6 +45,7 @@ getTemplateData().forEach(({ page, path }) => {
 
   const html = renderHTML(renderedHTML, sheets, stringifiedData, scriptAttr);
 
+  const outDir = isHMR ? 'bin' : 'dist';
   const output = outDir + page;
 
   createResource(output, html);
