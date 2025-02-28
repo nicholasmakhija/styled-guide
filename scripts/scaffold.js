@@ -11,11 +11,6 @@ import { renderHTML } from './render-html';
 
 import { App } from '@components/App';
 
-// DEBUG: DELETE!
-// process.argv.forEach((val, index, array) => {
-//   console.log(index + ': ' + val);
-// });
-
 const isHMR = process.argv.includes('vite-hmr');
 const outDir = isHMR ? 'bin' : 'dist';
 const pages = getServerSideProps();
@@ -54,10 +49,4 @@ getTemplateData().forEach(({ page, path }) => {
   const output = outDir + page;
 
   createResource(output, html);
-
-  // DEBUG:
-  // console.group(file);
-  // console.log('page', page);
-  // console.log('path', path);
-  // console.groupEnd();
 });
