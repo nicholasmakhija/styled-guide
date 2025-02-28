@@ -14,14 +14,13 @@
     "build": "run-s clean copy scaffold bundle",
     "dev": "NODE_ENV=development run-s --silent build",
     "prod": "NODE_ENV=production run-s --silent build",
-    "update": "run-s scaffold bs:reload",
+    "update": "npm run scaffold -- vite-hmr",
+    "vite": "vite --port 8088",
     "watch:assets": "onchange -k \"src/assets/**/*.*\" -- npm run copy",
-    "watch:html": "onchange -k \"src/app/**/*.html\" -- npm run update",
-    "watch:rollup": "rollup -c -w --watch.onEnd=\"npm run update\"",
-    "watch": "run-p --silent watch:**",
-    "start": "npm-run-all --silent dev -p watch bs:serve",
-    "bs:serve": "browser-sync start -s dist --no-ghost-mode --port 8088",
-    "bs:reload": "browser-sync reload --port 8088"
+    "watch:html": "onchange -k \"src/pages/**/*.html\" -- npm run update",
+    "watch:js": "onchange -k \"src/**/*.js+(x)\" -- npm run update",
+    "watch": "run-p watch:**",
+    "start": "npm-run-all -s clean copy update -p watch vite"
   },
   "author": "Nicholas Makhija",
   "license": "MIT",
@@ -45,8 +44,8 @@
     "@types/node": "^22.13.1",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "babel-plugin-module-resolver": "^5.0.2",
-    "browser-sync": "^3.0.3",
     "copyfiles": "^2.4.1",
     "eslint": "^9.20.1",
     "eslint-plugin-react": "^7.37.4",
@@ -58,7 +57,8 @@
     "onchange": "^7.1.0",
     "rimraf": "^6.0.1",
     "rollup": "^4.34.6",
-    "rollup-plugin-gzip": "^4.0.1"
+    "rollup-plugin-gzip": "^4.0.1",
+    "vite": "^6.2.0"
   },
   "dependencies": {
     "@n3e/styled": "^1.0.1",
