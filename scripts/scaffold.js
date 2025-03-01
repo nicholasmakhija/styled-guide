@@ -20,9 +20,8 @@ createResource('dist/json/pages.json', JSON.stringify({
 
 if (isHMR) {
   const file = 'index.jsx';
-  const entry = readFileSync(`src/${file}`, 'utf8');
-  const viteEntry = entry.replace('; charset=utf-8', '');
-
+  const viteEntry = readFileSync(`src/${file}`, 'utf8');
+  
   createResource(`bin/${file}`, viteEntry);
 }
 
