@@ -11,16 +11,21 @@ import { renderHTML } from './render-html';
 
 import { App } from '@components/App';
 
-const isHMR = process.argv.includes('vite-hmr');
+const file = 'index.jsx';
+const entry = `src/${file}`;
+
+const isHMR = process.argv.includes('--is-hmr');
+const isStart = process.argv.includes('--is-start');
+const hasEntryFileChanged = process.argv.includes(entry);
+
 const pages = getServerSideProps();
 
 createResource('dist/json/pages.json', JSON.stringify({
   pages: pages
 }));
 
-if (isHMR) {
-  const file = 'index.jsx';
-  const viteEntry = readFileSync(`src/${file}`, 'utf8');
+if (isHMR && (isStart || hasEntryFileChanged)) {
+  const viteEntry = readFileSync(entry, 'utf8');
   
   createResource(`bin/${file}`, viteEntry);
 }
