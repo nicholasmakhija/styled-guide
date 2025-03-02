@@ -8,7 +8,7 @@ import { APP_DATA } from '@common/constants';
 getResource('/json/pages.json', 'application/json; charset=utf-8')
   .then(((response) => response.json()))
   .then((response) => {
-    const data = {
+    const props = {
       ...window[APP_DATA],
       pages: response.pages
     };
@@ -17,7 +17,7 @@ getResource('/json/pages.json', 'application/json; charset=utf-8')
   
     hydrateRoot(root, 
       <StrictMode>
-        <App {...data} />
+        <App {...props} />
       </StrictMode>
     );
   });
