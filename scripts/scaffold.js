@@ -4,7 +4,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { getStyles } from '@n3e/styled';
 
-import { createResource } from './create';
+import { copy, create } from './resource';
 import { getTemplateData } from './get-template-data';
 import { getServerSideProps } from './get-server-side-props';
 import { renderHTML } from './render-html';
@@ -16,18 +16,21 @@ const entry = `src/${file}`;
 
 const isHMR = process.argv.includes('--is-hmr');
 const isStart = process.argv.includes('--is-start');
+const isBuild = process.argv.includes('--is-build');
+const isHTML = process.argv.includes('--is-html');
 const hasEntryFileChanged = process.argv.includes(entry);
 
 const pages = getServerSideProps();
 
-createResource('dist/json/pages.json', JSON.stringify({
-  pages: pages
-}));
+if (isBuild || isStart || isHTML) {
+  create('dist/json/pages.json', JSON.stringify({
+    pages: pages
+  }));
+}
 
 if (isHMR && (isStart || hasEntryFileChanged)) {
-  const viteEntry = readFileSync(entry, 'utf8');
   
-  createResource(`bin/${file}`, viteEntry);
+  copy(entry, `bin/${file}`);
 }
 
 getTemplateData().forEach(({ page, path }) => {
@@ -52,5 +55,5 @@ getTemplateData().forEach(({ page, path }) => {
   const outDir = isHMR ? 'bin' : 'dist';
   const output = outDir + page;
 
-  createResource(output, renderedHTML);
+  create(output, renderedHTML);
 });

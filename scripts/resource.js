@@ -1,4 +1,5 @@
 import {
+  copyFileSync,
   existsSync,
   mkdirSync,
   writeFileSync
@@ -9,7 +10,7 @@ import { dirname } from 'path';
  * @param {string} dir 
  * @returns {void}
  */
-export const createFolder = (dir) => {
+export const makeFolder = (dir) => {
   if (!existsSync(dir)) {
     mkdirSync(dir, {
       recursive: true
@@ -18,14 +19,27 @@ export const createFolder = (dir) => {
 };
 
 /**
+ * @param {string} input
+ * @param {string} output
+ * @returns {void}
+ */
+export const copy = (input, output) => {
+  const dir = dirname(output);
+
+  makeFolder(dir);
+  
+  copyFileSync(input, output);
+};
+
+/**
  * @param {string} file 
  * @param {string} data 
  * @returns {void}
  */
-export const createResource = (file, data) => {
+export const create = (file, data) => {
   const dir = dirname(file);
 
-  createFolder(dir);
+  makeFolder(dir);
 
   writeFileSync(file, data);
 };
