@@ -29,7 +29,6 @@ if (isBuild || isStart || isHTML) {
 }
 
 if (isHMR && (isStart || hasEntryFileChanged)) {
-  
   copy(entry, `bin/${file}`);
 }
 
