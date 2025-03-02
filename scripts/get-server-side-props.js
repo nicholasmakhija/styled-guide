@@ -50,27 +50,16 @@ export const getServerSideProps = () => getTemplateData()
     });
   
     return {
-      content,
-      order,
-      path,
-      sections,
-      title
+      order: order,
+      page: {
+        [path]: {
+          content,
+          path,
+          title,
+          sections
+        }
+      }
     };
   })
-  .sort((a, b) => (
-    a.order - b.order
-  ))
-  .reduce((acc, {
-    content,
-    path,
-    title,
-    sections
-  }) => ({
-    ...acc,
-    [path]: {
-      content,
-      path,
-      title,
-      sections
-    }
-  }), {});
+  .sort((a, b) => a.order - b.order)
+  .reduce((acc, { page }) => ({ ...acc, ...page }), {});
