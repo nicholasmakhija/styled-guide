@@ -70,8 +70,6 @@ export const Router = ({
       const pathName = window.location.pathname;
       const newPath = Object.keys(pages).find((path) => 
         path.includes(pathName)
-        ||
-        `${path}/`.includes(pathName)
       );
 
       if (newPath) {
