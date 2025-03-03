@@ -7,10 +7,9 @@ const throwError = (message) => {
 };
 
 /**
- * @template T
  * @param {string} url
  * @param {string} mimeType
- * @returns {Promise<T>}
+ * @returns {Promise<Response>}
  */
 export const getResource = (url, mimeType) =>
   fetch(url, {
@@ -38,5 +37,5 @@ export const getResource = (url, mimeType) =>
       );
     }
   
-    return /** @type {T} */(response);
+    return response;
   });
