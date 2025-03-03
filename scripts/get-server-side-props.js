@@ -6,19 +6,13 @@ import { getTemplateData } from './get-template-data';
 /**
  * @param {string} str 
  * @param {RegExp} regex 
- * @returns {{
- *  list: (RegExpMatchArray|string)[],
- *  matched: string
- * }}
+ * @returns {string}
  */
-const execData = (str, regex) => {
+const getMatched = (str, regex) => {
   const matchedArray = str.match(regex);
   const cleaned = matchedArray || [];
 
-  return {
-    list: cleaned,
-    matched: cleaned.length ? cleaned[1] : ''
-  };
+  return cleaned.length ? cleaned[1] : '';
 };
 
 /**
@@ -26,8 +20,8 @@ const execData = (str, regex) => {
  * @returns {Section}
  */
 const getSectionData = (heading) => ({
-  id: execData(heading, /id="(.*?)"/).matched,
-  text: execData(heading, />(.*?)<\//).matched
+  id: getMatched(heading, /id="(.*?)"/),
+  text: getMatched(heading, />(.*?)<\//)
 });
 
 /**
@@ -36,12 +30,12 @@ const getSectionData = (heading) => ({
 export const getServerSideProps = () => getTemplateData()
   .map(({ file, path }) => {
     const raw = readFileSync(file, 'utf8');
-    const order = +execData(raw, /<!--order:([^$]+?)-->/).matched;
+    const order = +getMatched(raw, /<!--order:([^$]+?)-->/);
     
-    const title = execData(raw, /<h1>([^$]+?)<\/h1>/).matched;
+    const title = getMatched(raw, /<h1>([^$]+?)<\/h1>/);
     
     // for all h2 and h3 use /<h[2-3] id="(.*?)">([^$]+?)<\/h[2-3]>/g
-    const headings = execData(raw, /<h2 id="(.*?)">([^$]+?)<\/h2>/g).list;
+    const headings = raw.match(/<h2 id="(.*?)">([^$]+?)<\/h2>/g) || [];
     const sections = headings.map(getSectionData);
   
     const content = minifier.minify(raw, {
