@@ -4,21 +4,21 @@ import eslint from 'vite-plugin-eslint';
 import react from '@vitejs/plugin-react';
 
 /**
- * Custom plugin for resolving requested JSON MIME type
+ * Custom plugin for resolving requested content-type
  * 
+ * @param {string[]} contentTypes
  * @returns {import('vite').Plugin}
  */
-const mimeSniffer = () => ( {
+const mimeSniffer = (contentTypes) => ( {
   name: 'vite-plugin-mime-sniffer',
   /** @param {import('vite').ViteDevServer} server */
   configureServer(server) {
     server.middlewares.use((req, res, next) => {
-      const jsonContentType = 'application/json; charset=utf-8';
-      const requestedHeaders = req.headers['content-type'];
+      const requestedContentType = req.headers['content-type'];
         
-      if (requestedHeaders === jsonContentType) { 
+      if (contentTypes.includes(requestedContentType)) { 
         const responseHeaderOverride = new Headers({
-          'Content-Type': jsonContentType
+          'Content-Type': requestedContentType
         });
 
         res.setHeaders(responseHeaderOverride);
@@ -54,7 +54,9 @@ export default defineConfig({
   },
 
   plugins: [
-    mimeSniffer(),
+    mimeSniffer([
+      'application/json; charset=utf-8'
+    ]),
     eslint(),
     react()
   ],
