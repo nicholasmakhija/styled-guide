@@ -45,7 +45,7 @@ export default {
       extensions: ['.js', '.jsx']
     }),
     isProd && terser({
-      ecma: 2019,
+      ecma: 2020,
       mangle: { toplevel: true },
       compress: {
         toplevel: true,
