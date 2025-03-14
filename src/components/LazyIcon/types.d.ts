@@ -17,7 +17,6 @@ type LazyIconProps = {
   className?: string;
   cursor?: string;
   fill?: string;
-  hasLoader?: boolean;
   height?: number;
   src: string;
   stroke?: string;

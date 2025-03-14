@@ -16,6 +16,10 @@ export const SkeletonSvg = styled
     [style.not(':root')]:{
       overflow: 'hidden'
     },
+    [style.empty]: {
+      backgroundColor: CSS_VARS.SKELETON,
+      animation: `${shimmer} 1.5s ease-in-out infinite`
+    },
     /** @param {number} width */
     [style.prop('width')]: (width) => ({
       width: asRem(width)
@@ -26,11 +30,7 @@ export const SkeletonSvg = styled
     }),
     [style.prop('fill')]: (fill) => ({ fill }),
     [style.prop('cursor')]: (cursor) => ({ cursor }),
-    [style.prop('stroke')]: (stroke) => ({ stroke }),
-    [style.prop('hasLoader')]: {
-      backgroundColor: CSS_VARS.SKELETON,
-      animation: `${shimmer} 1.5s ease-in-out infinite`
-    }
+    [style.prop('stroke')]: (stroke) => ({ stroke })
   })
   .withCSS(`
     @keyframes ${shimmer} {

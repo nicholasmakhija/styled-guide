@@ -55,7 +55,6 @@ export const LazyIcon = ({
   className = '',
   cursor,
   fill,
-  hasLoader = true,
   height = 24,
   src,
   stroke,
@@ -75,7 +74,6 @@ export const LazyIcon = ({
       focusable='false'
       xmlns='http://www.w3.org/2000/svg'
       className={className}
-      hasLoader={hasLoader && !icon}
       {...(icon && {
         viewBox: icon.viewBox
       })}
