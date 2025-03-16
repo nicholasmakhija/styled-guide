@@ -27,10 +27,7 @@ export const SkeletonSvg = styled
     /** @param {number} height */
     [style.prop('height')]: (height) => ({
       height: asRem(height)
-    }),
-    [style.prop('fill')]: (fill) => ({ fill }),
-    [style.prop('cursor')]: (cursor) => ({ cursor }),
-    [style.prop('stroke')]: (stroke) => ({ stroke })
+    })
   })
   .withCSS(`
     @keyframes ${shimmer} {

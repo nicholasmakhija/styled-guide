@@ -1,11 +1,12 @@
 type SkeletonSvgProps = {
-  cursor?: string;
-  fill?: string;
+  className?: string;
+  focusable?: string;
   height?: number;
-  stroke?: string;
+  role?: string;
+  tabIndex?: string;
+  viewBox?: string;
   width?: number;
-  hasLoader?: boolean;
-  [key: string]: unknown;
+  xmlns?: string;
 };
 
 type IconState = {
@@ -15,10 +16,7 @@ type IconState = {
 
 type LazyIconProps = {
   className?: string;
-  cursor?: string;
-  fill?: string;
   height?: number;
   src: string;
-  stroke?: string;
   width?: number;
 };

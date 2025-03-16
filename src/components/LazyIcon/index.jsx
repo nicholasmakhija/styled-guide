@@ -53,11 +53,8 @@ const fetchIcon = createIconCache();
  */
 export const LazyIcon = ({
   className = '',
-  cursor,
-  fill,
   height = 24,
   src,
-  stroke,
   width = 24
 }) => {
   const [icon, setIcon] = useState(undefined);
@@ -78,11 +75,8 @@ export const LazyIcon = ({
         viewBox: icon.viewBox
       })}
       {...{
-        cursor,
-        fill,
-        height,
         width,
-        stroke
+        height
       }}
       {...(icon && {
         dangerouslySetInnerHTML: {
