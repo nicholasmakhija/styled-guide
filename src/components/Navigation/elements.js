@@ -74,7 +74,7 @@ export const NavList = styled.ul({
       right: 0,
       width: asRem(BORDER_SIZE),
       height: '100%',
-      background: CSS_VARS.BORDER_PRIMARY
+      background: CSS_VARS.BORDER
     }
   }
 });

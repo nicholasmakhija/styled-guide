@@ -31,7 +31,7 @@ export const HeaderSticky = styled.div({
   backgroundColor: CSS_VARS.BACKGROUND_HEADER,
   backdropFilter: 'saturate(180%) blur(8px)',
   WebkitBackdropFilter: 'blur(0.75rem)',
-  boxShadow: `0 ${asRem(1)} ${asRem(2)} 0 ${CSS_VARS.BORDER_SECONDARY}`
+  boxShadow: `0 ${asRem(1)} ${asRem(2)} 0 ${CSS_VARS.BORDER}`
 });
 
 export const HeaderBrand = styled.div({

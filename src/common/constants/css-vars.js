@@ -34,11 +34,8 @@ export const COLOR =
 export const COLOR_CODE =
   asVar(CSS_PROPS.COLOR_CODE);
 
-export const BORDER_PRIMARY =
-  asVar(CSS_PROPS.BORDER_PRIMARY);
-
-export const BORDER_SECONDARY =
-  asVar(CSS_PROPS.BORDER_SECONDARY);
+export const BORDER =
+  asVar(CSS_PROPS.BORDER);
 
 export const ACCENT =
   asVar(CSS_PROPS.ACCENT);

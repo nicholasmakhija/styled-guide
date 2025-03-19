@@ -109,7 +109,7 @@ export const Main = styled.main({
     paddingLeft: asRem(CONTENT_SPACER),
     fontSize: asRem(14),
     boxShadow: `
-      0 ${asRem(BORDER_SIZE)} 0 0 ${CSS_VARS.BORDER_SECONDARY},
+      0 ${asRem(BORDER_SIZE)} 0 0 ${CSS_VARS.BORDER},
       inset ${asRem(4)} 0 0 0 ${CSS_VARS.ACCENT}
     `,
     [style.selector('> strong')]: {
@@ -118,7 +118,7 @@ export const Main = styled.main({
     }
   },  
   [style.selector('code')]: {
-    ...boxShadowBorder(2, CSS_VARS.BORDER_SECONDARY),
+    ...boxShadowBorder(2, CSS_VARS.BORDER),
     ...typography(14, 20),
     ...dataColor('blue', '#96dfef'), // type, jsx, {}
     ...dataColor('green', '#61e884'), // function, {}
@@ -155,7 +155,7 @@ export const Main = styled.main({
   [style.selector('[data-table]')]: {
     padding: `0 ${asRem(8)}`,
     background: CSS_VARS.BACKGROUND_SECONDARY_PALE,
-    boxShadow:  'inset ' + boxShadowBorder(BORDER_SIZE, CSS_VARS.BORDER_SECONDARY).boxShadow,
+    boxShadow:  'inset ' + boxShadowBorder(BORDER_SIZE, CSS_VARS.BORDER).boxShadow,
     [style.selector('> div')]: {
       overflow: 'hidden',
       overflowX: 'auto'
@@ -178,7 +178,7 @@ export const Main = styled.main({
       verticalAlign: 'top'
     },
     [style.selector('tbody tr')]: {
-      borderTop: `${asRem(BORDER_SIZE)} solid ${CSS_VARS.BORDER_SECONDARY}`
+      borderTop: `${asRem(BORDER_SIZE)} solid ${CSS_VARS.BORDER}`
     },
     [style.selector('th')]: {
       textAlign: 'left',

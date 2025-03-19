@@ -14,9 +14,7 @@ export const COLOR = '--color';
 
 export const COLOR_CODE = '--color-code';
 
-export const BORDER_PRIMARY = '--border-primary';
-
-export const BORDER_SECONDARY = '--border-secondary';
+export const BORDER = '--border';
 
 export const ACCENT = '--accent';
 

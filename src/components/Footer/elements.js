@@ -10,7 +10,7 @@ import {
 } from '@common/constants';
 
 const boxShadowBorderTop = {
-  boxShadow: `0 ${asRem(-BORDER_SIZE)} 0 0 ${CSS_VARS.BORDER_SECONDARY}`
+  boxShadow: `0 ${asRem(-BORDER_SIZE)} 0 0 ${CSS_VARS.BORDER}`
 };
 
 export const FooterRoot = styled.footer({
