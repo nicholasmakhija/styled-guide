@@ -8,7 +8,7 @@ const TOKENS = {
       'rgb(247, 247, 247)',
       'rgb(22, 26, 29)'
     ],
-    SECONDARY_PALE: [
+    TABLE: [
       'rgb(247, 247, 247, 0.7)',
       'rgb(22, 26, 29, 0.4)'
     ],

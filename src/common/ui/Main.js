@@ -154,7 +154,7 @@ export const Main = styled.main({
   },
   [style.selector('[data-table]')]: {
     padding: `0 ${asRem(8)}`,
-    background: CSS_VARS.BACKGROUND.SECONDARY_PALE,
+    background: CSS_VARS.BACKGROUND.TABLE,
     boxShadow:  'inset ' + boxShadowBorder(BORDER_SIZE, CSS_VARS.BORDER).boxShadow,
     [style.selector('> div')]: {
       overflow: 'hidden',
