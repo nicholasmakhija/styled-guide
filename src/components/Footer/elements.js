@@ -16,7 +16,7 @@ const boxShadowBorderTop = {
 export const FooterRoot = styled.footer({
   ...boxShadowBorderTop,
   position: 'relative',
-  background: CSS_VARS.BACKGROUND_SECONDARY,
+  background: CSS_VARS.BACKGROUND.SECONDARY,
   [breakpoints.up.lg]: {
     boxShadow: 'none',
     background: 'transparent'

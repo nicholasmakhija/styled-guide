@@ -75,7 +75,7 @@ export const Main = styled.main({
       ...boxShadowBorder(4, CSS_VARS.ACCENT),
       outline: 0,
       background: CSS_VARS.ACCENT,
-      color: CSS_VARS.COLOR
+      color: CSS_VARS.COLOUR.CONTENT
     }
   },
   [style.selector(
@@ -104,7 +104,7 @@ export const Main = styled.main({
     }
   },
   [style.selector('blockquote')]: {
-    background: CSS_VARS.BACKGROUND_SECONDARY,
+    background: CSS_VARS.BACKGROUND.SECONDARY,
     padding: asRem(8),
     paddingLeft: asRem(CONTENT_SPACER),
     fontSize: asRem(14),
@@ -126,11 +126,11 @@ export const Main = styled.main({
     ...dataColor('orange', '#ffb86c'), // arg, ${}
     ...dataColor('pink', '#eb82bf'), // keyword, {}
     ...dataColor('purple', '#bf9eee'), // variable, number
-    ...dataColor('white', CSS_VARS.COLOR_CODE ), // base 
+    ...dataColor('white', CSS_VARS.COLOUR.CODE ), // base 
     ...dataColor('yellow', '#e7ee98'), // string
     padding: `0 ${asRem(4)}`,
     borderRadius: asRem(4),
-    background: CSS_VARS.BACKGROUND_CODE,
+    background: CSS_VARS.BACKGROUND.CODE,
     overflow: 'hidden',
     [style.selector('[data-em]')]: {
       fontStyle: 'italic'
@@ -138,8 +138,8 @@ export const Main = styled.main({
   },
   [style.selector('pre')]: {
     padding: `0 ${asRem(16)}`,
-    background: CSS_VARS.BACKGROUND_PRE,
-    color: CSS_VARS.COLOR_CODE,
+    background: CSS_VARS.BACKGROUND.PRE,
+    color: CSS_VARS.COLOUR.CODE,
     whiteSpace: 'pre',
     [style.selector('> code')]: {
       padding: `${asRem(16)} 0`,
@@ -154,7 +154,7 @@ export const Main = styled.main({
   },
   [style.selector('[data-table]')]: {
     padding: `0 ${asRem(8)}`,
-    background: CSS_VARS.BACKGROUND_SECONDARY_PALE,
+    background: CSS_VARS.BACKGROUND.SECONDARY_PALE,
     boxShadow:  'inset ' + boxShadowBorder(BORDER_SIZE, CSS_VARS.BORDER).boxShadow,
     [style.selector('> div')]: {
       overflow: 'hidden',

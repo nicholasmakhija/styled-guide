@@ -57,7 +57,7 @@ export const NavContent = styled
     paddingBottom: asRem(72),
     overflow: 'hidden',
     overflowY: 'auto',
-    backgroundColor: CSS_VARS.BACKGROUND_PRIMARY
+    backgroundColor: CSS_VARS.BACKGROUND.PRIMARY
   })
   .withRef();
 
@@ -98,7 +98,7 @@ export const NavLink = styled.a({
   padding: asRem(NAV_LINK_PADDING),
   textDecoration: 'none',
   background: 'transparent',
-  color: CSS_VARS.COLOR,
+  color: CSS_VARS.COLOUR.CONTENT,
   cursor: 'pointer',
   [style.hover]: {
     color: CSS_VARS.ACCENT

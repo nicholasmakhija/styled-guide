@@ -28,7 +28,7 @@ export const HeaderSticky = styled.div({
   padding: `${asRem(14)} 0`,
   width: '100%',
   height: asRem(HEADER_HEIGHT),
-  backgroundColor: CSS_VARS.BACKGROUND_HEADER,
+  backgroundColor: CSS_VARS.BACKGROUND.HEADER,
   backdropFilter: 'saturate(180%) blur(8px)',
   WebkitBackdropFilter: 'blur(0.75rem)',
   boxShadow: `0 ${asRem(1)} ${asRem(2)} 0 ${CSS_VARS.BORDER}`
@@ -60,7 +60,7 @@ const HeaderAction = styled.generic({
   display: 'inline-block',
   textAlign: 'center',
   verticalAlign: 'middle',
-  color: CSS_VARS.COLOR,
+  color: CSS_VARS.COLOUR.CONTENT,
   [style.focus]: {
     ...boxShadowBorder(4, CSS_VARS.ACCENT),
     outline: 0
