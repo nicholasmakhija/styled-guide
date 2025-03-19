@@ -2,6 +2,12 @@ import { mq } from '@styled';
 import { BREAKPOINTS } from '@common/constants';
 
 /**
+ * @typedef {{
+ *  [K in keyof typeof BREAKPOINTS as Lowercase<string & K>]: string;
+ * }} Breakpoints
+ */
+
+/**
  * @template T
  * @param {T} map 
  */
