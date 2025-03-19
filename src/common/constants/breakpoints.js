@@ -1,7 +1,5 @@
-export const BREAKPOINTS = {
-  XS: 0,
-  SM: 576,
-  MD: 768,
-  LG: 992,
-  XL: 1200
-};
+export const XS = 0;
+export const SM = 576;
+export const MD = 768;
+export const LG = 992;
+export const XL = 1200;

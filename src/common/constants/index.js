@@ -1,5 +1,5 @@
 export * from './attributes';
-export * from './breakpoints';
+export * as BREAKPOINTS from './breakpoints';
 export * as CSS_PROPS from './css-props';
 export * as CSS_VARS from './css-vars';
 export * as EVENTS from './events';
