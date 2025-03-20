@@ -1,4 +1,5 @@
 type SkeletonSvgProps = {
+  children?: React.ReactNode;
   className?: string;
   focusable?: string;
   height?: number;
