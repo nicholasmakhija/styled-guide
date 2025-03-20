@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { getResource } from '@common/utils';
-import { SkeletonSvg } from './elements';
+import { Icon } from './elements';
 
 const MIME_TYPE = 'image/svg+xml';
 
@@ -64,7 +64,7 @@ export const LazyIcon = ({
   }, [src]);
 
   return (
-    <SkeletonSvg
+    <Icon
       aria-hidden='true'
       role='img'
       tabIndex='-1'

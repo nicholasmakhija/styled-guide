@@ -1,4 +1,4 @@
-type SkeletonSvgProps = {
+type IconProps = {
   children?: React.ReactNode;
   className?: string;
   focusable?: string;

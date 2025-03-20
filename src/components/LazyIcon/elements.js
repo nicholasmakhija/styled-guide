@@ -5,8 +5,8 @@ import { CSS_VARS } from '@common/constants';
 
 const shimmer = 'shimmer';
 
-/** @type {import('@styled').StyledComponent<SkeletonSvgProps>} */
-export const SkeletonSvg = styled
+/** @type {import('@styled').StyledComponent<IconProps>} */
+export const Icon = styled
   .svg({
     display: 'inline-block',
     stroke: 'transparent',
