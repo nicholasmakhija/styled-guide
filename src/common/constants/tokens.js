@@ -50,26 +50,17 @@ export const CSS_DECLARATIONS = {
  */
 
 /**
- * @param {string} property 
- * @param {ThemeTuple} theme 
- */
-const addToDeclaration = (property, theme) => {
-  const mapped = [CSS_DECLARATIONS.LIGHT, CSS_DECLARATIONS.DARK];
-
-  theme.forEach((t, i) => mapped[i].push(`${property}: ${t};`));
-};
-
-/**
  * @param {string[]} keys 
- * @param {ThemeTuple} lightAndDarkHex 
+ * @param {ThemeTuple} lightAndDarkColours 
  * @returns 
  */
-const createVar = (keys, lightAndDarkHex) => {
-  const customProp = keys.join('-').toLowerCase();
+const createVar = (keys, lightAndDarkColours) => {
+  const theme = [CSS_DECLARATIONS.LIGHT, CSS_DECLARATIONS.DARK];
+  const p = keys.join('-').toLowerCase();
   
-  addToDeclaration(customProp, lightAndDarkHex);
+  lightAndDarkColours.forEach((t, i) => theme[i].push(`${p}: ${t};`));
 
-  return `var(${customProp})`;
+  return `var(${p})`;
 };
 
 /**

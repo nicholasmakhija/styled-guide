@@ -29,6 +29,8 @@ export const HeaderThemeSwitcher = ({
     }
   }, [isDarkMode]);
 
+  const icon = isDarkMode ? 'sun' : 'moon';
+
   return (
     <HeaderButton
       aria-label='Toggle dark mode'
@@ -36,11 +38,7 @@ export const HeaderThemeSwitcher = ({
       isRounded
       onClick={clickHandler}
     >
-      {isDarkMode ? (
-        <LazyIcon src='/icons/sun.svg' />
-      ) : (
-        <LazyIcon src='/icons/moon.svg' />
-      )}
+      <LazyIcon src={`/icons/${icon}.svg`} />
     </HeaderButton>
   );
 };
