@@ -4,14 +4,18 @@ import {
   FooterRoot,
   FooterContainer,
   FooterContent,
-  FooterHighlight
+  FooterLink
 } from './elements';
 
 export const Footer = () => (
   <FooterRoot>
     <FooterContainer>
       <FooterContent>
-        Built using <FooterHighlight>Styled</FooterHighlight>.
+        Built using <FooterLink
+          href='https://www.npmjs.com/package/@n3e/styled' 
+          target='_blank'
+          rel='noopener noreferrer'
+        >Styled</FooterLink>.
       </FooterContent>
     </FooterContainer>
   </FooterRoot>

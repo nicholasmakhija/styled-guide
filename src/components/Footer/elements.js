@@ -3,6 +3,7 @@ import styled from '@styled';
 import { Container } from '@common/ui';
 import { asRem, breakpoints } from '@common/utils';
 import {
+  ANCHOR,
   BORDER_SIZE,
   CSS_VARS,
   GUTTER_WIDTH,
@@ -38,6 +39,4 @@ export const FooterContent = styled.div({
   }
 });
 
-export const FooterHighlight = styled.span({
-  color: CSS_VARS.ACCENT
-});
+export const FooterLink = styled.a(ANCHOR);

@@ -7,6 +7,7 @@ import {
   typography
 } from '@common/utils';
 import {
+  ANCHOR,
   BORDER_SIZE,
   CONTENT_SPACER,
   CSS_VARS,
@@ -62,22 +63,7 @@ export const Main = styled.main({
     marginLeft: asRem(NAV_WIDTH),
     maxWidth: `calc(100% - ${asRem(NAV_WIDTH)})`
   },
-  [style.selector('a')]: {
-    color: CSS_VARS.ACCENT,
-    textDecoration: 'underline',
-    [style.or(
-      style.hover,
-      style.focus
-    )]: {
-      textDecoration: 'none'
-    },
-    [style.focus]: {
-      ...boxShadowBorder(4, CSS_VARS.ACCENT),
-      outline: 0,
-      background: CSS_VARS.ACCENT,
-      color: CSS_VARS.COLOUR.CONTENT
-    }
-  },
+  [style.selector('a')]: ANCHOR,
   [style.selector(
     '> h1',
     '> section > *'
