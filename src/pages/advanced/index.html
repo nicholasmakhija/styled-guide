@@ -141,7 +141,7 @@
 <pre><code><!--
 --><span data-pink>import</span> { ServerStyles } <span data-pink>from</span> <span data-yellow>'@n3e/styled'</span>;
 
-<span data-pink>export default async function</span> <span data-green>RootStyles</span>() {
+<span data-pink>export default async function</span> <span data-green>StyleTags</span>() {
   <span data-pink>return</span> &lt;<span data-blue>ServerStyles</span> /&gt;;
 }
 </code></pre>
@@ -150,7 +150,7 @@
 
 <pre><code><!--
 --><span data-pink>import type</span> { Metadata } <span data-pink>from</span> <span data-yellow>'next'</span>;
-<span data-pink>import</span> RootStyles <span data-pink>from</span> <span data-yellow>'./RootStyles'</span>;
+<span data-pink>import</span> StyleTags <span data-pink>from</span> <span data-yellow>'./StyleTags'</span>;
 
 <span data-pink>export const</span> <span data-purple>metadata</span><span data-pink>:</span> <span data-blue data-em>Metadata</span> <span data-pink>=</span> {
   <span data-grey>// meta data properties</span>
@@ -166,7 +166,7 @@
   <span data-pink>return</span> (
     &lt;<span data-pink>html</span> <span data-green>land</span><span data-pink>=</span><span data-yellow>'en'</span>&gt;
       &lt;<span data-pink>head</span>&gt;
-        &lt;<span data-blue>RootStyles</span> /&gt;
+        &lt;<span data-blue>StyleTags</span> /&gt;
       &lt;/<span data-pink>head</span>&gt;
       &lt;<span data-pink>body</span>&gt;
         {<span data-orange data-em>children</span>}
