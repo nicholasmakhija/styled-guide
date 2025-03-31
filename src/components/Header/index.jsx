@@ -22,7 +22,7 @@ export const Header = ({
 }) => (
   <HeaderRoot>
     <HeaderSticky>
-      <Container flex='space-between'>
+      <Container flex="space-between">
         <HeaderBrand>
           <Logo />
         </HeaderBrand>
@@ -31,14 +31,14 @@ export const Header = ({
           <HeaderThemeSwitcher isDark={isDark} />
 
           <HeaderLink
-            aria-label='GitHub'
-            href='https://github.com/nicholasmakhija/styled-js' 
-            target='_blank'
-            rel='noopener noreferrer'
+            aria-label="GitHub"
+            href="https://github.com/nicholasmakhija/styled-js" 
+            target="_blank"
+            rel="noopener noreferrer"
             canHover
             isRounded
           >
-            <LazyIcon src='/icons/github.svg' />
+            <LazyIcon src="/icons/github.svg" />
           </HeaderLink>
 
           <HeaderHamburger />

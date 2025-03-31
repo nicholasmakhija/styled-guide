@@ -56,6 +56,7 @@ export default [
       '@stylistic/space-before-blocks': ['error', 'always'],
       
       '@stylistic/jsx-closing-bracket-location': [1, 'line-aligned'],
+      '@stylistic/jsx-quotes': ['error', 'prefer-double'],
       '@stylistic/jsx/jsx-curly-spacing': [2, 'never'],
       '@stylistic/jsx/jsx-equals-spacing': [2, 'never'],
       '@stylistic/jsx/jsx-max-props-per-line': [2, {

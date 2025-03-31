@@ -105,7 +105,7 @@ export const Router = ({
   }, [route]);
   
   return (
-    <Container isFluid flex='start'>
+    <Container isFluid flex="start">
       <Navigation
         currentPath={route.pathname}
         pageList={Object.values(pages)}

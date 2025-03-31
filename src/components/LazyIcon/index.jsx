@@ -65,11 +65,11 @@ export const LazyIcon = ({
 
   return (
     <Icon
-      aria-hidden='true'
-      role='img'
-      tabIndex='-1'
-      focusable='false'
-      xmlns='http://www.w3.org/2000/svg'
+      aria-hidden="true"
+      role="img"
+      tabIndex="-1"
+      focusable="false"
+      xmlns="http://www.w3.org/2000/svg"
       className={className}
       {...(icon && {
         viewBox: icon.viewBox
