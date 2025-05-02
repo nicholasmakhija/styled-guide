@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { getStyles } from '@n3e/styled';
 
 import { copy, create } from './resource';
-import { getTemplateData } from './get-template-data';
+import { templateData } from './get-template-data';
 import { getServerSideProps } from './get-server-side-props';
 import { renderHTML } from './render-html';
 
@@ -30,7 +30,7 @@ if (isHMR && (isStart || hasEntryFileChanged)) {
   copy(entry, `bin/${file}`);
 }
 
-getTemplateData().forEach(({ page, path }) => {
+templateData.forEach(({ page, path }) => {
   /** @type {AppProps} */
   const props = {
     isDark: false,

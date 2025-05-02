@@ -24,3 +24,5 @@ export const getTemplateData = () => {
     };
   });
 };
+
+export const templateData = getTemplateData();
