@@ -71,14 +71,12 @@ export const LazyIcon = ({
       focusable="false"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      {...(icon && {
-        viewBox: icon.viewBox
-      })}
       {...{
         width,
         height
       }}
       {...(icon && {
+        viewBox: icon.viewBox,
         dangerouslySetInnerHTML: {
           __html: icon.innerHTML
         }
