@@ -1,6 +1,9 @@
 type IconProps = {
   children?: React.ReactNode;
   className?: string;
+  dangerouslySetInnerHTML?: {
+    __html: string;
+  };
   focusable?: string;
   height?: number;
   role?: string;
