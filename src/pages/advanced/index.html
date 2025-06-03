@@ -4,12 +4,7 @@
 <section>
   <h2 id="forwarding-ref">Forwarding Ref</h2>
 
-  <p>Use the <code>withRef</code> method to pass the <code>ref</code> down to the underlying DOM element. This uses React's <code>forwardRef</code> functionality behind the scenes. Then use the <code>useRef</code> hook to access its value.</p>
-
-  <blockquote>
-    <strong>IMPORTANT!</strong>
-    <p>This method is only required for use with React <code>18</code> and below.</p>
-  </blockquote>
+  <p>If using React <code>16.8.0</code> - <code>18.3.1</code>, the <code>withRef</code> method must be used to pass a <code>ref</code> down to the underlying DOM element. This uses React's <code>forwardRef</code> functionality behind the scenes.</p>
 
 <pre><code><!--
   --><span data-pink>import</span> React, { useRef } <span data-pink>from</span> <span data-yellow>'react'</span>;
