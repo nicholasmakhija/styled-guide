@@ -1,5 +1,6 @@
 import styled, { style } from '@styled';
 
+import { FooterRoot } from '@components/Footer/elements';
 import {
   CLASS_NAME_IS_DARK_MODE,
   CSS_DECLARATIONS,
@@ -53,6 +54,12 @@ const body = `
   }
 `;
 
+const footerDarkThemeOverride = `
+  .${CLASS_NAME_IS_DARK_MODE} ${FooterRoot} {
+    background: transparent;
+  }
+`;
+
 export const AppRoot = styled
   .div()
   .withCSS(
@@ -61,5 +68,6 @@ export const AppRoot = styled
     rootDarkTheme,
     html,
     htmlAndBody,
-    body
+    body,
+    footerDarkThemeOverride
   );
