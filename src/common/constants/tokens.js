@@ -16,6 +16,10 @@ const TOKENS = {
       'rgba(247, 247, 247, 0.8)',
       'rgba(29, 33, 37, 0.8)'
     ],
+    FOOTER: [
+      'rgb(247, 247, 247)', // BACKGROUND.SECONDARY.LIGHT
+      'rgb(29, 33, 37)' // BACKGROUND.PRIMARY.DARK
+    ],
     PRE: ['rgb(45, 52, 64)'],
     CODE: [
       'rgba(246, 247, 248, 1)',
