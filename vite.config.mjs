@@ -72,6 +72,7 @@ export default defineConfig({
   },
 
   plugins: [
+    computedStyleReload(),
     mimeSniffer([
       'application/json; charset=utf-8'
     ]),
