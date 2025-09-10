@@ -2,7 +2,7 @@
  * @param {string} message
  * @returns {void}
  */
-const throwError = (message) => {
+export const throwError = (message) => {
   throw new Error(message);
 };
 

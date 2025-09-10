@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { getResource } from '@common/utils';
+import { getResource, throwError } from '@common/utils';
 import { Icon } from './elements';
 
 const MIME_TYPE = 'image/svg+xml';
@@ -16,24 +16,34 @@ const createIconCache = () => {
    * @returns {Promise<IconState>}
    */
   const getIcon = (url) => {
+    /**
+     * @param {string} message
+     * @returns {void}
+     */
+    const showError = (message) => {
+      cache.delete(url);
+
+      throwError(message);
+    };
+
     const makePromise = () => getResource(url, MIME_TYPE)
       .then((response) => response.text())
       .then((content) => {
         const parser = new DOMParser();
-        const svg = /** @type {SVGElement} */(
-          parser.parseFromString(content, MIME_TYPE).firstChild
-        );
+        const svg = parser
+          .parseFromString(content, MIME_TYPE)
+          .querySelector('svg');
+
+        if (!svg) {
+          showError('Error parsing input');
+        }
 
         return {
           viewBox: svg.getAttribute('viewBox'),
           innerHTML: svg.innerHTML
         };
       })
-      .catch((error) => {
-        cache.delete(url);
-
-        throw new Error(error);
-      });
+      .catch(showError);
 
     if (!cache.has(url)) {
       cache.set(url, makePromise());
