@@ -1145,10 +1145,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@n3e/styled@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@n3e/styled/-/styled-1.0.1.tgz#e0c0835895f3ee3f8b37928a70e5bc8d80343a7f"
-  integrity sha512-DC/JGGVqIeiZGCaOr+vppI23Gp/D92cF34dOh4Ve74F7qbrJaWOOEYjkSaJHIaPZkpGZ/S7vL1TnV4RWX/5Juw==
+"@n3e/styled@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@n3e/styled/-/styled-1.0.2.tgz#9d168e296962e54750a0c11dd63cb801f62a6eed"
+  integrity sha512-arFYWbxfcFvUQ+dg30AG6e3P9PgWVfnAkS2Eaa6SmyLxnF0Z8j4nXE5hFVezuZxiSLhvuk7DDU3RxBgkkFlrXQ==
   dependencies:
     csstype "^3.1.2"
     react "^17.0.2"
