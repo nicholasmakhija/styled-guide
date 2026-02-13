@@ -89,6 +89,7 @@ export const Line = styled.span({
   display: 'block',
   width: `calc(100% - ${asRem(8)})`,
   height: asRem(2),
+  borderRadius: asRem(1),
   transform: 'rotate(0deg)',
   transition: '0.25s ease-in-out, color 0s',
   backgroundColor: 'currentColor',

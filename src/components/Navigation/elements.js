@@ -90,9 +90,23 @@ export const NavItem = styled.li({
   }
 });
 
+/**
+ * @param {import('@styled').CSSProperties} styles 
+ * @returns {import('@styled').CSSProperties}
+ */
+const notHoverAndFocus = (styles) => ({
+  [style.and(
+    style.not(style.hover),
+    style.focus
+  )]: styles
+});
+
 /** @type {import('@styled').StyledComponent<NavLinkProps>} */
 export const NavLink = styled.a({
   ...CUBIC_BEZIER_TRANSITION,
+  ...notHoverAndFocus({
+    background: CSS_VARS.ACCENT
+  }),
   position: 'relative',
   display: 'inline-block',
   padding: asRem(NAV_LINK_PADDING),
@@ -106,14 +120,14 @@ export const NavLink = styled.a({
   [style.focus]: {
     outline: 0
   },
-  [style.and(
-    style.not(style.hover),
-    style.focus
-  )]: {
-    background: CSS_VARS.ACCENT
-  },
   [style.prop('isTitle')]: {
     ...typography(24, 32),
+    ...notHoverAndFocus({
+      background: 'none',
+      [style.after]: {
+        width: asRem(12)
+      }
+    }),
     fontWeight: 'bold',
     [style.after]: {
       ...CUBIC_BEZIER_TRANSITION,
@@ -123,15 +137,6 @@ export const NavLink = styled.a({
       width: 0,
       height: asRem(32),
       background: CSS_VARS.ACCENT
-    },
-    [style.and(
-      style.not(style.hover),
-      style.focus
-    )]: {
-      background: 'none',
-      [style.after]: {
-        width: asRem(12)
-      }
     }
   },
   [style.props.all('isTitle', 'isActive')]: {
