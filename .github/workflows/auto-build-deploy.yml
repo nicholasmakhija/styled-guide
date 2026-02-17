@@ -1,0 +1,12 @@
+name: Trigger build and deploy
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - 'src/**'
+
+jobs:
+  call-build-deploy:
+    uses: nicholasmakhija/styled-guide/.github/workflows/build-deploy.yml@main
