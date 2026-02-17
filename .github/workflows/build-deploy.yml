@@ -1,7 +1,13 @@
 name: Build and deploy to pages
 
 on:
+  workflow_call:
+
   workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual run'
+        required: true
 
 permissions:
   contents: write
