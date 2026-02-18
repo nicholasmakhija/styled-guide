@@ -16,6 +16,12 @@ import {
 } from '@common/constants';
 
 /**
+ * @param {string} name 
+ * @returns {string}
+ */
+const dataSelector = (name) => style.selector(style.data(name));
+
+/**
  * @param {('h1' | 'h2' | 'h3')} heading
  * @param {number} size
  * @param {number} leading
@@ -35,7 +41,7 @@ const headingTypography = (
  * @returns {Record<string, Color>}
  */
 const dataColor = (name, hex) => ({
-  [style.selector(style.data(name))]: {
+  [dataSelector(name)]: {
     color: hex
   }
 });
@@ -43,7 +49,7 @@ const dataColor = (name, hex) => ({
 /**
  * @param {keyof import('@common/utils').Breakpoints} breakpoint 
  * @param {number} columns 
- * @returns 
+ * @returns {import('@styled').CSSProperties}
  */
 const asColumns = (breakpoint, columns) => ({
   [breakpoints.up[breakpoint]]: {
@@ -118,7 +124,7 @@ export const Main = styled.main({
     borderRadius: asRem(4),
     background: CSS_VARS.BACKGROUND.CODE,
     overflow: 'hidden',
-    [style.selector('[data-em]')]: {
+    [dataSelector('em')]: {
       fontStyle: 'italic'
     }
   },
@@ -138,7 +144,7 @@ export const Main = styled.main({
       whiteSpace: 'pre'
     }
   },
-  [style.selector('[data-table]')]: {
+  [dataSelector('table')]: {
     padding: `0 ${asRem(8)}`,
     background: CSS_VARS.BACKGROUND.TABLE,
     boxShadow:  'inset ' + boxShadowBorder(BORDER_SIZE, CSS_VARS.BORDER).boxShadow,
@@ -175,7 +181,7 @@ export const Main = styled.main({
       padding: `${asRem(12)} ${asRem(8)}`,
       border: 0
     },
-    [style.selector('[data-highlight]')]: {
+    [dataSelector('highlight')]: {
       color: 'rgb(79, 159, 207)'
     }
   }
