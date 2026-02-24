@@ -15,7 +15,6 @@ export const Footer = () => (
           href="https://www.npmjs.com/package/@n3e/styled"
           target="_blank"
           rel="noopener noreferrer"
-        // eslint-disable-next-line @stylistic/jsx-closing-tag-location
         >Styled</FooterLink>.
       </FooterContent>
     </FooterContainer>

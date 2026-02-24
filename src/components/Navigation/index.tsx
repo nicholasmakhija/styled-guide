@@ -93,7 +93,6 @@ export const Navigation = ({
                 isTitle
                 isActive={path === currentPath}
                 onClick={onClick}
-              // eslint-disable-next-line @stylistic/jsx-closing-tag-location
               >{title}</NavLink>
             </NavItem>
 
@@ -102,7 +101,6 @@ export const Navigation = ({
                 <NavLink
                   href={`${path}#${id}`}
                   onClick={onClick}
-                // eslint-disable-next-line @stylistic/jsx-closing-tag-location
                 >{text}</NavLink>
               </NavItem>
             ))}

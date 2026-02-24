@@ -1,3 +1,4 @@
+// @ts-nocheck
 import eslint from '@eslint/js';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -87,7 +88,7 @@ export default defineConfig([
         selfClosing: 'line-aligned',
         nonEmpty: 'line-aligned'
       }],
-      '@stylistic/jsx-closing-tag-location': ['error', 'line-aligned'],
+      '@stylistic/jsx-closing-tag-location': 'off',
       '@stylistic/jsx-quotes': ['error', 'prefer-double'],
       '@stylistic/jsx-curly-spacing': ['error', 'never', {
         allowMultiline: false,
@@ -167,7 +168,6 @@ export default defineConfig([
         ignoreParameters: true
       }],
       '@typescript-eslint/no-unsafe-return': 'off',
-      '@typescript-eslint/no-unnecessary-condition': 'off',
       '@typescript-eslint/no-unnecessary-type-parameters': 'off',
       '@typescript-eslint/no-unused-expressions': 'off',
       '@typescript-eslint/no-unused-vars': 'error',

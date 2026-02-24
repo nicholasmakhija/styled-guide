@@ -98,11 +98,9 @@ export const Router = ({
 
       <Main
         ref={mainRef}
-        {...(pages[route.pathname] && {
-          dangerouslySetInnerHTML: {
-            __html: pages[route.pathname].content
-          }
-        })}
+        dangerouslySetInnerHTML={{
+          __html: pages[route.pathname].content
+        }}
       />
     </Container>
   );
