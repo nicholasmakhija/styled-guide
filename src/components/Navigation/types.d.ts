@@ -6,7 +6,7 @@ type NavProps = {
 
 type NavContentProps = {
   children?: React.ReactNode;
-  ref?: React.ForwardedRef<HTMLDivElement>;
+  ref?: React.ForwardedRef<HTMLDivElement | undefined>;
 };
 
 type NavLinkProps = {

@@ -17,7 +17,7 @@ type HeaderButtonProps = HeaderActionProps & {
   isToggle?: boolean;
   isOpen?: boolean;
   onClick?: (e: Event) => void;
-  ref?: React.ForwardedRef<HTMLButtonElement>;
+  ref?: React.ForwardedRef<HTMLButtonElement | undefined>;
 };
 
 type IsDarkProp = {

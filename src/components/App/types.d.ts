@@ -10,11 +10,13 @@ type Page = {
   sections: Section[];
 };
 
-type AppProps = Partial<IsDarkProp> & {
+type PageManifest = Record<string, Page>;
+
+type AppProps = IsDarkProp & {
   currentPage: string;
-  pages: Record<string, Page>;
+  pages: PageManifest;
 };
 
-// NOTE: keep below in sync with `common/constants/globals`
+// NOTE: keep below in sync with `constants/globals`
+// eslint-disable-next-line no-var
 declare var __APP_DATA: AppProps;
-
