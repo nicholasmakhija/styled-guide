@@ -6,15 +6,11 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf ./dist",
-    "copy:assets": "copyfiles -u 1 \"src/assets/**/*.*\" -e \"src/assets/*.png\" dist",
-    "copy:favicon": "copyfiles -u 2 \"src/assets/*.png\" dist",
-    "copy:404": "copyfiles -u 1 \"src/404.html\" dist",
-    "copy": "run-p --silent copy:**",
     "lint": "eslint",
     "vite": "vite --port 8088",
     "vite:build": "vite build",
     "node:build": "node prerender",
-    "build": "run-s clean vite:build copy node:build",
+    "build": "run-s clean vite:build node:build",
     "start": "run-s clean vite"
   },
   "devDependencies": {
@@ -32,7 +28,7 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "babel-plugin-module-resolver": "^5.0.2",
-    "copyfiles": "^2.4.1",
+    "chalk": "^3.0.0",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
