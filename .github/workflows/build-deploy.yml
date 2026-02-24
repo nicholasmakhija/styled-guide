@@ -37,7 +37,7 @@ jobs:
         run: yarn install
     
       - name: Build artifact
-        run: yarn prod
+        run: yarn build
 
       - name: Generate artifact name
         id: generate_name
