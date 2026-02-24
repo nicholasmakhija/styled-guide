@@ -27,7 +27,8 @@ copyFile(
 );
 
 glob.sync(`${srcFolder}/${assetsFolder}/**/*.*`).map((file) => {
-  const pathToReplace = file.includes('favicon-') || file.includes('og-')
+  // test if file is assets root
+  const pathToReplace = /assets\/([A-Za-z0-9-])+\.(pn|jp)g$/.test(file)
     ? `${srcFolder}/${assetsFolder}`
     : srcFolder;
   const output = file.replace(pathToReplace, distFolder);
