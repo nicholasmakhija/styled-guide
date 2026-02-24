@@ -148,6 +148,9 @@ export default defineConfig({
     minify: 'terser',
     terserOptions: {
       ecma: 2022,
+      format: {
+        comments: false
+      },
       mangle: {
         toplevel: true
       },
