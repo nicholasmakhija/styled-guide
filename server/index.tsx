@@ -1,6 +1,6 @@
 import React, { StrictMode } from 'react';
 import { renderToString } from 'react-dom/server';
-import { getStyles } from '@n3e/styled';
+import { getStyles } from '@styled';
 
 import { App } from '@components/App';
 import {
@@ -10,15 +10,11 @@ import {
 } from '@constants/index';
 
 export function render(props: AppProps) {
-  // DEBUG:
-  // console.log('props', props);
-
   const html = renderToString(
     <StrictMode>
       <App {...props} />
     </StrictMode>
   );
-
   const sheets = getStyles();
 
   return { html, sheets };
@@ -37,7 +33,8 @@ export function updateHTML(
   <script>var ${APP_DATA} = ${initialData};</script>
   <script>
     (function () {
-      const isDark = window.localStorage.getItem('${DOCS_IS_DARK_MODE}') === 'true';
+      const isDark =
+        window.localStorage.getItem('${DOCS_IS_DARK_MODE}') === 'true';
 
       window.${APP_DATA}.isDark = isDark;
 
