@@ -5,20 +5,19 @@ import {
   mkdirSync,
   writeFileSync
 } from 'node:fs';
-import { dirname } from 'node:path';
+import { dirname, parse, sep } from 'node:path';
 
 const dim = (text: string) => `\x1b[37;2m${text}\x1b[0m`;
 const green = (text: string) => `\x1b[32m${text}\x1b[0m`;
 
-const log = (
-  file: string,
-  outDir: string
-) => {
-  const dir = `${outDir}/`;
-  const [, tail] = file.split(dir);
+const log = (file: string) => {
+  const dirs = parse(file).dir;
+  const root = dirs.split(sep)[0];
+  const outDir = `${root}/`;
+  const [, tail] = file.split(outDir);
 
   // eslint-disable-next-line no-console
-  console.log(dim(`../${dir}`) + green(tail));
+  console.log(dim(`../${outDir}`) + green(tail));
 };
 
 const makeFolder = (file: string) => {
@@ -33,20 +32,18 @@ const makeFolder = (file: string) => {
 
 export const createFile = (
   file: string,
-  content: string,
-  outDir: string
+  content: string
 ) => {
   makeFolder(file);
   writeFileSync(file, content);
-  log(file, outDir);
+  log(file);
 };
 
 export const copyFile = (
   input: string,
-  output: string,
-  outDir: string
+  output: string
 ) => {
   makeFolder(output);
   copyFileSync(input, output);
-  log(output, outDir);
+  log(output);
 };

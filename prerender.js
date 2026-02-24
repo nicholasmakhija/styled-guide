@@ -23,8 +23,7 @@ console.log('copied:');
 
 copyFile(
   `${srcFolder}/${pageNotFount}`,
-  `${distFolder}/${pageNotFount}`,
-  distFolder
+  `${distFolder}/${pageNotFount}`
 );
 
 glob.sync(`${srcFolder}/${assetsFolder}/**/*.*`).map((file) => {
@@ -33,7 +32,7 @@ glob.sync(`${srcFolder}/${assetsFolder}/**/*.*`).map((file) => {
     : srcFolder;
   const output = file.replace(pathToReplace, distFolder);
 
-  copyFile(file, output, distFolder);
+  copyFile(file, output);
 });
 
 const file = `./${distFolder}/index.html`;
@@ -48,8 +47,7 @@ console.log('created:');
 
 createFile(
   `${distFolder}/${assetsFolder}/data/pages.json`,
-  JSON.stringify(pages),
-  distFolder
+  JSON.stringify(pages)
 );
 
 templateData.forEach(({ page, path }) => {
@@ -59,9 +57,5 @@ templateData.forEach(({ page, path }) => {
     pages
   });
 
-  createFile(
-    distFolder + page,
-    renderedHTML,
-    distFolder
-  );
+  createFile(distFolder + page, renderedHTML);
 });
