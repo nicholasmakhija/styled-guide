@@ -1,82 +1,121 @@
+import eslint from '@eslint/js';
 import globals from 'globals';
-import babelParser from '@babel/eslint-parser';
-import pluginJs from '@eslint/js';
-import stylistic from '@stylistic/eslint-plugin';
-import stylisticJsx from '@stylistic/eslint-plugin-jsx'
 import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import stylistic from '@stylistic/eslint-plugin';
+import tseslint from 'typescript-eslint';
+import tslint from '@typescript-eslint/eslint-plugin';
+import { defineConfig } from 'eslint/config';
 
-export default [
+/**
+ * @typedef {import('eslint/config').Config['rules']} ESLintRules
+ */
+
+/**
+ * @typedef {import('@stylistic/eslint-plugin').RuleOptions} StylisticRules
+ */
+
+/**
+ * FIXME: get intellisense for [ESLint rules](https://eslint.org/docs/latest/rules/)
+ * @typedef {ESLintRules & StylisticRules} LintRules
+ */
+
+/** @type {LintRules} */
+const commonRules = {
+  'no-console': 1,
+  'eol-last': ['error', 'always'],
+
+  '@stylistic/arrow-parens': ['error', 'always'],
+  '@stylistic/brace-style': 'off',
+  '@stylistic/comma-dangle': ['error', 'never'],
+  '@stylistic/indent': ['error', 2, {
+    ignoredNodes: ['TSTypeParameterInstantiation'], // FIXME:
+    MemberExpression: 1,
+    SwitchCase: 1
+  }],
+  '@stylistic/keyword-spacing': ['error', {
+    before: true,
+    after: true
+  }],
+  '@stylistic/newline-per-chained-call': ['error', {
+    ignoreChainWithDepth: 2
+  }],
+  '@stylistic/no-multiple-empty-lines': ['error', {
+    max: 1,
+    maxBOF: 0,
+    maxEOF: 1
+  }],
+  '@stylistic/no-multi-spaces': 'error',
+  '@stylistic/quotes': [2, 'single'],
+  '@stylistic/semi': [2, 'always'],
+  '@stylistic/space-before-blocks': ['error', 'always'],
+  '@stylistic/quote-props': 'off'
+};
+
+export default defineConfig([
   {
-    ignores: ['dist/*']
-  }, 
-  {
-    files: [
-      '**/*.js',
-      '**/*.jsx'
+    extends: [
+      eslint.configs.recommended,
+      stylistic.configs.recommended,
+      tseslint.configs.strictTypeChecked,
+      tseslint.configs.stylisticTypeChecked
     ],
     languageOptions: {
-      globals: {
-        ...globals.browser
-      },
-      parser: babelParser,
+      globals: globals.browser,
       parserOptions: {
-        ecmaFeatures: {
-          legacyDecorators: true,
-          jsx: true
-        }
+        project: true,
+        tsconfigRootDir: import.meta.dirname
       }
     },
+    files: ['**/*.ts', '**/*.tsx'],
     plugins: {
-      ...pluginJs.configs.recommended,
       'react-hooks': reactHooks,
-      '@stylistic': stylistic,
-      '@stylistic/jsx': stylisticJsx
+      'react-refresh': reactRefresh,
+      '@typescript-eslint': tslint,
+      '@stylistic': stylistic
     },
+    /** @type {LintRules} */
     rules: {
-      'no-console': 1,
-      'vars-on-top': 1,
-      'eol-last': ['error', 'always'],
+      ...commonRules,
 
-      '@stylistic/arrow-parens': ['error'],
-      '@stylistic/comma-dangle': ['error'],
-      '@stylistic/indent': ['error', 2, {
-        SwitchCase: 1
+      ...reactHooks.configs.recommended.rules,
+      'react-refresh/only-export-components': ['warn', {
+        allowConstantExport: true
       }],
-      '@stylistic/keyword-spacing': ['error', {
-        before: true,
-        after: true
+  
+      '@stylistic/jsx-closing-bracket-location': ['error', {
+        selfClosing: 'line-aligned',
+        nonEmpty: 'line-aligned'
       }],
-      '@stylistic/no-multiple-empty-lines': ['error', {
-        max: 1,
-        maxBOF: 0,
-        maxEOF: 1
-      }],
-      '@stylistic/quotes': [2, 'single'],
-      '@stylistic/semi': [2, 'always'],
-      '@stylistic/space-before-blocks': ['error', 'always'],
-      
-      '@stylistic/jsx-closing-bracket-location': [1, 'line-aligned'],
+      '@stylistic/jsx-closing-tag-location': ['error', 'line-aligned'],
       '@stylistic/jsx-quotes': ['error', 'prefer-double'],
-      '@stylistic/jsx/jsx-curly-spacing': [2, 'never'],
-      '@stylistic/jsx/jsx-equals-spacing': [2, 'never'],
-      '@stylistic/jsx/jsx-max-props-per-line': [2, {
+      '@stylistic/jsx-curly-spacing': ['error', 'never', {
+        allowMultiline: false,
+        spacing: {
+          objectLiterals: 'never'
+        }
+      }],
+      '@stylistic/jsx-equals-spacing': ['error', 'never'],
+      '@stylistic/jsx-max-props-per-line': ['error', {
         maximum: {
           single: 2,
           multi: 1
         }
       }],
-      '@stylistic/jsx/jsx-pascal-case': [2, {
+      '@stylistic/jsx-one-expression-per-line': 'off',
+      '@stylistic/operator-linebreak': 'off',
+      // FIXME: below not required in `.tsx` as camel case not recognised as JSX?
+      '@stylistic/jsx-pascal-case': [2, {
         allowNamespace: true  
       }],
-      '@stylistic/jsx/jsx-props-no-multi-spaces': 2,
       // FIXME:
-      // '@stylistic/jsx/jsx-tag-spacing': ['error', { 
+      // '@stylistic/jsx-tag-spacing': ['error', { 
       //   closingSlash: 'never',
       //   beforeSelfClosing: 'never',
       //   afterOpening: 'never',
       //   beforeClosing: 'proportional-always'
       // }],
-      '@stylistic/jsx/jsx-wrap-multilines': [2, {
+      '@stylistic/jsx-wrap-multilines': [2, {
         declaration: 'parens-new-line',
         assignment: 'parens-new-line',
         return: 'parens-new-line',
@@ -87,23 +126,73 @@ export default [
         propertyValue: 'parens-new-line'
       }],
 
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn'
-    },
-    settings: {
-      react: {
-        createClass: 'createReactClass',
-        pragma: 'React',
-        version: 'detect',
-        flowVersion: 0.53
-      },
-      propWrapperFunctions: [
-        'forbidExtraProps',
-        { 
-          property: 'freeze', 
-          object: 'Object'
+      '@stylistic/member-delimiter-style': ['error', {
+        singleline: {
+          delimiter: 'semi',
+          requireLast: true
+        },
+        multiline: {
+          delimiter: 'semi',
+          requireLast: true
         }
-      ]
+      }],
+  
+      '@typescript-eslint/array-type': 'off',
+      '@typescript-eslint/await-thenable': 'off',
+      '@typescript-eslint/ban-ts-comment': 'off',
+      '@typescript-eslint/consistent-indexed-object-style': 'off',
+      '@typescript-eslint/consistent-type-definitions': 'off',
+      '@typescript-eslint/naming-convention': ['error', {
+        selector: [
+          'objectLiteralProperty',
+          'parameter',
+          'parameterProperty',
+          'typeProperty',
+          'variable'
+        ],
+        types: ['boolean'],
+        format: ['PascalCase'],
+        prefix: ['is', 'has', 'can'],
+        filter: {
+        // you can expand this regex to add more allowed names
+          regex: '^(aria-expanded|newState|prevState)$',
+          match: false
+        }
+      }],
+      '@typescript-eslint/no-confusing-void-expression': ['error', {
+        ignoreArrowShorthand: true
+      }],
+      '@typescript-eslint/no-floating-promises': 'off',
+      '@typescript-eslint/no-inferrable-types': ['error', {
+        ignoreParameters: true
+      }],
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-unnecessary-condition': 'off',
+      '@typescript-eslint/no-unnecessary-type-parameters': 'off',
+      '@typescript-eslint/no-unused-expressions': 'off',
+      '@typescript-eslint/no-unused-vars': 'error',
+      '@typescript-eslint/no-useless-default-assignment': 'off',
+      '@typescript-eslint/non-nullable-type-assertion-style': 'off',
+      '@typescript-eslint/prefer-nullish-coalescing': 'off',
+      '@typescript-eslint/restrict-plus-operands': ['error', {
+        allowNumberAndString: true
+      }],
+      '@typescript-eslint/restrict-template-expressions': 'off',
+      '@typescript-eslint/use-unknown-in-catch-callback-variable': 'off'
     }
+  },
+  {
+    extends: [
+      eslint.configs.recommended
+    ],
+    languageOptions: {
+      globals: globals.node
+    },
+    files: ['**/*.js', '**/*.mjs'],
+    plugins: {
+      '@stylistic': stylistic
+    },
+    rules: commonRules,
+    ignores: ['./dist/**']
   }
-];
+]);

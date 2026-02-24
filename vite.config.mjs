@@ -1,33 +1,26 @@
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { Buffer } from 'node:buffer';
 import { defineConfig } from 'vite';
 import eslint from 'vite-plugin-eslint';
+import express from 'express';
 import react from '@vitejs/plugin-react';
+import { brotliCompress } from 'zlib';
+import { promisify } from 'util';
+import gzipPlugin from 'rollup-plugin-gzip';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const brotliPromise = promisify(brotliCompress);
+
+import { getPages } from './server/get-pages';
 
 /**
- * Custom plugin for resolving requested content-type
- * 
- * @param {string[]} contentTypes
- * @returns {import('vite').Plugin}
+ * @param {string} pathToResolve
+ * @returns {string}
  */
-const mimeSniffer = (contentTypes) => ( {
-  name: 'vite-plugin-mime-sniffer',
-  /** @param {import('vite').ViteDevServer} server */
-  configureServer(server) {
-    server.middlewares.use((req, res, next) => {
-      const requestedContentType = req.headers['content-type'];
-        
-      if (contentTypes.includes(requestedContentType)) { 
-        const responseHeaderOverride = new Headers({
-          'Content-Type': requestedContentType
-        });
-
-        res.setHeaders(responseHeaderOverride);
-      }
-
-      return next();
-    });
-  },
-});
+const resolvePath = (pathToResolve) =>
+  path.resolve(__dirname, `./${pathToResolve}`);
 
 /**
  * @returns {import('vite').Plugin}
@@ -44,44 +37,154 @@ const computedStyleReload = () => ({
         });
       }
     });
-  },
+  }
 });
 
 /**
- * @param {string} pathToResolve
- * @returns {string}
+ * @returns {import('vite').Plugin}
  */
-const resolvePath = (pathToResolve) =>
-  path.resolve(__dirname, `./${pathToResolve}`);
+const staticAssetReload = () => ({
+  name: 'vite-plugin-static-asset-reload',
+  configureServer(server) {
+    const { ws, watcher } = server;
+    const fullReload = (file) => {
+      if (file.includes('asset') || file.includes('.html')) {
+        ws.send({ type: 'full-reload' });
+      }
+    };
+
+    watcher.on('add', fullReload);
+    watcher.on('change', fullReload);
+    watcher.on('unlink', fullReload);
+  }
+});
+
+/**
+ * intercepts request to html and sends SSR
+ * 
+ * @returns {import('vite').Plugin}
+ */
+const expressMiddleware = () => ({
+  name: 'vite-plugin-express-middleware',
+  configureServer(server) {
+    const app = express();
+    const isIgnorePath = (url) => [
+      '.',
+      '@vite',
+      '@react-refresh'
+    ].some((item) => url.includes(item));
+
+    app.get(/favicon-(.*)\.png$/, (req, res) => {
+      res.sendFile(resolvePath(`src/assets${req.originalUrl}`));
+    });
+
+    app.get('/assets/data/pages.json', (_req, res) => {
+      const pages = getPages();
+
+      res
+        .status(200)
+        .contentType('application/json; charset=utf-8')
+        .send(pages);
+    });
+
+    app.use('*all', async (req, res, next) => {
+      const url = req.originalUrl;
+
+      if (isIgnorePath(url)) {
+        return next();
+      }
+      
+      try {
+        const pages = getPages();
+        const isValidPath = pages[url];
+        const fileName = isValidPath ? 'index' : '404';
+        const sourceHTML = fs.readFileSync(
+          resolvePath(`src/${fileName}.html`),
+          'utf-8'
+        );
+
+        if (!isValidPath) {
+          res
+            .status(404)
+            .contentType('text/html')
+            .send(sourceHTML);
+        }
+        
+        const template = await server.transformIndexHtml(url, sourceHTML);
+        const { updateHTML } = await server.ssrLoadModule(resolvePath('server/index.tsx'));
+        const renderedHTML = updateHTML(template, {
+          currentPage: url,
+          isDark: false,
+          pages: pages
+        });
+    
+        res
+          .status(200)
+          .contentType('text/html')
+          .send(renderedHTML);
+      } catch (e) {
+        server.ssrFixStacktrace(e);
+        next(e);
+      }
+    });
+
+    server.middlewares.use(app);
+  }
+});
 
 // https://vite.dev/config/
 export default defineConfig({
-  root: 'bin',
-  mode: JSON.stringify(process.env.NODE_ENV),
+  base: '/',
+  root: 'src',
   publicDir: resolvePath('dist'),
+
+  appType: 'custom',
   clearScreen: false,
+  
+  build: {
+    outDir: '../dist',
+    // assetsDir: './', // build.outDir
+    emptyOutDir: true,
+    minify: 'terser',
+    terserOptions: {
+      ecma: 2022,
+      mangle: {
+        toplevel: true
+      },
+      compress: {
+        toplevel: true,
+        drop_console: true
+      }
+    },
+    rollupOptions: {
+      plugins: [
+        gzipPlugin({
+          customCompression: (content) => brotliPromise(Buffer.from(content)),
+          filter: /\.js/,
+          fileName: '.br'
+        })
+      ]
+    }
+  },
   server: {
     host: true,
     open: true
   },
-  build: {
-    copyPublicDir: true,
-    outDir: 'dist',
-    target: 'esnext',
-    write: true
+  ssr: {
+    noExternal: ['@n3e/styled']
   },
-
   plugins: [
+    expressMiddleware(),
     computedStyleReload(),
-    mimeSniffer([
-      'application/json; charset=utf-8'
-    ]),
+    staticAssetReload(),
     eslint(),
     react()
   ],
   resolve: {
     alias: {
-      '@common': resolvePath('src/common'),
+      '@constants': resolvePath('src/constants'),
+      '@ui': resolvePath('src/ui'),
+      '@utils': resolvePath('src/utils'),
       '@components': resolvePath('src/components'),
       '@styled': resolvePath('node_modules/@n3e/styled')
     },
