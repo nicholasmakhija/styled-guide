@@ -12,8 +12,8 @@ const offset = HEADER_HEIGHT + CONTENT_SPACER + NAV_LINK_PADDING;
 
 const orUndefined = (value: string) => value || undefined;
 
-const scrollToElement = (id: string): void => {
-  const target = document.querySelector(id);
+const scrollToElement = (id?: string): void => {
+  const target = id && document.querySelector(id);
   const y = target
     ? target.getBoundingClientRect().top + window.scrollY - offset
     : 0;
@@ -64,9 +64,7 @@ export const Router = ({
   }, [pages]);
 
   useEffect(() => {
-    if (route.hash) {
-      scrollToElement(route.hash);
-    }
+    scrollToElement(route.hash);
 
     const mainElement = mainRef.current;
 
