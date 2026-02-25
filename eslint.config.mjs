@@ -84,12 +84,12 @@ export default defineConfig([
         allowConstantExport: true
       }],
   
+      '@stylistic/jsx-child-element-spacing': 'error',
       '@stylistic/jsx-closing-bracket-location': ['error', {
         selfClosing: 'line-aligned',
         nonEmpty: 'line-aligned'
       }],
       '@stylistic/jsx-closing-tag-location': 'off',
-      '@stylistic/jsx-quotes': ['error', 'prefer-double'],
       '@stylistic/jsx-curly-spacing': ['error', 'never', {
         allowMultiline: false,
         spacing: {
@@ -104,10 +104,13 @@ export default defineConfig([
         }
       }],
       '@stylistic/jsx-one-expression-per-line': 'off',
-      '@stylistic/operator-linebreak': 'off',
       // FIXME: below not required in `.tsx` as camel case not recognised as JSX?
       '@stylistic/jsx-pascal-case': [2, {
         allowNamespace: true  
+      }],
+      '@stylistic/jsx-self-closing-comp': ['error', {
+        component: true,
+        html: true
       }],
       // FIXME:
       // '@stylistic/jsx-tag-spacing': ['error', { 
@@ -116,6 +119,7 @@ export default defineConfig([
       //   afterOpening: 'never',
       //   beforeClosing: 'proportional-always'
       // }],
+      '@stylistic/jsx-quotes': ['error', 'prefer-double'],
       '@stylistic/jsx-wrap-multilines': [2, {
         declaration: 'parens-new-line',
         assignment: 'parens-new-line',
@@ -137,6 +141,7 @@ export default defineConfig([
           requireLast: true
         }
       }],
+      '@stylistic/operator-linebreak': 'off',
   
       '@typescript-eslint/array-type': 'off',
       '@typescript-eslint/await-thenable': 'off',
