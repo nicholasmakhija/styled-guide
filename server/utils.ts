@@ -11,11 +11,10 @@ const dim = (text: string) => `\x1b[37;2m${text}\x1b[0m`;
 const green = (text: string) => `\x1b[32m${text}\x1b[0m`;
 
 const log = (file: string) => {
-  const fileAndExt = parse(file).base;
-  const dirs = file.replace(fileAndExt, '');
+  const { base, dir } = parse(file);
 
   // eslint-disable-next-line no-console
-  console.log(dim(`../${dirs}`) + green(fileAndExt));
+  console.log(dim(`../${dir}/`) + green(base));
 };
 
 const makeFolder = (file: string) => {
