@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 import { Navigation } from '@components/Navigation';
-import { Container, Main } from '@ui/index';
+import { Container, Main } from '@ui';
 import {
   CONTENT_SPACER,
   HEADER_HEIGHT,
   NAV_LINK_PADDING
-} from '@constants/index';
+} from '@constants';
 
 const offset = HEADER_HEIGHT + CONTENT_SPACER + NAV_LINK_PADDING;
 

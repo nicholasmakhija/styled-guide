@@ -4,7 +4,7 @@ import {
   CLASS_NAME_IS_DARK_MODE,
   CSS_DECLARATIONS,
   CSS_VARS
-} from '@constants/index';
+} from '@constants';
 
 const boxSizing = `
   *,

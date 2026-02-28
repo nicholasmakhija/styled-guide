@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-import { useEventListener, dispatchCustomEvent } from '@utils/index';
-import { EVENTS, NAV_ID } from '@constants/index';
+import { useEventListener, dispatchCustomEvent } from '@utils';
+import { EVENTS, NAV_ID } from '@constants';
 import { HeaderButton, Line } from './elements';
 
 export const HeaderHamburger = () => {

@@ -1,14 +1,14 @@
 import styled from '@styled';
 
 import { Container } from '@ui/Container';
-import { asRem, breakpoints } from '@utils/index';
+import { asRem, breakpoints } from '@utils';
 import {
   ANCHOR,
   BORDER_SIZE,
   CSS_VARS,
   GUTTER_WIDTH,
   NAV_WIDTH
-} from '@constants/index';
+} from '@constants';
 
 const boxShadowBorderTop = {
   boxShadow: `0 ${asRem(-BORDER_SIZE)} 0 0 ${CSS_VARS.BORDER}`

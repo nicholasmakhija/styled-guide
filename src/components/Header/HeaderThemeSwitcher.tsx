@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { LazyIcon } from '@components/LazyIcon';
-import { CLASS_NAME_IS_DARK_MODE, DOCS_IS_DARK_MODE } from '@constants/index';
+import { CLASS_NAME_IS_DARK_MODE, DOCS_IS_DARK_MODE } from '@constants';
 import { HeaderButton } from './elements';
 
 export const HeaderThemeSwitcher = ({

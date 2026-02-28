@@ -4,7 +4,7 @@ import {
   asRem,
   boxShadowBorder,
   breakpoints
-} from '@utils/index';
+} from '@utils';
 import {
   CONTENT_SPACER,
   CSS_VARS,
@@ -13,7 +13,7 @@ import {
   HEADER_HEIGHT,
   ICON_SIZE,
   NAV_WIDTH
-} from '@constants/index';
+} from '@constants';
 
 export const HeaderRoot = styled.header({
   position: 'relative',

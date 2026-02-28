@@ -7,7 +7,7 @@ import {
   APP_DATA,
   CLASS_NAME_IS_DARK_MODE,
   DOCS_IS_DARK_MODE
-} from '@constants/index';
+} from '@constants';
 
 export function render(props: AppProps) {
   const html = renderToString(

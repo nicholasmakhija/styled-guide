@@ -1,5 +1,5 @@
 import styled, { style } from '@styled';
-import { asRem, breakpoints } from '@utils/index';
+import { asRem, breakpoints } from '@utils';
 import { GUTTER_WIDTH } from '@constants/sizes';
 
 const CONTAINER_WIDTHS = {

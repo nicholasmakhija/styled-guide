@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
 
-import { useEventListener, dispatchCustomEvent } from '@utils/index';
+import { useEventListener, dispatchCustomEvent } from '@utils';
 import {
   BREAKPOINTS,
   EVENTS,
   KEYS,
   NAV_ID
-} from '@constants/index';
+} from '@constants';
 import {
   Nav,
   NavContent,

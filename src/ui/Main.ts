@@ -5,7 +5,7 @@ import {
   boxShadowBorder,
   breakpoints,
   typography
-} from '@utils/index';
+} from '@utils';
 import {
   ANCHOR,
   BORDER_SIZE,
@@ -14,7 +14,7 @@ import {
   CSS_VARS,
   GUTTER_WIDTH,
   NAV_WIDTH
-} from '@constants/index';
+} from '@constants';
 
 import type { CSSProperties } from '@styled';
 

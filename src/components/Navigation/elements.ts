@@ -4,7 +4,7 @@ import {
   asRem,
   breakpoints,
   typography
-} from '@utils/index';
+} from '@utils';
 import {
   BORDER_SIZE,
   CONTENT_SPACER,
@@ -13,7 +13,7 @@ import {
   HEADER_HEIGHT,
   NAV_LINK_PADDING,
   NAV_WIDTH
-} from '@constants/index';
+} from '@constants';
 
 import type { CSSProperties } from '@styled';
 
