@@ -13,6 +13,8 @@ import {
   CONTENT_SPACER,
   CSS_VARS,
   GUTTER_WIDTH,
+  HEADER_HEIGHT,
+  NAV_LINK_PADDING,
   NAV_WIDTH
 } from '@constants';
 
@@ -20,12 +22,17 @@ import type { CSSProperties } from '@styled';
 
 const dataSelector = (name: string): string => style.selector(style.data(name));
 
+const offset = HEADER_HEIGHT + CONTENT_SPACER + NAV_LINK_PADDING;
+
 const headingTypography = (
   heading: 'h1' | 'h2' | 'h3',
   size: number,
   leading: number
-) => ({
-  [style.selector(heading)]: typography(size, leading)
+): CSSProperties => ({
+  [style.selector(heading)]: {
+    ...typography(size, leading),
+    scrollMarginTop: asRem(offset)
+  }
 });
 
 const dataColor = (

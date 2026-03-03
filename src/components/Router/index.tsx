@@ -2,23 +2,17 @@ import React, { useState, useRef, useEffect } from 'react';
 
 import { Navigation } from '@components/Navigation';
 import { Container, Main } from '@ui';
-import {
-  CONTENT_SPACER,
-  HEADER_HEIGHT,
-  NAV_LINK_PADDING
-} from '@constants';
-
-const offset = HEADER_HEIGHT + CONTENT_SPACER + NAV_LINK_PADDING;
 
 const orUndefined = (value: string) => value || undefined;
 
 const scrollToElement = (id?: string): void => {
   const target = id && document.querySelector(id);
-  const y = target
-    ? target.getBoundingClientRect().top + window.scrollY - offset
-    : 0;
 
-  window.scrollTo(0, y);
+  if (target) {
+    target.scrollIntoView();
+  } else {
+    window.scrollTo(0, 0);
+  }
 };
 
 export const Router = ({
@@ -27,10 +21,22 @@ export const Router = ({
 }: AppProps) => {
   const [route, setRoute] = useState<Route>({
     hash: undefined,
-    pathname: currentPage
+    pathname: currentPage,
+    canScroll: false
   });
 
   const mainRef = useRef<HTMLElement>();
+
+  const updateRoute = (
+    hash: string | undefined,
+    pathname: string
+  ) => {
+    setRoute({
+      hash,
+      pathname,
+      canScroll: true
+    });
+  };
 
   const clickHandler = (e: Event) => {
     e.preventDefault();
@@ -39,12 +45,16 @@ export const Router = ({
     const { pathname } = anchor;
     const hash = orUndefined(anchor.hash);
 
+    // NOTE: below is to update URL with hash
+    // const newPath = hash
+    //   ? pathname + hash
+    //   : pathname;
+
+    // history.pushState(hash, '', newPath);
+
     history.pushState(hash, '', pathname);
 
-    setRoute({
-      hash,
-      pathname
-    });
+    updateRoute(hash, pathname);
   };
 
   useEffect(() => {
@@ -55,16 +65,17 @@ export const Router = ({
       );
 
       if (newPath) {
-        setRoute({
-          hash: orUndefined(e.state as string),
-          pathname: newPath
-        });
+        const hash = orUndefined(e.state as string);
+
+        updateRoute(hash, pathName);
       }
     });
   }, [pages]);
 
   useEffect(() => {
-    scrollToElement(route.hash);
+    if (route.canScroll) {
+      scrollToElement(route.hash);
+    }
 
     const mainElement = mainRef.current;
 
@@ -84,7 +95,7 @@ export const Router = ({
     return () => {
       anchors.forEach((a) => a.removeAttribute('onclick'));
     };
-  }, [route]);
+  });
 
   return (
     <Container isFluid flex="start">
