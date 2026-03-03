@@ -3,8 +3,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Navigation } from '@components/Navigation';
 import { Container, Main } from '@ui';
 
-const orUndefined = (value: string) => value || undefined;
-
 const scrollToElement = (id?: string): void => {
   const target = id && document.querySelector(id);
 
@@ -43,17 +41,9 @@ export const Router = ({
 
     const anchor = e.currentTarget as HTMLAnchorElement;
     const { pathname } = anchor;
-    const hash = orUndefined(anchor.hash);
+    const hash = anchor.hash;
 
-    // NOTE: below is to update URL with hash
-    // const newPath = hash
-    //   ? pathname + hash
-    //   : pathname;
-
-    // history.pushState(hash, '', newPath);
-
-    history.pushState(hash, '', pathname);
-
+    history.pushState(hash, '', pathname + hash);
     updateRoute(hash, pathname);
   };
 
@@ -65,9 +55,7 @@ export const Router = ({
       );
 
       if (newPath) {
-        const hash = orUndefined(e.state as string);
-
-        updateRoute(hash, pathName);
+        updateRoute(e.state as string, pathName);
       }
     });
   }, [pages]);
