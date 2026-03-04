@@ -1,5 +1,6 @@
 import styled, { style } from '@styled';
 
+import { GenericIconSize, GenericButtonClears } from '@ui/Generics';
 import {
   asRem,
   boxShadowBorder,
@@ -11,7 +12,6 @@ import {
   CUBIC_BEZIER_TRANSITION,
   GUTTER_WIDTH,
   HEADER_HEIGHT,
-  ICON_SIZE,
   NAV_WIDTH
 } from '@constants';
 
@@ -48,34 +48,33 @@ export const HeaderBrand = styled.div({
 
 export const HeaderActions = styled.div();
 
-const HeaderAction = styled.generic({
-  ...CUBIC_BEZIER_TRANSITION,
-  margin: 0,
-  padding: asRem(4),
-  width: asRem(ICON_SIZE),
-  height: asRem(ICON_SIZE),
-  display: 'inline-block',
-  textAlign: 'center',
-  verticalAlign: 'middle',
-  color: CSS_VARS.COLOUR.CONTENT,
-  [style.focus]: {
-    ...boxShadowBorder(4, CSS_VARS.ACCENT),
-    outline: 0
-  },
-  [style.not(style.firstChild)]: {
-    marginLeft: asRem(16)
-  },
-  [style.prop('canHover')]: {
-    [style.hover]: {
-      textDecoration: 'none',
-      color: '#303846',
-      backgroundColor: '#ebedf0'
+const HeaderAction = styled
+  .generic()
+  .extend(GenericIconSize, {
+    ...CUBIC_BEZIER_TRANSITION,
+    padding: asRem(4),
+    display: 'inline-block',
+    textAlign: 'center',
+    verticalAlign: 'middle',
+    color: CSS_VARS.COLOUR.CONTENT,
+    [style.focus]: {
+      ...boxShadowBorder(4, CSS_VARS.ACCENT),
+      outline: 0
+    },
+    [style.not(style.firstChild)]: {
+      marginLeft: asRem(16)
+    },
+    [style.prop('canHover')]: {
+      [style.hover]: {
+        textDecoration: 'none',
+        color: '#303846',
+        backgroundColor: '#ebedf0'
+      }
+    },
+    [style.prop('isRounded')]: {
+      borderRadius: '50%'
     }
-  },
-  [style.prop('isRounded')]: {
-    borderRadius: '50%'
-  }
-});
+  });
 
 export const HeaderLink = styled
   .a<HeaderLinkProps>()
@@ -106,11 +105,7 @@ export const Line = styled.span({
 
 export const HeaderButton = styled
   .button<HeaderButtonProps>()
-  .extend(HeaderAction, {
-    border: 'none',
-    backgroundColor: 'transparent',
-    appearance: 'none',
-    cursor: 'pointer',
+  .extend(HeaderAction, GenericButtonClears, {
     [style.prop('isToggle')]: {
       position: 'relative',
       overflow: 'hidden',

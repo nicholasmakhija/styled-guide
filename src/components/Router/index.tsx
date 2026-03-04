@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 import { Navigation } from '@components/Navigation';
+import { SectionHeading } from '@components/SectionHeading';
 import {
   Container,
   Main,
   Section,
-  SectionHeading,
   SectionGroup,
   Title
 } from '@ui';
@@ -108,7 +108,7 @@ export const Router = ({
         {sections.map(({ title, id, content }, index) => (
           <Section key={`${index}-${title}`}>
             {title && (
-              <SectionHeading id={id}>{title}</SectionHeading>
+              <SectionHeading id={id} title={title} />
             )}
             <SectionGroup
               dangerouslySetInnerHTML={{

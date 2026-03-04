@@ -5,6 +5,7 @@ import {
   boxShadowBorder,
   breakpoints,
   contentParadigm,
+  headingWithScrollMargin,
   typography
 } from '@utils';
 import {
@@ -12,14 +13,10 @@ import {
   BORDER_SIZE,
   BREAKPOINTS,
   CONTENT_SPACER,
-  CSS_VARS,
-  HEADER_HEIGHT,
-  NAV_LINK_PADDING
+  CSS_VARS
 } from '@constants';
 
 import type { CSSProperties } from '@styled';
-
-const offset = HEADER_HEIGHT + CONTENT_SPACER + NAV_LINK_PADDING;
 
 const dataSelector = (name: string): string => style.selector(style.data(name));
 
@@ -45,14 +42,6 @@ const childParadigm = {
   [style.selector('> *')]: contentParadigm(CONTENT_SPACER)
 };
 
-const headingWithScrollMargin = (
-  size: number,
-  leading: number
-): CSSProperties => ({
-  ...typography(size, leading),
-  scrollMarginTop: asRem(offset)
-});
-
 export const Title = styled.h1({
   ...typography(32, 40),
   scrollMarginTop: 0
@@ -61,10 +50,6 @@ export const Title = styled.h1({
 export const Section = styled.section({
   ...contentParadigm(CONTENT_SPACER * 2),
   ...childParadigm
-});
-
-export const SectionHeading = styled.h2<SectionHeadingProps>({
-  ...headingWithScrollMargin(24, 32)
 });
 
 export const SectionGroup = styled.div<SectionGroupProps>({

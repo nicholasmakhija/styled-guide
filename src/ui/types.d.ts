@@ -18,11 +18,6 @@ type MainProps = {
   ref?: React.ForwardedRef<HTMLElement | undefined>;
 };
 
-type SectionHeadingProps = {
-  children?: React.ReactNode;
-  id: string;
-};
-
 type SectionGroupProps = {
   dangerouslySetInnerHTML?: {
     __html: string;
