@@ -1,6 +1,6 @@
 type SectionHeadingTextProps = {
   children?: React.ReactNode;
-  id: string;
+  id?: string;
 };
 
 type SectionHeadingProps = Omit<Section, 'content'>;

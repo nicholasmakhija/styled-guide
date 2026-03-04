@@ -17,9 +17,7 @@ function copyToClipboard(id: string) {
     .clipboard
     .writeText(`${text}#${id}`)
     .then(() => {
-      // DEBUG:
-      // eslint-disable-next-line no-console
-      console.log(`clipboard text: ${text}#${id}`);
+      // TODO: setState of toggletip to hide after 500ms?
     })
     .catch(throwError);
 }
@@ -34,8 +32,8 @@ export const SectionHeading = ({
 
   return (
     <SectionHeadingRoot>
-      <SectionHeadingText id={id}>{title}</SectionHeadingText>
-      <SectionHeadingButton onClick={clickHandler}>#</SectionHeadingButton>
+      <SectionHeadingText {...(id && { id })}>{title}</SectionHeadingText>
+      {id && (<SectionHeadingButton onClick={clickHandler}>#</SectionHeadingButton>)}
     </SectionHeadingRoot>
   );
 };

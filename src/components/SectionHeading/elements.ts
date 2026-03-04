@@ -23,7 +23,8 @@ export const SectionHeadingButton = styled
   });
 
 export const SectionHeadingText = styled.h2<SectionHeadingTextProps>({
-  ...headingWithScrollMargin(24, 32)
+  ...headingWithScrollMargin(24, 32),
+  margin: 0
 });
 
 export const SectionHeadingRoot = styled.div({
