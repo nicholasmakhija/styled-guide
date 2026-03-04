@@ -4,7 +4,6 @@ import {
   asRem,
   boxShadowBorder,
   breakpoints,
-  contentParadigm,
   headingWithScrollMargin,
   typography
 } from '@utils';
@@ -12,13 +11,15 @@ import {
   ANCHOR,
   BORDER_SIZE,
   BREAKPOINTS,
+  CHILD_PARADIGM,
   CONTENT_SPACER,
   CSS_VARS
 } from '@constants';
 
 import type { CSSProperties } from '@styled';
 
-const dataSelector = (name: string): string => style.selector(style.data(name));
+const dataSelector = (name: string): string =>
+  style.selector(style.data(name));
 
 const dataColor = (
   name: CodeBlockColours,
@@ -38,23 +39,8 @@ const asColumns = (
   }
 });
 
-const childParadigm = {
-  [style.selector('> *')]: contentParadigm(CONTENT_SPACER)
-};
-
-export const Title = styled.h1({
-  ...contentParadigm(CONTENT_SPACER),
-  ...typography(32, 40),
-  scrollMarginTop: 0
-});
-
-export const Section = styled.section({
-  ...contentParadigm(CONTENT_SPACER * 2),
-  ...childParadigm
-});
-
-export const SectionGroup = styled.div<SectionGroupProps>({
-  ...childParadigm,
+export const RichText = styled.div<RichTextProps>({
+  ...CHILD_PARADIGM,
   [style.selector('h3')]: headingWithScrollMargin(18, 32),
   [style.selector('> ul')]: {
     paddingLeft: 0,

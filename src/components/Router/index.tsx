@@ -6,7 +6,7 @@ import {
   Container,
   Main,
   Section,
-  SectionGroup,
+  RichText,
   Title
 } from '@ui';
 
@@ -16,7 +16,7 @@ const scrollToElement = (id?: string): void => {
   if (target) {
     target.scrollIntoView();
   } else {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 1);
   }
 };
 
@@ -110,7 +110,7 @@ export const Router = ({
             {title && (
               <SectionHeading id={id} title={title} />
             )}
-            <SectionGroup
+            <RichText
               dangerouslySetInnerHTML={{
                 __html: content
               }}

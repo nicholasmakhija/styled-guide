@@ -33,7 +33,11 @@ export const SectionHeading = ({
   return (
     <SectionHeadingRoot>
       <SectionHeadingText {...(id && { id })}>{title}</SectionHeadingText>
-      {id && (<SectionHeadingButton onClick={clickHandler}>#</SectionHeadingButton>)}
+      {id && (
+        <SectionHeadingButton onClick={clickHandler}>
+          #
+        </SectionHeadingButton>
+      )}
     </SectionHeadingRoot>
   );
 };

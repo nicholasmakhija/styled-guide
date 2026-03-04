@@ -12,13 +12,19 @@ import { CSS_VARS } from '@constants/tokens';
 export const SectionHeadingButton = styled
   .button<SectionHeadingButtonProps>()
   .extend(GenericIconSize, GenericButtonClears, {
-    ...typography(24, 34),
+    ...typography(24, 32),
     margin: `0 0 0 ${asRem(4)}`,
     color: CSS_VARS.ACCENT,
     transition: '0.2s ease-out',
     [breakpoints.up.lg]: {
       opacity: 0,
-      marginLeft: 0
+      marginLeft: 0,
+      visibility: 'hidden'
+    },
+    [style.focus]: {
+      outline: 0,
+      background: CSS_VARS.ACCENT,
+      color: CSS_VARS.COLOUR.CONTENT
     }
   });
 
@@ -35,7 +41,8 @@ export const SectionHeadingRoot = styled.div({
     [style.hover]: {
       [style.selector(SectionHeadingButton)]: {
         opacity: 1,
-        marginLeft: asRem(4)
+        marginLeft: asRem(4),
+        visibility: 'visible'
       }
     }
   }

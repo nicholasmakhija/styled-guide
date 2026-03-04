@@ -1,6 +1,8 @@
 import { style } from '@styled';
 
 import { boxShadowBorder } from '@utils/box-shadow-border';
+import { contentParadigm } from '@utils/content-paradigm';
+import { CONTENT_SPACER } from './sizes';
 import { CSS_VARS } from './tokens';
 
 export const CUBIC_BEZIER_TRANSITION = {
@@ -22,4 +24,8 @@ export const ANCHOR = {
     background: CSS_VARS.ACCENT,
     color: CSS_VARS.COLOUR.CONTENT
   }
+};
+
+export const CHILD_PARADIGM = {
+  [style.selector('> *')]: contentParadigm(CONTENT_SPACER)
 };

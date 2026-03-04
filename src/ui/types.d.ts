@@ -18,7 +18,7 @@ type MainProps = {
   ref?: React.ForwardedRef<HTMLElement | undefined>;
 };
 
-type SectionGroupProps = {
+type RichTextProps = {
   dangerouslySetInnerHTML?: {
     __html: string;
   };
