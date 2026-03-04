@@ -1,0 +1,151 @@
+<p>Not to confuse with Typescript's Generics, there is a mechanism for defining Components that are <i>"generic"</i>, basically a Higher Order Component that takes a <code>Component</code> as its only argument.</p>
+
+<p>To define a Generic component, simply call the <code>generic</code> method as shown below:</p>
+
+<pre><code><!--
+--><span data-pink>type</span> <span data-blue data-em>SizeProp</span> <span data-pink>=</span> {
+  size<span data-pink>?:</span> <span data-blue data-em>number</span>;
+};
+
+<span data-pink>const</span> <span data-purple>GenericSize</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>generic</span>&lt;<span data-blue data-em>SizeProp</span>&gt;(<span data-pink>{</span>
+  boxSizing<span data-pink>:</span> <span data-yellow>'border-box'</span>,
+  
+  <span data-blue>[</span>style.<span data-green>prop</span>(<span data-yellow>'size'</span>)<span data-blue>]</span><span data-pink>:</span> (<span data-orange data-em>size</span><span data-pink>:</span> <span data-blue data-em>number</span>) <span data-pink>=></span> (<span data-green>{</span>
+    fontSize<span data-pink>:</span> <span data-yellow>`<span data-blue>${<span data-orange data-em>size</span> <span data-pink>/</span> <span data-purple>16</span>}</span>rem`</span>,
+    lineHeight<span data-pink>:</span> <span data-yellow>`<span data-blue>${<span data-orange data-em>size</span> <span data-pink>/</span> <span data-purple>16</span> <span data-pink>*</span> <span data-purple>1.5</span>}</span>rem`</span>
+  <span data-green>}</span>)
+<span data-pink>}</span>);
+</code></pre>
+
+<p>Then wrap a component with it as shown below.</p>
+
+<pre><code><!--
+--><span data-pink>const</span> <span data-purple>Heading</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>h1</span>(<span data-pink>{</span>
+  <span data-grey>// styles ...</span>
+<span data-pink>}</span>);
+
+<span data-pink>const</span> <span data-purple>Wrapped</span> <span data-pink>=</span> <span data-green>GenericSize</span>(<span data-purple>Heading</span>);
+
+<span data-pink>const</span> <span data-green>Composition</span> <span data-pink>=</span> () <span data-pink>=></span> (
+  &lt;<span data-blue>Wrapped</span> <span data-green>size</span><span data-pink>=</span>{<span data-purple>64</span>}&gt;
+    Wrapped Heading Component
+  &lt;/<span data-blue>Wrapped</span>&gt;
+);
+</code></pre>
+
+<p>Generic components will pass all props received down to the wrapped component. Ensure that the <code>className</code> prop is passed down to the underlying DOM node when using custom components.</p>
+
+<pre><code><!--
+--><span data-pink>type</span> <span data-blue data-em>CustomHeadingProps</span> <span data-pink>=</span> {
+  children<span data-pink>?:</span> <span data-blue data-em>React</span>.<span data-blue data-em>ReactNode</span>;
+  className<span data-pink>?:</span> <span data-blue data-em>string</span>;
+};
+
+<span data-pink>const</span> <span data-green>CustomHeading</span> <span data-pink>=</span> (<span data-pink>{</span>
+  <span data-orange data-em>children</span>,
+  <span data-orange data-em>className</span>  
+<span data-pink>}</span><span data-pink>:</span> <span data-blue data-em>CustomHeadingProps</span>) <span data-pink>=></span> (
+  &lt;<span data-pink>h2</span> <span data-green>className</span><span data-pink>=</span>{<span data-orange data-em>className</span>}&gt;
+    <span data-pink>{</span><span data-orange data-em>children</span><span data-pink>}</span>
+  &lt;/<span data-pink>h2</span>&gt;
+);
+
+<span data-pink>const</span> <span data-purple>Wrapped</span> <span data-pink>=</span> <span data-green>GenericSize</span>(<span data-purple>CustomHeading</span>);
+
+<span data-pink>const</span> <span data-green>Composition</span> <span data-pink>=</span> () <span data-pink>=></span> (
+  &lt;<span data-blue>Wrapped</span> <span data-green>size</span><span data-pink>=</span>{<span data-purple>64</span>}&gt;
+    Wrapped CustomHeading Component
+  &lt;/<span data-blue>Wrapped</span>&gt;
+);
+</code></pre>
+
+<p>To avoid nesting when trying to use multiple generic components, simply call the <code>extend</code> method.</p>
+
+<pre><code><!--
+--><span data-pink>const</span> <span data-purple>GenericContentParadigm</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>generic</span>(<span data-pink>{</span>
+  margin<span data-pink>:</span> <span data-yellow>'0 0 1.5rem'</span>,
+  <span data-blue>[</span>style.lastChild<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    marginBottom<span data-pink>:</span> <span data-purple>0</span>
+  <span data-blue>}</span>
+<span data-pink>}</span>);
+
+<span data-pink>const</span> <span data-purple>GenericHugeText</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>generic</span>(<span data-pink>{</span>
+  fontSize<span data-pink>:</span> <span data-yellow>'4.5rem'</span>,
+  lineHeight<span data-pink>:</span> <span data-yellow>'5rem'</span>
+<span data-pink>}</span>);
+
+<span data-pink>const</span> <span data-purple>PageHeading</span> <span data-pink>=</span> <span data-purple>styled</span>
+  .<span data-green>h1</span>(<span data-pink>{</span>
+    color<span data-pink>:</span> <span data-yellow>'#333'</span>,
+    fontWeight<span data-pink>:</span> <span data-purple>400</span>,
+    padding<span data-pink>:</span> <span data-purple>0</span>
+  <span data-pink>}</span>)
+  .<span data-green>extend</span>(
+    <span data-purple>GenericContentParadigm</span>,
+    <span data-purple>GenericHugeText</span>
+  );
+</code></pre>
+
+<p>You can also extend from other Styled Components and even plain object literal styles. The <code>extend</code> method performs a deep merge, so nested styles containing duplicate keys will be combined.</p>
+
+<pre><code><span data-pink>const</span> <span data-purple>GenericClearFloat</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>generic</span>(<span data-pink>{</span>
+  float<span data-pink>:</span> <span data-yellow>'left'</span>,
+  <span data-blue>[</span>style.after<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    content<span data-pink>:</span> <span data-yellow>''</span>,
+    clear<span data-pink>:</span> <span data-yellow>'both'</span>,
+    display<span data-pink>:</span> <span data-yellow>'block'</span>
+  <span data-blue>}</span>
+<span data-pink>}</span>);
+
+<span data-pink>const</span> <span data-purple>Danger</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>span</span>(<span data-pink>{</span>
+  color<span data-pink>:</span> <span data-yellow>'red'</span>,
+  <span data-blue>[</span>style.after<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    content<span data-pink>:</span> <span data-yellow>'!'</span>
+  <span data-blue>}</span>
+<span data-pink>}</span>);
+
+<span data-pink>const</span> <span data-purple>ExtendMayhem</span> <span data-pink>=</span> <span data-purple>styled</span>
+  .<span data-green>div</span>(<span data-pink>{</span>
+    color<span data-pink>:</span> <span data-yellow>'blue'</span>,
+    <span data-blue>[</span>style.hover<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+      textDecoration<span data-pink>:</span> <span data-yellow>'underline'</span>,
+      <span data-green>[</span>style.after<span data-green>]</span><span data-pink>:</span> <span data-green>{</span>
+        color<span data-pink>:</span> <span data-yellow>'pink'</span>,
+        cursor<span data-pink>:</span> <span data-yellow>'pointer'</span>
+      <span data-green>}</span>
+    <span data-blue>}</span>
+  <span data-pink>}</span>)
+  .<span data-green>extend</span>(
+    <span data-purple>Danger</span>,
+    <span data-purple>GenericClearFloat</span>,
+    <span data-pink>{</span>
+      <span data-blue>[</span>style.hover<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+        textDecoration<span data-pink>:</span> <span data-yellow>'none'</span>,
+        <span data-green>[</span>style.after<span data-green>]</span><span data-pink>:</span> <span data-green>{</span>
+          cursor<span data-pink>:</span> <span data-yellow>'default'</span>
+        <span data-green>}</span>
+      <span data-blue>}</span>
+    <span data-pink>}</span>
+  );
+</code></pre>
+
+<p>The resulting object styles for <code>&lt;ExtendMayhem&gt;</code> will be</p>
+
+<pre><code><!--
+-->{
+  float<span data-pink>:</span> <span data-yellow>'left'</span>,
+  color<span data-pink>:</span> <span data-yellow>'red'</span>,
+  <span data-pink>[</span>style.after<span data-pink>]: {</span>
+    content<span data-pink>:</span> <span data-yellow>''</span>,
+    clear<span data-pink>:</span> <span data-yellow>'both'</span>,
+    display<span data-pink>:</span> <span data-yellow>'block'</span>
+  <span data-pink>}</span>,
+  <span data-pink>[</span>style.hover<span data-pink>]: {</span>
+    textDecoration<span data-pink>:</span> <span data-yellow>'none'</span>,
+    <span data-blue>[</span>style.after<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+      color<span data-pink>:</span> <span data-yellow>'pink'</span>,
+      cursor<span data-pink>:</span> <span data-yellow>'default'</span>
+    <span data-blue>}</span>
+  <span data-pink>}</span>
+}
+</code></pre>

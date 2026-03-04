@@ -1,0 +1,38 @@
+<p>Variants can be defined using prop styles and object mapping.</p>
+
+<pre><code><!--
+--><span data-pink>import</span> type { CSSProperties } <span data-pink>from</span> <span data-yellow>'@n3e/styled'</span>;
+
+<span data-pink>type</span> <span data-blue data-em>MarvelLegends</span> <span data-pink>=</span>
+  <span data-pink>|</span> <span data-yellow>'parker'</span>
+  <span data-pink>|</span> <span data-yellow>'stark'</span>
+  <span data-pink>|</span> <span data-yellow>'banner'</span>;
+
+<span data-pink>type</span> <span data-blue data-em>BoxProps</span> <span data-pink>=</span> {
+  children<span data-pink>?:</span> <span data-blue data-em>React</span>.<span data-blue data-em>ReactNode</span>;
+  variant<span data-pink>?:</span> <span data-blue data-em>MarvelLegends</span>;
+};
+
+<span data-pink>const</span> <span data-purple>variantStyle</span><span data-pink>:</span> <span data-blue data-em>Record</span>&lt;<span data-blue data-em>MarvelLegends</span>, <span data-blue data-em>CSSProperties</span>&gt; <span data-pink>=</span> {
+  parker<span data-pink>:</span> <span data-pink>{</span>
+    background<span data-pink>:</span> <span data-yellow>'blue'</span>,
+    color<span data-pink>:</span> <span data-yellow>'red'</span>
+  <span data-pink>}</span>,
+  stark<span data-pink>:</span> <span data-pink>{</span>
+    background<span data-pink>:</span> <span data-yellow>'red'</span>,
+    color<span data-pink>:</span> <span data-yellow>'gold'</span>
+  <span data-pink>}</span>,
+  banner<span data-pink>:</span> <span data-pink>{</span>
+    background<span data-pink>:</span> <span data-yellow>'green'</span>,
+    color<span data-pink>:</span> <span data-yellow>'purple'</span>
+  <span data-pink>}</span>
+};
+
+<span data-pink>const</span> <span data-purple>Box</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>div</span>&lt;<span data-blue data-em>BoxProps</span>&gt;(<span data-pink>{</span>
+  padding<span data-pink>:</span> <span data-yellow>'1.5rem 1rem'</span>,
+  borderRadius<span data-pink>:</span> <span data-yellow>'0.25rem'</span>,
+  
+  <span data-blue>[</span>style.<span data-green>prop</span>(<span data-yellow>'variant'</span>)<span data-blue>]</span><span data-pink>:</span> (<span data-orange data-em>variant</span><span data-pink>:</span> <span data-blue data-em>MarvelLegends</span>) <span data-pink>=></span> <span data-purple>variantStyle</span><span data-blue>[</span><span data-orange data-em>variant</span><span data-blue>]</span>
+<span data-pink>}</span>);
+</code></pre>
+</code></pre>

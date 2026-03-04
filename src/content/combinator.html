@@ -1,0 +1,82 @@
+<h3>Descendant combinator</h3>
+
+<pre><code><!--
+--><span data-pink>const</span> <span data-purple>Paragraph</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>p</span>(<span data-pink>{</span>
+  margin<span data-pink>:</span> <span data-purple>0</span>
+<span data-pink>}</span>);
+
+<span data-pink>const</span> <span data-purple>RichText</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>div</span>(<span data-pink>{</span>
+  <span data-blue>[</span>style.<span data-green>selector</span>(<span data-yellow>'p'</span>)<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    margin<span data-pink>:</span> <span data-yellow>'0 0 24px'</span>
+  <span data-blue>}</span>,
+
+  <span data-grey>// target a Styled component</span>
+  <span data-blue>[</span>style.<span data-green>selector</span>(<span data-purple>Paragraph</span>)<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    margin<span data-pink>:</span> <span data-yellow>'0 0 24px'</span>
+  <span data-blue>}</span>
+<span data-pink>}</span>);
+
+<span data-grey>const Composition = () => (</span>
+  &lt;<span data-blue>RichText</span>&gt;
+    &lt;<span data-pink>p</span>&gt;Para one&lt;/<span data-pink>p</span>&gt;
+    &lt;<span data-blue>Paragraph</span>&gt;Para two&lt;/<span data-blue>Paragraph</span>&gt;
+  &lt;/<span data-blue>RichText</span>&gt;
+<span data-grey>);</span>
+</code></pre>
+
+<h3>Child combinator (>)</h3>
+
+<pre><code><!--
+--><span data-pink>const</span> <span data-purple>Image</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>img</span>(<span data-pink>{</span>
+  display<span data-pink>:</span> <span data-yellow>'block'</span>,
+  maxWith<span data-pink>:</span> <span data-yellow>'100%'</span>
+<span data-pink>}</span>);
+
+<span data-pink>const</span> <span data-purple>RichText</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>div</span>(<span data-pink>{</span>
+  <span data-blue>[</span>style.<span data-green>selector</span>(<span data-yellow>'> img'</span>)<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    border<span data-pink>:</span> <span data-yellow>'2px solid yellow'</span>
+  <span data-blue>}</span>,
+
+  <span data-grey>// target a Styled component</span>
+  <span data-blue>[</span>style.<span data-green>selector</span>(<span data-yellow>`> <span data-blue>${</span><span data-purple>Image</span><span data-blue>}</span>`</span>)<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    border<span data-pink>:</span> <span data-yellow>'2px solid yellow'</span>
+  <span data-blue>}</span>
+<span data-pink>}</span>);
+
+<span data-grey>const Composition = () => (</span>
+  &lt;<span data-blue>RichText</span>&gt;
+    &lt;<span data-pink>img</span> <span data-green>src</span><span data-pink>=</span><span data-yellow>'path/to/image'</span> /&gt;
+    &lt;<span data-blue>Image</span> <span data-green>src</span><span data-pink>=</span><span data-yellow>'path/to/image'</span> /&gt;
+  &lt;/<span data-blue>RichText</span>&gt;
+<span data-grey>);</span>
+</code></pre>
+
+<h3>Sibling combinators (~ or +)</h3>
+
+<pre><code><!--
+--><span data-pink>const</span> <span data-purple>Label</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>label</span>(<span data-pink>{</span>
+  display<span data-pink>:</span> <span data-yellow>'inline-block'</span>,
+  cursor<span data-pink>:</span> <span data-yellow>'pointer'</span>,
+  verticalAlign<span data-pink>:</span> <span data-yellow>'top'</span>
+<span data-pink>}</span>);
+
+<span data-pink>const</span> <span data-purple>Checkbox</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>input</span>(<span data-pink>{</span>
+  <span data-blue>[</span>style.checked<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    <span data-purple>[</span>style.<span data-green>selector</span>(<span data-yellow>'+ label'</span>)<span data-purple>]</span><span data-pink>:</span> <span data-purple>{</span>
+      fontWeight<span data-pink>:</span> <span data-yellow>'bold'</span>
+    <span data-purple>}</span>,
+
+    <span data-grey>// target a Styled component</span>
+    <span data-purple>[</span>style.<span data-green>selector</span>(<span data-yellow>`+ <span data-orange>${</span><span data-purple>Label</span><span data-orange>}</span>`</span>)<span data-purple>]</span><span data-pink>:</span> <span data-purple>{</span>
+      fontWeight<span data-pink>:</span> <span data-yellow>'bold'</span>
+    <span data-purple>}</span>
+  <span data-blue>}</span>
+<span data-pink>}</span>);
+
+<span data-grey>const Composition = () => (
+  &lt;&gt;</span>
+    &lt;<span data-blue>Checkbox</span> <span data-green>type</span><span data-pink>=</span><span data-yellow>'checkbox'</span> /&gt;
+    &lt;<span data-blue>Label</span>&gt;Label text&lt;/<span data-blue>Label</span>&gt;
+  <span data-grey>&lt;/&gt;
+);</span>
+</code></pre>

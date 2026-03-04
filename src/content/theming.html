@@ -1,0 +1,19 @@
+<p>CSS variable themes can be used as part of global style definitions.</p>
+
+<pre><code><!--
+--><span data-pink>const</span> <span data-purple>AppWrapper</span> <span data-pink>=</span> <span data-purple>styled</span>
+  .<span data-green>div</span>()
+  .<span data-green>withCSS</span>(
+    <span data-yellow>`:root {
+      --background-primary: #fff;
+      --color-primary: #262223;
+    }`</span>,
+
+    <span data-yellow>`@media (prefers-color-scheme: dark) {
+      :root {
+        --background-primary: #121212;
+        --color-primary: #fff;
+      } 
+    }`</span>
+  );
+</code></pre>

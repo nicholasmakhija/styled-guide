@@ -1,0 +1,29 @@
+<p>Nested at-rules such as <code>@media</code>, <code>@supports</code> and even <code>@container</code> are declared as demonstrated below:</p>
+
+<pre><code><!--
+--><span data-grey>const Container = styled.div({
+  // base styles</span>
+
+  <span data-yellow>'@media screen and (min-width: 576px)'</span><span data-pink>:</span> <span data-blue>{</span>
+    maxWidth<span data-pink>:</span> <span data-yellow>'540px'</span>
+  <span data-blue>}</span>,
+
+  <span data-yellow>'@media screen and (min-width: 768px)'</span><span data-pink>:</span> <span data-blue>{</span>
+    maxWidth<span data-pink>:</span> <span data-yellow>'720px'</span>
+  <span data-blue>}</span>,
+
+  <span data-grey>// you can even nest at-rules</span>
+  <span data-yellow>'@supports (display: flex)'</span><span data-pink>:</span> <span data-blue>{</span>
+    display<span data-pink>:</span> <span data-yellow>'flex'</span>,
+    flexDirection<span data-pink>:</span> <span data-yellow>'column'</span>,
+
+    <span data-yellow>'@media screen and (min-width: 768px)'</span><span data-pink>:</span> <span data-green>{</span>
+      flexDirection<span data-pink>:</span> <span data-yellow>'row'</span>
+    <span data-green>}</span>
+  <span data-blue>}</span>
+<span data-grey>});</span>
+</code></pre>
+
+<p>For examples of <code>@keyframes</code> and <code>@font-face</code>, refer to <a href="/api/#global-styles">API</a> section.</p>
+
+<p>Styled exposes another <a href="/api/#media-query-builder">helper</a> for building media queries.</p>

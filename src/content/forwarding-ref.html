@@ -1,0 +1,30 @@
+<p>If using React <code>16.8.0</code> - <code>18.3.1</code>, the <code>withRef</code> method must be used to pass a <code>ref</code> down to the underlying DOM element. This uses React's <code>forwardRef</code> functionality behind the scenes.</p>
+
+<pre><code><!--
+--><span data-pink>import</span> React, { useRef } <span data-pink>from</span> <span data-yellow>'react'</span>;
+
+<span data-pink>const</span> <span data-purple>Div</span> <span data-pink>=</span> <span data-purple>styled</span>
+  .<span data-green>div</span>()
+  .<span data-green>withRef</span>();
+
+<span data-pink>const</span> <span data-purple>Button</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>button</span>();
+
+<span data-pink>const</span> <span data-green>Composition</span> <span data-pink>=</span> () <span data-pink>=></span> {
+  <span data-pink>const</span> <span data-purple>divRef</span> <span data-pink>=</span> <span data-green>useRef</span>();
+
+  <span data-pink>const</span> <span data-purple>clickHandler</span> <span data-pink>=</span> () <span data-pink>=></span> {
+    <span data-purple>console</span>.<span data-green>log</span>(<span data-yellow>'divRef'</span>, <span data-purple>divRef</span>.current);
+  };
+
+  <span data-pink>return</span> (
+    &lt;&gt;
+      &lt;<span data-blue>Div</span> <span data-green>ref</span><span data-pink>=</span>{<span data-purple>divRef</span>} /&gt;
+      &lt;<span data-blue>Button</span> <span data-green>onClick</span><span data-pink>=</span>{<span data-green>clickHandler</span>}&gt;
+        click me!
+      &lt;/<span data-blue>Button</span>&gt;
+    &lt;/&gt;
+  );
+};
+</code></pre>
+
+<p>React <code>19.*</code> users can simply pass <code>ref</code> as a prop, since <code>element.ref</code> is being deprecated in favour of <code>element.props.ref</code>.</p>

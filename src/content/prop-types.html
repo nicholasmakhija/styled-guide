@@ -1,0 +1,36 @@
+<h2 id="prop-types">PropTypes</h2>
+
+<p>Built-in typechecking support for React propsTypes. Just chain the <code>withProps</code> method to an already defined Styled Component and pass the propTypes object as its only argument. This is the same as assigning the <code>propTypes</code> property on a Component.</p>
+
+<pre><code><!--
+--><span data-pink>import</span> PropTypes <span data-pink>from</span> <span data-yellow>'prop-types'</span>;
+
+<span data-pink>type</span> <span data-blue data-em>ButtonColour</span> <span data-pink>=</span>
+  <span data-pink>|</span> <span data-yellow>'blue'</span>
+  <span data-pink>|</span> <span data-yellow>'green'</span>
+  <span data-pink>|</span> <span data-yellow>'purple'</span>;
+
+<span data-pink>type</span> <span data-blue data-em>ButtonProps</span> <span data-pink>=</span> {
+  isDisabled<span data-pink>?:</span> <span data-blue data-em>boolean</span>;
+  colour<span data-pink>?:</span> <span data-blue data-em>ButtonColour</span>;
+};
+
+<span data-pink>const</span> <span data-purple>Button</span> <span data-pink>=</span> <span data-purple>styled</span>
+  .<span data-green>button</span>&lt;<span data-blue data-em>ButtonProps</span>&gt;(<span data-pink>{</span>
+    <span data-grey>// base button styles</span>
+
+    <span data-blue>[</span>style.<span data-green>prop</span>(<span data-yellow>'isDisabled'</span>)<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+      color<span data-pink>:</span> <span data-yellow>'light grey'</span>,
+      cursor<span data-pink>:</span> <span data-yellow>'not-allowed'</span>
+    <span data-blue>}</span>,
+
+    <span data-blue>[</span>style.<span data-green>prop</span>(<span data-yellow>'colour'</span>)<span data-blue>]</span><span data-pink>:</span> (<span data-orange data-em>colour</span><span data-pink>:</span> <span data-blue data-em>ButtonColour</span>) <span data-pink>=></span> (<span data-green>{</span>
+      backgroundColor<span data-pink>:</span> <span data-orange data-em>colour</span>,
+      borderColour<span data-pink>:</span> <span data-orange data-em>colour</span>
+    <span data-green>}</span>)
+  <span data-pink>}</span>)
+  .<span data-green>withProps</span>(<span data-pink>{</span>
+    isDisabled<span data-pink>:</span> PropTypes.bool,
+    colour<span data-pink>:</span> PropTypes.<span data-green>oneOf</span>(<span data-blue>[</span><span data-yellow>'blue'</span>, <span data-yellow>'green'</span>, <span data-yellow>'purple'</span><span data-blue>]</span>)
+  <span data-pink>}</span>);
+</code></pre>

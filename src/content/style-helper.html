@@ -1,0 +1,207 @@
+<p>The <code>style</code> helper can be used for writing pseudo, attribute and prop selectors.</p>
+
+<h3>Pseudo Elements</h3>
+
+<p>Available pseudo elements:</p>
+
+<ul>
+  <li>after</li>
+  <li>backdrop</li>
+  <li>before</li>
+  <li>cue</li>
+  <li>cueRegion</li>
+  <li>firstLetter</li>
+  <li>firstLine</li>
+  <li>fileSelectorButton</li>
+  <li>marker</li>
+  <li>placeholder</li>
+  <li>selection</li>
+</ul>
+
+<p>Pseudo element functions:</p>
+
+<div data-table>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Arg type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>part</td>
+          <td><span data-highlight>string</span></td>
+        </tr>
+        <tr>
+          <td>slotted</td>
+          <td><span data-highlight>string</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>Pseudo Classes</h3>
+
+<p>Available pseudo classes:</p>
+
+<ul data-column>
+  <li>active</li>
+  <li>anyLink</li>
+  <li>autofill</li>
+  <li>checked</li>
+  <li>default</li>
+  <li>defined</li>
+  <li>disabled</li>
+  <li>empty</li>
+  <li>enabled</li>
+  <li>first</li>
+  <li>firstChild</li>
+  <li>firstOfType</li>
+  <li>fullscreen</li>
+  <li>focus</li>
+  <li>focusVisible</li>
+  <li>focusWithin</li>
+  <li>hover</li>
+  <li>indeterminate</li>
+  <li>inRange</li>
+  <li>invalid</li>
+  <li>lastChild</li>
+  <li>lastOfType</li>
+  <li>left</li>
+  <li>link</li>
+  <li>modal</li>
+  <li>onlyChild</li>
+  <li>onlyOfType</li>
+  <li>optional</li>
+  <li>outOfRange</li>
+  <li>pictureInPicture</li>
+  <li>placeholderShown</li>
+  <li>paused</li>
+  <li>playing</li>
+  <li>readOnly</li>
+  <li>readWrite</li>
+  <li>required</li>
+  <li>right</li>
+  <li>root</li>
+  <li>scope</li>
+  <li>target</li>
+  <li>valid</li>
+  <li>visited</li>
+</ul>
+
+<p>Pseudo class functions:</p>
+
+<div data-table>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Arg type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>host</td>
+          <td><span data-highlight>string</span></td>
+        </tr>
+        <tr>
+          <td>lang</td>
+          <td><span data-highlight>string</span></td>
+        </tr>
+        <tr>
+          <td>is</td>
+          <td><span data-highlight>string[]</span></td>
+        </tr>
+        <tr>
+          <td>not</td>
+          <td><span data-highlight>string[]</span></td>
+        </tr>
+        <tr>
+          <td>where</td>
+          <td><span data-highlight>string[]</span></td>
+        </tr>
+        <tr>
+          <td>nthChild</td>
+          <td><span data-highlight>number</span> or <span data-highlight>string</span></td>
+        </tr>
+        <tr>
+          <td>nthLastChild</td>
+          <td><span data-highlight>number</span> or <span data-highlight>string</span></td>
+        </tr>
+        <tr>
+          <td>nthLastOfType</td>
+          <td><span data-highlight>number</span> or <span data-highlight>string</span></td>
+        </tr>
+        <tr>
+          <td>nthOfType</td>
+          <td><span data-highlight>number</span> or <span data-highlight>string</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>Attribute builder</h3>
+
+<p>Methods available on the <code>style.attribute('...')</code> builder are:</p>
+
+<div data-table>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Method</th>
+          <th scope="col">Arg type</th>
+          <th scope="col">CSS syntax</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>equals</td>
+          <td><span data-highlight>string[]</span></td>
+          <td>[attr=value]</td>
+        </tr>
+        <tr>
+          <td>contains</td>
+          <td><span data-highlight>string[]</span></td>
+          <td>[attr~=value]</td>
+        </tr>
+        <tr>
+          <td>containsAny</td>
+          <td><span data-highlight>string[]</span></td>
+          <td>[attr*=value]</td>
+        </tr>
+        <tr>
+          <td>startsWith</td>
+          <td><span data-highlight>string[]</span></td>
+          <td>[attr^=value]</td>
+        </tr>
+        <tr>
+          <td>endsWith</td>
+          <td><span data-highlight>string[]</span></td>
+          <td>[attr$=value]</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h3>Combinators</h3>
+
+<p><code>style.or</code> for creating nested selector lists <i>(comma separated)</i>.</p>
+
+<pre><code><!--
+-->style.<span data-green>or</span>(style.before, style.after)
+<span data-grey>// ::before, ::after</span>
+</code></pre>
+
+  <p><code>style.and</code> for combining nested selectors.</p>
+
+<pre><code><!--
+-->style.<span data-green>and</span>(style.hover, style.focus)
+<span data-grey>// :hover:focus</span>
+</code></pre>

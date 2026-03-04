@@ -1,7 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 
 import { Navigation } from '@components/Navigation';
-import { Container, Main } from '@ui';
+import {
+  Container,
+  Main,
+  Section,
+  SectionHeading,
+  SectionGroup,
+  Title
+} from '@ui';
 
 const scrollToElement = (id?: string): void => {
   const target = id && document.querySelector(id);
@@ -85,20 +92,32 @@ export const Router = ({
     };
   });
 
+  const { title, sections } = pages[route.pathname];
+
   return (
     <Container isFluid flex="start">
       <Navigation
         currentPath={route.pathname}
-        pageList={Object.values(pages)}
+        pageList={Object.entries(pages)}
         onClick={clickHandler}
       />
 
-      <Main
-        ref={mainRef}
-        dangerouslySetInnerHTML={{
-          __html: pages[route.pathname].content
-        }}
-      />
+      <Main>
+        <Title>{title}</Title>
+
+        {sections.map(({ title, id, content }, index) => (
+          <Section key={`${index}-${title}`}>
+            {title && (
+              <SectionHeading id={id}>{title}</SectionHeading>
+            )}
+            <SectionGroup
+              dangerouslySetInnerHTML={{
+                __html: content
+              }}
+            />
+          </Section>
+        ))}
+      </Main>
     </Container>
   );
 };

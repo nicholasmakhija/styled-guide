@@ -20,6 +20,6 @@ type NavLinkProps = {
 
 type NavigationProps = {
   currentPath: string;
-  pageList: Page[];
+  pageList: [string, Page][];
   onClick?: (e: Event) => void;
 };

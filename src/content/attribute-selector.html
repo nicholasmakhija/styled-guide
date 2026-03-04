@@ -1,0 +1,31 @@
+<pre><code><!--
+--><span data-grey>const Anchor = styled.a({
+  // base styles</span>
+
+  <span data-blue>[</span>style.<span data-green>attribute</span>(<span data-yellow>'href'</span>).<span data-green>startsWith</span>(
+    <span data-yellow>'http'</span>,
+    <span data-yellow>'https'</span>
+  )<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    <span data-grey>// styles ...</span>
+  <span data-blue>}</span>,
+
+  <span data-grey>// you need to use Styled's combinator helper `or` to create</span>
+  <span data-grey>// nested selector lists <i>(ie: comma separated selector)</i></span>
+  <span data-blue>[</span>style.<span data-green>or</span>(
+    <span data-yellow>'[href^="http"]'</span>,
+    <span data-yellow>'[href^="https"]'</span>
+  )<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    <span data-grey>// styles ...</span>
+  <span data-blue>}</span>,
+
+  <span data-grey>// or have to duplicate style definitions</span>
+  <span data-yellow>'[href^="http"]'</span><span data-pink>:</span> <span data-blue>{</span> <span data-grey>/*  styles ... */</span> <span data-blue>}</span>,
+  <span data-yellow>'[href^="https"]'</span><span data-pink>:</span> <span data-blue>{</span> <span data-grey>/*  styles ... */</span> <span data-blue>}</span>
+<span data-grey>});</span>
+
+<span data-grey>const Composition = () => (
+  &lt;Anchor <span data-green>href</span><span data-pink>=</span><span data-yellow>'#'</span>&gt;
+    I'm an anchor
+  &lt;/Anchor&gt;
+);</span>
+</code></pre>

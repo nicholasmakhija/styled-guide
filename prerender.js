@@ -11,7 +11,6 @@ require('@babel/register')({
 const { copyFile, createFile } = require('./server/utils.ts');
 const { getPages } = require('./server/get-pages.ts');
 const { updateHTML } = require('./server/index.tsx');
-const { templateData } = require('./server/template-data.ts');
 
 const assetsFolder = 'assets';
 const distFolder = 'dist';
@@ -51,12 +50,12 @@ createFile(
   JSON.stringify(pages)
 );
 
-templateData.forEach(({ page, path }) => {
+Object.entries(pages).forEach(([path]) => {
   const renderedHTML = updateHTML(rawHTML, {
     currentPage: path,
     isDark: false,
     pages
   });
 
-  createFile(distFolder + page, renderedHTML);
+  createFile(distFolder + path + 'index.html', renderedHTML);
 });

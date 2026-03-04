@@ -1,0 +1,58 @@
+<p>Styled comes with a <a href="/api/#style-helper">helper</a> for writing pseudo styles, below is an example on how to define <code>pseudo-class</code> selectors:</p>
+
+<pre><code><!--
+--><span data-pink>import</span> styled, { style } <span data-pink>from</span> <span data-yellow>'@n3e/styled'</span>;
+  
+<span data-grey>const Button = styled.button({
+  // button base styles</span>
+
+  <span data-blue>[</span>style.hover<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    backgroundColor<span data-pink>:</span> <span data-yellow>'rgba(255, 105, 180, 0.7)'</span>
+  <span data-blue>}</span>,
+
+  <span data-grey>// pseudo class function</span>
+  <span data-blue>[</span>style.<span data-green>not</span>(style.disabled)<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    backgroundColor<span data-pink>:</span> <span data-yellow>'purple'</span>,
+    borderColor<span data-pink>:</span> <span data-yellow>'purple'</span>,
+    color<span data-pink>:</span> <span data-yellow>'white'</span>
+  <span data-blue>}</span>,
+
+  <span data-grey>// you can write it yourself, if preferred</span>
+  <span data-yellow>':hover'</span><span data-pink>:</span> <span data-blue>{</span>
+    backgroundColor<span data-pink>:</span> <span data-yellow>'rgba(255, 105, 180, 0.7)'</span>
+  <span data-blue>}</span>,
+
+  <span data-yellow>':not(:disabled)'</span><span data-pink>:</span> <span data-blue>{</span>
+    backgroundColor<span data-pink>:</span> <span data-yellow>'purple'</span>,
+    borderColor<span data-pink>:</span> <span data-yellow>'purple'</span>,
+    color<span data-pink>:</span> <span data-yellow>'white'</span>
+  <span data-blue>}</span>
+<span data-grey>});
+
+const Composition = () => (
+  &lt;Button&gt;
+    I'm a button
+  &lt;/Button&gt;
+);</span>
+</code></pre>
+
+<p>Similarly <code>pseudo-element</code> selectors are defined as shown below:</p>
+
+<pre><code><!--
+--><span data-grey>const PrefixedUsingBefore = styled.span({</span>
+  <span data-blue>[</span>style.before<span data-blue>]</span><span data-pink>:</span> <span data-blue>{</span>
+    content<span data-pink>:</span> <span data-yellow>'$'</span>
+  <span data-blue>}</span>,
+
+  <span data-grey>// the same can be done manually</span>
+  <span data-yellow>'::before'</span><span data-pink>:</span> <span data-blue>{</span>
+    content<span data-pink>:</span> <span data-yellow>'$'</span>
+  <span data-blue>}</span>
+<span data-grey>});
+
+const Composition = () => (
+  &lt;PrefixedUsingBefore&gt;
+    dollar bucks
+  &lt;/PrefixedUsingBefore&gt;
+);</span>
+</code></pre>

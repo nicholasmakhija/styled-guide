@@ -1,0 +1,18 @@
+<p>Let's start by building a simple button:</p>
+
+<pre><code><!--
+--><span data-pink>const</span> <span data-purple>Button</span> <span data-pink>=</span> <span data-purple>styled</span>.<span data-green>button</span>(<span data-pink>{</span>
+  appearance<span data-pink>:</span> <span data-yellow>'none'</span>,
+  backgroundColor<span data-pink>:</span> <span data-yellow>'#ff6995'</span>,
+  border<span data-pink>:</span> <span data-yellow>'2px solid #ff6995'</span>,
+  borderRadius<span data-pink>:</span> <span data-yellow>`<span data-blue>${</span><span data-purple>4 <span data-pink>/</span> 16</span><span data-blue>}</span>rem`</span>,
+  margin<span data-pink>:</span> <span data-purple>0</span>,
+  transition<span data-pink>:</span> <span data-yellow>'0.2s linear'</span>
+<span data-pink>}</span>);
+
+<span data-pink>const</span> <span data-green>Composition</span> <span data-pink>=</span> () <span data-pink>=></span> (
+  &lt;<span data-blue>Button</span>&gt;
+    I'm a button
+  &lt;/<span data-blue>Button</span>&gt;
+);
+</code></pre>

@@ -1,0 +1,58 @@
+<p>To set default styles for body, headings etc. just use the <code>withCSS</code> method which accepts normal CSS as its arguments.</p>
+
+<pre><code><!--
+--><span data-pink>const</span> <span data-purple>boxSizing</span> <span data-pink>=</span>
+  <span data-yellow>`*,
+  :after,
+  :before {
+    box-sizing: border-box;
+  }`</span>;
+
+<span data-pink>const</span> <span data-purple>htmlAndBody</span> <span data-pink>=</span>
+  <span data-yellow>`body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }`</span>;
+
+<span data-pink>const</span> <span data-purple>AppWrapper</span> <span data-pink>=</span> <span data-purple>styled</span>
+  .<span data-green>div</span>()
+  .<span data-green>withCSS</span>(
+    <span data-purple>boxSizing</span>,
+    <span data-purple>htmlAndBody</span>
+  );
+</code></pre>
+
+<p>Keyframe animations can be declared and used like so:</p>
+
+<pre><code><!--
+--><span data-pink>const</span> <span data-purple>shimmer</span> <span data-pink>=</span> <span data-yellow>'shimmer'</span>;
+
+<span data-pink>const</span> <span data-purple>SomeElement</span> <span data-pink>=</span> <span data-purple>styled</span>
+  .<span data-green>div</span>(<span data-pink>{</span>
+    animation<span data-pink>:</span> <span data-yellow>`</span><span data-blue>${</span><span data-purple>shimmer</span><span data-blue>}</span> <span data-yellow>1.5s ease-in-out infinite`</span>
+  <span data-pink>}</span>)
+  .<span data-green>withCSS</span>(
+    <span data-yellow>`@keyframes</span> <span data-pink>${</span><span data-purple>shimmer</span><span data-pink>}</span><span data-yellow> {
+      0% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+      100% { opacity: 0.5; }
+    }`</span>
+  );
+</code></pre>
+
+<p>Font face rules:</p>
+
+<pre><code><!--
+--><span data-pink>const</span> <span data-purple>AppWrapper</span> <span data-pink>=</span> <span data-purple>styled</span>
+  .<span data-green>div</span>()
+  .<span data-green>withCSS</span>(
+    <span data-yellow>`@font-face {
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url('path/to/font/file.woff2') format('woff2');
+    }`</span>
+  );
+</code></pre>

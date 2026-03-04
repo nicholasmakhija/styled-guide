@@ -1,0 +1,41 @@
+<p>Although Styled works with NextJS, please use with <strong>caution</strong> as these features have not been finalised.</p>
+
+<p>First, create a component at the root directory, it can be called anything you like.</p>
+
+<pre><code><!--
+--><span data-pink>import</span> { ServerStyles } <span data-pink>from</span> <span data-yellow>'@n3e/styled'</span>;
+
+<span data-pink>export default async function</span> <span data-green>StyleTags</span>() {
+  <span data-pink>return</span> &lt;<span data-blue>ServerStyles</span> /&gt;;
+}
+</code></pre>
+
+<p>Then import the component created above and insert it as a child of the <code>head</code> tag.</p>
+
+<pre><code><!--
+--><span data-pink>import type</span> { Metadata } <span data-pink>from</span> <span data-yellow>'next'</span>;
+<span data-pink>import</span> StyleTags <span data-pink>from</span> <span data-yellow>'./StyleTags'</span>;
+
+<span data-pink>export const</span> <span data-purple>metadata</span><span data-pink>:</span> <span data-blue data-em>Metadata</span> <span data-pink>=</span> {
+  <span data-grey>// meta data properties</span>
+};
+
+<span data-pink>type</span> <span data-blue data-em>RootLayoutProps</span> <span data-pink>=</span> <span data-blue data-em>Readonly</span>&lt;<span data-pink>{</span>
+  children<span data-pink>?:</span> <span data-blue data-em>React</span>.<span data-blue data-em>ReactNode</span>;
+<span data-pink>}</span>&gt;;
+
+<span data-pink>export default</span> <span data-green>RootLayout</span>(<span data-pink>{</span>
+  <span data-orange data-em>children</span>
+<span data-pink>}:</span> <span data-blue data-em>RootLayoutProps</span>) {
+  <span data-pink>return</span> (
+    &lt;<span data-pink>html</span> <span data-green>lang</span><span data-pink>=</span><span data-yellow>'en'</span>&gt;
+      &lt;<span data-pink>head</span>&gt;
+        &lt;<span data-blue>StyleTags</span> /&gt;
+      &lt;/<span data-pink>head</span>&gt;
+      &lt;<span data-pink>body</span>&gt;
+        {<span data-orange data-em>children</span>}
+      &lt;/<span data-pink>body</span>&gt;
+    &lt;/<span data-pink>html</span>&gt;
+  );
+}
+</code></pre>

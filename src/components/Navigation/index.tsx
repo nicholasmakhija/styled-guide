@@ -85,7 +85,7 @@ export const Navigation = ({
   return (
     <Nav id={NAV_ID} isOpen={isOpen}>
       <NavContent ref={navContentRef}>
-        {pageList.map(({ path, sections, title }, index) => (
+        {pageList.map(([path, { sections, title }], index) => (
           <NavList key={`${index}-${title}`}>
             <NavItem>
               <NavLink
@@ -96,12 +96,12 @@ export const Navigation = ({
               >{title}</NavLink>
             </NavItem>
 
-            {sections.map(({ id, text }) => (
+            {sections.map(({ id, title }) => id && (
               <NavItem key={id}>
                 <NavLink
                   href={`${path}#${id}`}
                   onClick={onClick}
-                >{text}</NavLink>
+                >{title}</NavLink>
               </NavItem>
             ))}
           </NavList>

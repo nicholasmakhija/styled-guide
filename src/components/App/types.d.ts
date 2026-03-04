@@ -1,11 +1,10 @@
 type Section = {
   id: string;
-  text: string;
+  title: string;
+  content: string;
 };
 
 type Page = {
-  content: string;
-  path: string;
   title: string;
   sections: Section[];
 };
