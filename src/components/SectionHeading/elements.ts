@@ -23,15 +23,19 @@ export const SectionHeadingButton = styled
     }
   });
 
+const toggleTipSize = 82;
+
 export const SectionHeadingTooltip = styled.span<SectionHeadingTooltipProps>({
   ...boxShadowBorder(2, CSS_VARS.BORDER),
   position: 'absolute',
   top: '-100%',
-  left: '-50%',
-  transform: 'translateX(50%)',
+  left: '50%',
+  width: asRem(toggleTipSize),
+  marginLeft: asRem((toggleTipSize / 2) * -1),
   padding: `0 ${asRem(4)}`,
   borderRadius: asRem(4),
   background: CSS_VARS.BACKGROUND.TOOLTIP,
+  whiteSpace: 'nowrap',
   color: CSS_VARS.COLOUR.TOOLTIP,
   fontSize: asRem(12),
   opacity: 0,
@@ -49,7 +53,6 @@ export const SectionHeadingText = styled.h2<SectionHeadingTextProps>({
 
 export const SectionHeadingAction = styled.div({
   position: 'relative',
-  minWidth: asRem(120),
   margin: `0 0 0 ${asRem(4)}`,
   transition: '0.2s ease-out',
   [breakpoints.up.lg]: {
