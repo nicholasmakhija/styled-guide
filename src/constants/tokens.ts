@@ -8,6 +8,9 @@ const TOKENS = {
       'rgb(247, 247, 247)',
       'rgb(22, 26, 29)'
     ],
+    TOOLTIP: [
+      'rgb(255, 255, 255)'
+    ],
     TABLE: [
       'rgb(247, 247, 247, 0.7)',
       'rgb(22, 26, 29, 0.4)'
@@ -30,6 +33,9 @@ const TOKENS = {
     CONTENT: [
       '#1c1c1c',
       '#e8e8e8'
+    ],
+    TOOLTIP: [
+      '#1c1c1c'
     ],
     CODE: ['#f5f5f4']
   },

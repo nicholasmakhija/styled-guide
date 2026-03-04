@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { throwError } from '@utils/get-resource';
 import {
   SectionHeadingRoot,
+  SectionHeadingAction,
   SectionHeadingText,
+  SectionHeadingTooltip,
   SectionHeadingButton
 } from './elements';
 
@@ -13,12 +15,9 @@ function copyToClipboard(id: string) {
     ? href.replace(hash, '')
     : href;
 
-  navigator
+  return navigator
     .clipboard
     .writeText(`${text}#${id}`)
-    .then(() => {
-      // TODO: setState of toggletip to hide after 500ms?
-    })
     .catch(throwError);
 }
 
@@ -26,17 +25,30 @@ export const SectionHeading = ({
   id,
   title
 }: SectionHeadingProps) => {
+  const [isVisible, setIsVisible] = useState(false);
+
   const clickHandler = () => {
-    copyToClipboard(id);
+    copyToClipboard(id).then(() => {
+      setIsVisible(true);
+
+      setTimeout(() => {
+        setIsVisible(false);
+      }, 1500);
+    });
   };
 
   return (
     <SectionHeadingRoot>
       <SectionHeadingText {...(id && { id })}>{title}</SectionHeadingText>
       {id && (
-        <SectionHeadingButton onClick={clickHandler}>
-          #
-        </SectionHeadingButton>
+        <SectionHeadingAction>
+          <SectionHeadingTooltip isVisible={isVisible}>
+            Link copied!
+          </SectionHeadingTooltip>
+          <SectionHeadingButton onClick={clickHandler}>
+            #
+          </SectionHeadingButton>
+        </SectionHeadingAction>
       )}
     </SectionHeadingRoot>
   );
