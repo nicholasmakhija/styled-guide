@@ -42,12 +42,11 @@ export const SectionHeading = ({
       <SectionHeadingText {...(id && { id })}>{title}</SectionHeadingText>
       {id && (
         <SectionHeadingAction>
-          <SectionHeadingTooltip
-            aria-hidden={true}
-            isVisible={isVisible}
-          >
-            Link copied!
-          </SectionHeadingTooltip>
+          {isVisible && (
+            <SectionHeadingTooltip aria-hidden={true}>
+              Link copied!
+            </SectionHeadingTooltip>
+          )}
           <SectionHeadingButton
             aria-label={`Copy link to ${title}`}
             onClick={clickHandler}

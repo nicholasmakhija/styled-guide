@@ -14,7 +14,6 @@ import {
   OUTLINE_ZERO,
   POSITION_ABSOLUTE,
   POSITION_RELATIVE,
-  TRANSITION_EASE_OUT,
   VISIBILITY_HIDDEN,
   VISIBILITY_VISIBLE
 } from '@constants';
@@ -32,26 +31,41 @@ export const SectionHeadingButton = styled
     }
   });
 
-const toggleTipSize = 82;
+const duration = '0.2s';
+const easingFunction = 'ease-out';
 
-export const SectionHeadingTooltip = styled.span<SectionHeadingTooltipProps>({
-  ...BOX,
-  ...POSITION_ABSOLUTE,
-  ...TRANSITION_EASE_OUT,
-  top: '-100%',
-  left: '50%',
-  width: asRem(toggleTipSize),
-  marginLeft: asRem((toggleTipSize / 2) * -1),
-  background: CSS_VARS.BACKGROUND.TOOLTIP,
-  whiteSpace: 'nowrap',
-  color: CSS_VARS.COLOUR.TOOLTIP,
-  fontSize: asRem(12),
-  opacity: 0,
-  [style.prop('isVisible')]: {
-    top: `calc(-100% - ${asRem(4)})`,
-    opacity: 1
+const tooltipSize = 82;
+const tooltipPositionTop = `calc(-100% - ${asRem(4)})`;
+const tooltipAnimationName = 'fade-in-up';
+
+export const SectionHeadingTooltip = styled
+  .span<SectionHeadingTooltipProps>({
+    ...BOX,
+    ...POSITION_ABSOLUTE,
+    top: tooltipPositionTop,
+    left: '50%',
+    width: asRem(tooltipSize),
+    marginLeft: asRem((tooltipSize / 2) * -1),
+    background: CSS_VARS.BACKGROUND.TOOLTIP,
+    whiteSpace: 'nowrap',
+    color: CSS_VARS.COLOUR.TOOLTIP,
+    fontSize: asRem(12),
+
+    /* @keyframes duration | easing-function | delay | name */
+    animation: `${duration} ${easingFunction} 0s ${tooltipAnimationName}`
+  })
+  .withCSS(`
+  @keyframes ${tooltipAnimationName} {
+    0% {
+      opacity: 0;
+      top: -100%;
+    }
+    100% {
+      opacity: 1;
+      top: ${tooltipPositionTop}
+    }
   }
-});
+`);
 
 export const SectionHeadingText = styled.h2<SectionHeadingTextProps>({
   ...MARGIN_ZERO,
@@ -60,8 +74,8 @@ export const SectionHeadingText = styled.h2<SectionHeadingTextProps>({
 
 export const SectionHeadingAction = styled.div({
   ...POSITION_RELATIVE,
-  ...TRANSITION_EASE_OUT,
   margin: `0 0 0 ${asRem(4)}`,
+  transition: `${duration} ${easingFunction}`,
   [breakpoints.up.lg]: {
     ...VISIBILITY_HIDDEN,
     opacity: 0,

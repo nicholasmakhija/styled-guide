@@ -64,10 +64,6 @@ export const TRANSITION_CUBIC_BEZIER = {
   transition: '0.3s cubic-bezier(0.2, 0, 0, 1)'
 };
 
-export const TRANSITION_EASE_OUT = {
-  transition: '0.2s ease-out'
-};
-
 export const VERTICAL_ALIGN_TOP = {
   verticalAlign: 'top'
 };
