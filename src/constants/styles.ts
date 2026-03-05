@@ -3,6 +3,7 @@ import { style } from '@styled';
 import { asRem } from '@utils/as-rem';
 import { boxShadowBorder } from '@utils/box-shadow-border';
 import { contentParadigm } from '@utils/content-paradigm';
+import { focusVisible } from '@utils/focus-visible';
 import { CONTENT_SPACER } from './sizes';
 import { CSS_VARS } from './tokens';
 
@@ -30,10 +31,6 @@ export const LEFT_ZERO = {
 
 export const MARGIN_ZERO = {
   margin: 0 as Zero
-};
-
-export const OUTLINE_ZERO = {
-  outline: 0 as Zero
 };
 
 export const OVERFLOW_HIDDEN = {
@@ -87,12 +84,11 @@ export const ANCHOR = {
     style.hover,
     style.focusVisible
   )]: TEXT_DECORATION_NONE,
-  [style.focusVisible]: {
-    ...OUTLINE_ZERO,
+  ...focusVisible({
     ...boxShadowBorder(4, CSS_VARS.ACCENT),
     background: CSS_VARS.ACCENT,
     color: CSS_VARS.COLOUR.CONTENT
-  }
+  })
 };
 
 export const BOX = {

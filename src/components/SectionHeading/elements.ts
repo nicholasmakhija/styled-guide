@@ -4,6 +4,7 @@ import { GenericIconSize, GenericButtonClears } from '@ui/Generics';
 import {
   asRem,
   breakpoints,
+  focusVisible,
   headingWithScrollMargin,
   typography
 } from '@utils';
@@ -11,7 +12,6 @@ import {
   BOX,
   CSS_VARS,
   MARGIN_ZERO,
-  OUTLINE_ZERO,
   POSITION_ABSOLUTE,
   POSITION_RELATIVE,
   VISIBILITY_HIDDEN,
@@ -22,13 +22,12 @@ export const SectionHeadingButton = styled
   .button<SectionHeadingButtonProps>()
   .extend(GenericIconSize, GenericButtonClears, {
     ...typography(24, 32),
-    padding: 0,
-    color: CSS_VARS.ACCENT,
-    [style.focusVisible]: {
-      ...OUTLINE_ZERO,
+    ...focusVisible({
       background: CSS_VARS.ACCENT,
       color: CSS_VARS.COLOUR.CONTENT
-    }
+    }),
+    padding: 0,
+    color: CSS_VARS.ACCENT
   });
 
 const duration = '0.2s';

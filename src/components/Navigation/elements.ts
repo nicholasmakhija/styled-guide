@@ -3,6 +3,7 @@ import styled, { style } from '@styled';
 import {
   asRem,
   breakpoints,
+  focusVisible,
   typography
 } from '@utils';
 import {
@@ -17,7 +18,6 @@ import {
   MARGIN_ZERO,
   NAV_LINK_PADDING,
   NAV_WIDTH,
-  OUTLINE_ZERO,
   OVERFLOW_HIDDEN,
   POSITION_ABSOLUTE,
   POSITION_RELATIVE,
@@ -118,14 +118,12 @@ export const NavLink = styled.a<NavLinkProps>({
   ...notHoverAndFocus({
     background: CSS_VARS.ACCENT
   }),
+  ...focusVisible(),
   padding: asRem(NAV_LINK_PADDING),
   color: CSS_VARS.COLOUR.CONTENT,
   cursor: 'pointer',
   [style.hover]: {
     color: CSS_VARS.ACCENT
-  },
-  [style.focusVisible]: {
-    ...OUTLINE_ZERO
   },
   [style.prop('isTitle')]: {
     ...typography(24, 32),

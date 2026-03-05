@@ -4,7 +4,8 @@ import { GenericIconSize, GenericButtonClears } from '@ui/Generics';
 import {
   asRem,
   boxShadowBorder,
-  breakpoints
+  breakpoints,
+  focusVisible
 } from '@utils';
 import {
   CONTENT_SPACER,
@@ -15,7 +16,6 @@ import {
   GUTTER_WIDTH,
   HEADER_HEIGHT,
   NAV_WIDTH,
-  OUTLINE_ZERO,
   OVERFLOW_HIDDEN,
   POSITION_ABSOLUTE,
   POSITION_RELATIVE,
@@ -61,14 +61,13 @@ const HeaderAction = styled
   .extend(GenericIconSize, {
     ...DISPLAY_INLINE_BLOCK,
     ...TRANSITION_CUBIC_BEZIER,
+    ...focusVisible({
+      ...boxShadowBorder(4, CSS_VARS.ACCENT)
+    }),
     padding: asRem(4),
     textAlign: 'center',
     verticalAlign: 'middle',
     color: CSS_VARS.COLOUR.CONTENT,
-    [style.focusVisible]: {
-      ...OUTLINE_ZERO,
-      ...boxShadowBorder(4, CSS_VARS.ACCENT)
-    },
     [style.not(style.firstChild)]: {
       marginLeft: asRem(16)
     },
