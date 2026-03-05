@@ -61,9 +61,7 @@ const HeaderAction = styled
   .extend(GenericIconSize, {
     ...DISPLAY_INLINE_BLOCK,
     ...TRANSITION_CUBIC_BEZIER,
-    ...focusVisible({
-      ...boxShadowBorder(4, CSS_VARS.ACCENT)
-    }),
+    ...focusVisible(boxShadowBorder(4, CSS_VARS.ACCENT)),
     padding: asRem(4),
     textAlign: 'center',
     verticalAlign: 'middle',

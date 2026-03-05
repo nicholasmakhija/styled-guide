@@ -102,7 +102,7 @@ export const Router = ({
         onClick={clickHandler}
       />
 
-      <Main>
+      <Main ref={mainRef}>
         <Title>{title}</Title>
 
         {sections.map(({ title, id, content }, index) => (
