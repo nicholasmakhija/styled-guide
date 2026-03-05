@@ -3,21 +3,30 @@ import styled, { style } from '@styled';
 import { GenericIconSize, GenericButtonClears } from '@ui/Generics';
 import {
   asRem,
-  boxShadowBorder,
   breakpoints,
   headingWithScrollMargin,
   typography
 } from '@utils';
-import { CSS_VARS } from '@constants/tokens';
+import {
+  BOX,
+  CSS_VARS,
+  MARGIN_ZERO,
+  OUTLINE_ZERO,
+  POSITION_ABSOLUTE,
+  POSITION_RELATIVE,
+  TRANSITION_EASE_OUT,
+  VISIBILITY_HIDDEN,
+  VISIBILITY_VISIBLE
+} from '@constants';
 
 export const SectionHeadingButton = styled
   .button<SectionHeadingButtonProps>()
   .extend(GenericIconSize, GenericButtonClears, {
     ...typography(24, 32),
-
+    padding: 0,
     color: CSS_VARS.ACCENT,
-    [style.focus]: {
-      outline: 0,
+    [style.focusVisible]: {
+      ...OUTLINE_ZERO,
       background: CSS_VARS.ACCENT,
       color: CSS_VARS.COLOUR.CONTENT
     }
@@ -26,20 +35,18 @@ export const SectionHeadingButton = styled
 const toggleTipSize = 82;
 
 export const SectionHeadingTooltip = styled.span<SectionHeadingTooltipProps>({
-  ...boxShadowBorder(2, CSS_VARS.BORDER),
-  position: 'absolute',
+  ...BOX,
+  ...POSITION_ABSOLUTE,
+  ...TRANSITION_EASE_OUT,
   top: '-100%',
   left: '50%',
   width: asRem(toggleTipSize),
   marginLeft: asRem((toggleTipSize / 2) * -1),
-  padding: `0 ${asRem(4)}`,
-  borderRadius: asRem(4),
   background: CSS_VARS.BACKGROUND.TOOLTIP,
   whiteSpace: 'nowrap',
   color: CSS_VARS.COLOUR.TOOLTIP,
   fontSize: asRem(12),
   opacity: 0,
-  transition: '0.2s ease-out',
   [style.prop('isVisible')]: {
     top: `calc(-100% - ${asRem(4)})`,
     opacity: 1
@@ -47,31 +54,31 @@ export const SectionHeadingTooltip = styled.span<SectionHeadingTooltipProps>({
 });
 
 export const SectionHeadingText = styled.h2<SectionHeadingTextProps>({
-  ...headingWithScrollMargin(24, 32),
-  margin: 0
+  ...MARGIN_ZERO,
+  ...headingWithScrollMargin(24, 32)
 });
 
 export const SectionHeadingAction = styled.div({
-  position: 'relative',
+  ...POSITION_RELATIVE,
+  ...TRANSITION_EASE_OUT,
   margin: `0 0 0 ${asRem(4)}`,
-  transition: '0.2s ease-out',
   [breakpoints.up.lg]: {
+    ...VISIBILITY_HIDDEN,
     opacity: 0,
-    marginLeft: 0,
-    visibility: 'hidden'
+    marginLeft: 0
   }
 });
 
 export const SectionHeadingRoot = styled.div({
+  ...POSITION_RELATIVE,
   display: 'flex',
   alignItems: 'center',
-  position: 'relative',
   [breakpoints.up.lg]: {
     [style.hover]: {
       [style.selector(SectionHeadingAction)]: {
+        ...VISIBILITY_VISIBLE,
         opacity: 1,
-        marginLeft: asRem(4),
-        visibility: 'visible'
+        marginLeft: asRem(4)
       }
     }
   }

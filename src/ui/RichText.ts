@@ -9,11 +9,18 @@ import {
 } from '@utils';
 import {
   ANCHOR,
+  BACKGROUND_TRANSPARENT,
   BORDER_SIZE,
+  BORDER_ZERO,
   BREAKPOINTS,
+  BOX,
   CHILD_PARADIGM,
   CONTENT_SPACER,
-  CSS_VARS
+  CSS_VARS,
+  DISPLAY_BLOCK,
+  MARGIN_ZERO,
+  OVERFLOW_HIDDEN,
+  VERTICAL_ALIGN_TOP
 } from '@constants';
 
 import type { CSSProperties } from '@styled';
@@ -64,11 +71,13 @@ export const RichText = styled.div<RichTextProps>({
       inset ${asRem(4)} 0 0 0 ${CSS_VARS.ACCENT}
     `,
     [style.selector('> strong')]: {
-      display: 'block',
+      ...DISPLAY_BLOCK,
       color: CSS_VARS.ACCENT
     }
   },
   [style.selector('code')]: {
+    ...BOX,
+    ...OVERFLOW_HIDDEN,
     ...boxShadowBorder(2, CSS_VARS.BORDER),
     ...typography(14, 20),
     ...dataColor('blue', '#96dfef'), // type, jsx, {}
@@ -79,10 +88,7 @@ export const RichText = styled.div<RichTextProps>({
     ...dataColor('purple', '#bf9eee'), // variable, number
     ...dataColor('white', CSS_VARS.COLOUR.CODE), // base
     ...dataColor('yellow', '#e7ee98'), // string
-    padding: `0 ${asRem(4)}`,
-    borderRadius: asRem(4),
     background: CSS_VARS.BACKGROUND.CODE,
-    overflow: 'hidden',
     [dataSelector('em')]: {
       fontStyle: 'italic'
     }
@@ -93,21 +99,21 @@ export const RichText = styled.div<RichTextProps>({
     color: CSS_VARS.COLOUR.CODE,
     whiteSpace: 'pre',
     [style.selector('> code')]: {
+      ...BACKGROUND_TRANSPARENT,
+      ...DISPLAY_BLOCK,
+      ...OVERFLOW_HIDDEN,
       padding: `${asRem(16)} 0`,
       borderRadius: 0,
-      background: 'transparent',
       boxShadow: 'none',
-      overflow: 'hidden',
       overflowX: 'auto',
-      display: 'block',
       whiteSpace: 'pre'
     }
   },
   [style.selector('table')]: {
-    margin: 0,
+    ...BORDER_ZERO,
+    ...MARGIN_ZERO,
+    ...VERTICAL_ALIGN_TOP,
     padding: 0,
-    border: 0,
-    verticalAlign: 'top',
     tableLayout: 'auto',
     borderCollapse: 'collapse',
     borderSpacing: 0,
@@ -115,9 +121,9 @@ export const RichText = styled.div<RichTextProps>({
     wordBreak: 'normal',
     whiteSpace: 'nowrap',
     [style.selector('thead', 'tbody', 'tr')]: {
-      margin: 0,
-      border: 0,
-      verticalAlign: 'top'
+      ...BORDER_ZERO,
+      ...MARGIN_ZERO,
+      ...VERTICAL_ALIGN_TOP
     },
     [style.selector('tbody tr')]: {
       borderTop: `${asRem(BORDER_SIZE)} solid ${CSS_VARS.BORDER}`
@@ -127,9 +133,9 @@ export const RichText = styled.div<RichTextProps>({
       fontWeight: 'bold'
     },
     [style.selector('th', 'td')]: {
-      margin: 0,
-      padding: `${asRem(12)} ${asRem(8)}`,
-      border: 0
+      ...BORDER_ZERO,
+      ...MARGIN_ZERO,
+      padding: `${asRem(12)} ${asRem(8)}`
     },
     [dataSelector('highlight')]: {
       color: 'rgb(79, 159, 207)'
@@ -141,7 +147,7 @@ export const RichText = styled.div<RichTextProps>({
     boxShadow:
       'inset ' + boxShadowBorder(BORDER_SIZE, CSS_VARS.BORDER).boxShadow,
     [style.selector('> div')]: {
-      overflow: 'hidden',
+      ...OVERFLOW_HIDDEN,
       overflowX: 'auto'
     }
   }

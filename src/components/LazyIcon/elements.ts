@@ -2,18 +2,19 @@ import styled, { style } from '@styled';
 
 import { asRem } from '@utils/as-rem';
 import { CSS_VARS } from '@constants/tokens';
+import { DISPLAY_INLINE_BLOCK, OVERFLOW_HIDDEN } from '@constants/styles';
 
 const shimmer = 'shimmer';
 
 export const Icon = styled
   .svg<IconProps>({
-    display: 'inline-block',
+    ...DISPLAY_INLINE_BLOCK,
     stroke: 'transparent',
     fill: 'currentColor',
     pointerEvents: 'none',
     cursor: 'inherit',
     [style.not(':root')]: {
-      overflow: 'hidden'
+      ...OVERFLOW_HIDDEN
     },
     [style.empty]: {
       backgroundColor: CSS_VARS.SKELETON,

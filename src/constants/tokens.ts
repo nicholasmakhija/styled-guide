@@ -1,15 +1,23 @@
+const BACKGROUND_PRIMARY_LIGHT = 'rgb(255, 255, 255)';
+const BACKGROUND_PRIMARY_DARK = 'rgb(29, 33, 37)';
+const BACKGROUND_SECONDARY_LIGHT = 'rgb(247, 247, 247)';
+const BACKGROUND_SECONDARY_DARK = 'rgb(22, 26, 29)';
+const CONTENT_PRIMARY_LIGHT = '#1c1c1c';
+const CONTENT_PRIMARY_DARK = '#e8e8e8';
+
 const TOKENS = {
   BACKGROUND: {
     PRIMARY: [
-      'rgb(255, 255, 255)',
-      'rgb(29, 33, 37)'
+      BACKGROUND_PRIMARY_LIGHT,
+      BACKGROUND_PRIMARY_DARK
     ],
     SECONDARY: [
-      'rgb(247, 247, 247)',
-      'rgb(22, 26, 29)'
+      BACKGROUND_SECONDARY_LIGHT,
+      BACKGROUND_SECONDARY_DARK
     ],
     TOOLTIP: [
-      'rgb(255, 255, 255)'
+      'rgb(29, 33, 37, 0.9)', // BACKGROUND.PRIMARY.DARK with alpha
+      BACKGROUND_PRIMARY_LIGHT
     ],
     TABLE: [
       'rgb(247, 247, 247, 0.7)',
@@ -20,8 +28,8 @@ const TOKENS = {
       'rgba(29, 33, 37, 0.8)'
     ],
     FOOTER: [
-      'rgb(247, 247, 247)', // BACKGROUND.SECONDARY.LIGHT
-      'rgb(29, 33, 37)' // BACKGROUND.PRIMARY.DARK
+      BACKGROUND_SECONDARY_LIGHT,
+      BACKGROUND_PRIMARY_DARK
     ],
     PRE: ['rgb(45, 52, 64)'],
     CODE: [
@@ -31,11 +39,12 @@ const TOKENS = {
   },
   COLOUR: {
     CONTENT: [
-      '#1c1c1c',
-      '#e8e8e8'
+      CONTENT_PRIMARY_LIGHT,
+      CONTENT_PRIMARY_DARK
     ],
     TOOLTIP: [
-      '#1c1c1c'
+      CONTENT_PRIMARY_DARK,
+      CONTENT_PRIMARY_LIGHT
     ],
     CODE: ['#f5f5f4']
   },

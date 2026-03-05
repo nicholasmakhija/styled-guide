@@ -7,10 +7,13 @@ type SectionHeadingProps = Omit<Section, 'content'>;
 
 type SectionHeadingTooltipProps = {
   children?: React.ReactNode;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  'aria-hidden'?: boolean;
   isVisible?: boolean;
 };
 
 type SectionHeadingButtonProps = {
   children?: React.ReactNode;
+  'aria-label'?: string;
   onClick?: () => void;
 };

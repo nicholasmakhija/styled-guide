@@ -4,10 +4,12 @@ import { Container } from '@ui/Container';
 import { asRem, breakpoints } from '@utils';
 import {
   ANCHOR,
+  BACKGROUND_TRANSPARENT,
   BORDER_SIZE,
   CSS_VARS,
   GUTTER_WIDTH,
-  NAV_WIDTH
+  NAV_WIDTH,
+  POSITION_RELATIVE
 } from '@constants';
 
 const boxShadowBorderTop = {
@@ -15,12 +17,12 @@ const boxShadowBorderTop = {
 };
 
 export const FooterRoot = styled.footer({
+  ...POSITION_RELATIVE,
   ...boxShadowBorderTop,
-  position: 'relative',
   background: CSS_VARS.BACKGROUND.FOOTER,
   [breakpoints.up.lg]: {
-    boxShadow: 'none',
-    background: 'transparent'
+    ...BACKGROUND_TRANSPARENT,
+    boxShadow: 'none'
   }
 });
 

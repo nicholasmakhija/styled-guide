@@ -6,43 +6,55 @@ import {
   typography
 } from '@utils';
 import {
+  BACKGROUND_TRANSPARENT,
   BORDER_SIZE,
   CONTENT_SPACER,
   CSS_VARS,
-  CUBIC_BEZIER_TRANSITION,
+  DISPLAY_INLINE_BLOCK,
+  TRANSITION_CUBIC_BEZIER,
   HEADER_HEIGHT,
+  LEFT_ZERO,
+  MARGIN_ZERO,
   NAV_LINK_PADDING,
-  NAV_WIDTH
+  NAV_WIDTH,
+  OUTLINE_ZERO,
+  OVERFLOW_HIDDEN,
+  POSITION_ABSOLUTE,
+  POSITION_RELATIVE,
+  TEXT_DECORATION_NONE,
+  TOP_ZERO,
+  VISIBILITY_HIDDEN,
+  VISIBILITY_VISIBLE
 } from '@constants';
 
 import type { CSSProperties } from '@styled';
 
 export const Nav = styled.nav<NavProps>({
-  ...CUBIC_BEZIER_TRANSITION,
+  ...TRANSITION_CUBIC_BEZIER,
+  ...VISIBILITY_HIDDEN,
   position: 'fixed',
   top: asRem(HEADER_HEIGHT),
   left: asRem(-NAV_WIDTH),
   width: asRem(NAV_WIDTH),
   height: '100%',
-  visibility: 'hidden',
   textAlign: 'right',
   [breakpoints.up.lg]: {
-    left: 'auto',
-    visibility: 'visible'
+    ...VISIBILITY_VISIBLE,
+    left: 'auto'
   },
   [style.prop('isOpen')]: {
     [breakpoints.down.lg]: {
+      ...LEFT_ZERO,
+      ...VISIBILITY_VISIBLE,
       zIndex: 2,
-      left: 0,
-      visibility: 'visible',
       [style.before]: {
-        ...CUBIC_BEZIER_TRANSITION,
+        ...LEFT_ZERO,
+        ...TRANSITION_CUBIC_BEZIER,
+        ...TOP_ZERO,
         content: '',
         position: 'fixed',
-        top: 0,
         right: 0,
         bottom: 0,
-        left: 0,
         background: 'rgba(0, 0, 0, 0.6)'
       }
     }
@@ -51,26 +63,26 @@ export const Nav = styled.nav<NavProps>({
 
 export const NavContent = styled
   .div<NavContentProps>({
-    position: 'relative',
+    ...OVERFLOW_HIDDEN,
+    ...POSITION_RELATIVE,
     height: '100%',
     paddingTop: asRem(CONTENT_SPACER),
     paddingBottom: asRem(72),
-    overflow: 'hidden',
     overflowY: 'auto',
     backgroundColor: CSS_VARS.BACKGROUND.PRIMARY
   })
   .withRef();
 
 export const NavList = styled.ul({
-  position: 'relative',
+  ...MARGIN_ZERO,
+  ...POSITION_RELATIVE,
   listStyle: 'none',
-  margin: 0,
   padding: `0 ${asRem(CONTENT_SPACER)}`,
   [style.after]: {
     [breakpoints.up.lg]: {
+      ...POSITION_ABSOLUTE,
+      ...TOP_ZERO,
       content: '',
-      position: 'absolute',
-      top: 0,
       right: 0,
       width: asRem(BORDER_SIZE),
       height: '100%',
@@ -80,7 +92,7 @@ export const NavList = styled.ul({
 });
 
 export const NavItem = styled.li({
-  margin: 0,
+  ...MARGIN_ZERO,
   padding: `0 0 ${asRem(4)}`,
   [style.or(
     style.firstChild,
@@ -93,41 +105,41 @@ export const NavItem = styled.li({
 const notHoverAndFocus = (styles: CSSProperties): CSSProperties => ({
   [style.and(
     style.not(style.hover),
-    style.focus
+    style.focusVisible
   )]: styles
 });
 
 export const NavLink = styled.a<NavLinkProps>({
-  ...CUBIC_BEZIER_TRANSITION,
+  ...BACKGROUND_TRANSPARENT,
+  ...DISPLAY_INLINE_BLOCK,
+  ...TRANSITION_CUBIC_BEZIER,
+  ...POSITION_RELATIVE,
+  ...TEXT_DECORATION_NONE,
   ...notHoverAndFocus({
     background: CSS_VARS.ACCENT
   }),
-  position: 'relative',
-  display: 'inline-block',
   padding: asRem(NAV_LINK_PADDING),
-  textDecoration: 'none',
-  background: 'transparent',
   color: CSS_VARS.COLOUR.CONTENT,
   cursor: 'pointer',
   [style.hover]: {
     color: CSS_VARS.ACCENT
   },
-  [style.focus]: {
-    outline: 0
+  [style.focusVisible]: {
+    ...OUTLINE_ZERO
   },
   [style.prop('isTitle')]: {
     ...typography(24, 32),
     ...notHoverAndFocus({
-      background: 'none',
+      ...BACKGROUND_TRANSPARENT,
       [style.after]: {
         width: asRem(12)
       }
     }),
     fontWeight: 'bold',
     [style.after]: {
-      ...CUBIC_BEZIER_TRANSITION,
+      ...TRANSITION_CUBIC_BEZIER,
+      ...POSITION_ABSOLUTE,
       content: '',
-      position: 'absolute',
       right: asRem(-CONTENT_SPACER),
       width: 0,
       height: asRem(32),

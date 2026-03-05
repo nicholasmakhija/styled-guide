@@ -9,22 +9,30 @@ import {
 import {
   CONTENT_SPACER,
   CSS_VARS,
-  CUBIC_BEZIER_TRANSITION,
+  DISPLAY_BLOCK,
+  DISPLAY_INLINE_BLOCK,
+  TRANSITION_CUBIC_BEZIER,
   GUTTER_WIDTH,
   HEADER_HEIGHT,
-  NAV_WIDTH
+  NAV_WIDTH,
+  OUTLINE_ZERO,
+  OVERFLOW_HIDDEN,
+  POSITION_ABSOLUTE,
+  POSITION_RELATIVE,
+  TEXT_DECORATION_NONE,
+  TOP_ZERO
 } from '@constants';
 
 export const HeaderRoot = styled.header({
-  position: 'relative',
+  ...POSITION_RELATIVE,
   zIndex: 3,
   height: asRem(HEADER_HEIGHT)
 });
 
 export const HeaderSticky = styled.div({
+  ...TOP_ZERO,
   position: 'fixed',
   zIndex: 2,
-  top: 0,
   padding: `${asRem(14)} 0`,
   width: '100%',
   height: asRem(HEADER_HEIGHT),
@@ -51,22 +59,22 @@ export const HeaderActions = styled.div();
 const HeaderAction = styled
   .generic()
   .extend(GenericIconSize, {
-    ...CUBIC_BEZIER_TRANSITION,
+    ...DISPLAY_INLINE_BLOCK,
+    ...TRANSITION_CUBIC_BEZIER,
     padding: asRem(4),
-    display: 'inline-block',
     textAlign: 'center',
     verticalAlign: 'middle',
     color: CSS_VARS.COLOUR.CONTENT,
-    [style.focus]: {
-      ...boxShadowBorder(4, CSS_VARS.ACCENT),
-      outline: 0
+    [style.focusVisible]: {
+      ...OUTLINE_ZERO,
+      ...boxShadowBorder(4, CSS_VARS.ACCENT)
     },
     [style.not(style.firstChild)]: {
       marginLeft: asRem(16)
     },
     [style.prop('canHover')]: {
       [style.hover]: {
-        textDecoration: 'none',
+        ...TEXT_DECORATION_NONE,
         color: '#303846',
         backgroundColor: '#ebedf0'
       }
@@ -78,13 +86,11 @@ const HeaderAction = styled
 
 export const HeaderLink = styled
   .a<HeaderLinkProps>()
-  .extend(HeaderAction, {
-    textDecoration: 'none'
-  });
+  .extend(HeaderAction, TEXT_DECORATION_NONE);
 
 export const Line = styled.span({
-  position: 'absolute',
-  display: 'block',
+  ...DISPLAY_BLOCK,
+  ...POSITION_ABSOLUTE,
   width: `calc(100% - ${asRem(8)})`,
   height: asRem(2),
   borderRadius: asRem(1),
@@ -107,8 +113,8 @@ export const HeaderButton = styled
   .button<HeaderButtonProps>()
   .extend(HeaderAction, GenericButtonClears, {
     [style.prop('isToggle')]: {
-      position: 'relative',
-      overflow: 'hidden',
+      ...OVERFLOW_HIDDEN,
+      ...POSITION_RELATIVE,
       [breakpoints.up.lg]: {
         display: 'none'
       }
