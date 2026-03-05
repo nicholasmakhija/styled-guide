@@ -1,7 +1,11 @@
 import styled from '@styled';
 
 import { asRem } from '@utils/as-rem';
-import { BORDER_ZERO, MARGIN_ZERO } from '@constants/styles';
+import {
+  BACKGROUND_TRANSPARENT,
+  BORDER_ZERO,
+  MARGIN_ZERO
+} from '@constants/styles';
 import { ICON_SIZE } from '@constants/sizes';
 
 export const GenericIconSize = styled.generic({
@@ -11,8 +15,8 @@ export const GenericIconSize = styled.generic({
 });
 
 export const GenericButtonClears = styled.generic({
+  ...BACKGROUND_TRANSPARENT,
   ...BORDER_ZERO,
-  backgroundColor: 'transparent',
   appearance: 'none',
   cursor: 'pointer'
 });
