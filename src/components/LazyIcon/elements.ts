@@ -18,7 +18,7 @@ export const Icon = styled
     },
     [style.empty]: {
       backgroundColor: CSS_VARS.SKELETON,
-      animation: `${shimmer} 1.5s ease-in-out infinite`
+      animation: `1.2s ease-in-out ${shimmer} infinite`
     },
     [style.prop('width')]: (width: number) => ({
       width: asRem(width)

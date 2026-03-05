@@ -49,9 +49,7 @@ export const SectionHeadingTooltip = styled
     whiteSpace: 'nowrap',
     color: CSS_VARS.COLOUR.TOOLTIP,
     fontSize: asRem(12),
-
-    /* @keyframes duration | easing-function | delay | name */
-    animation: `${duration} ${easingFunction} 0s ${tooltipAnimationName}`
+    animation: `${duration} ${easingFunction} ${tooltipAnimationName}`
   })
   .withCSS(`
   @keyframes ${tooltipAnimationName} {
