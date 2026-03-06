@@ -12,14 +12,15 @@ import {
   CSS_VARS,
   DISPLAY_BLOCK,
   DISPLAY_INLINE_BLOCK,
-  TRANSITION_CUBIC_BEZIER,
   GUTTER_WIDTH,
   HEADER_HEIGHT,
+  ICON_SIZE,
   NAV_WIDTH,
   OVERFLOW_HIDDEN,
   POSITION_ABSOLUTE,
   POSITION_RELATIVE,
   TEXT_DECORATION_NONE,
+  TRANSITION_CUBIC_BEZIER,
   TOP_ZERO
 } from '@constants';
 
@@ -42,29 +43,31 @@ export const HeaderSticky = styled.div({
   boxShadow: `0 ${asRem(1)} ${asRem(2)} 0 ${CSS_VARS.BORDER}`
 });
 
-export const HeaderBrand = styled.div({
-  padding: `${asRem(4)} 0`,
-  color: CSS_VARS.ACCENT,
-  [breakpoints.up.lg]: {
-    marginLeft: asRem(-GUTTER_WIDTH),
-    paddingRight: asRem(CONTENT_SPACER),
-    paddingLeft: asRem(CONTENT_SPACER),
-    width: asRem(NAV_WIDTH),
-    textAlign: 'right'
-  }
-});
-
-export const HeaderActions = styled.div();
-
-const HeaderAction = styled
+const GenericHeaderItem = styled
   .generic()
   .extend(GenericIconSize, {
     ...DISPLAY_INLINE_BLOCK,
-    ...TRANSITION_CUBIC_BEZIER,
-    ...focusVisible(boxShadowBorder(4, CSS_VARS.ACCENT)),
     padding: asRem(4),
     textAlign: 'center',
-    verticalAlign: 'middle',
+    verticalAlign: 'middle'
+  });
+
+export const HeaderSymbol = styled
+  .div()
+  .extend(GenericHeaderItem, {
+    color: CSS_VARS.ACCENT,
+    [breakpoints.up.lg]: {
+      marginLeft: asRem(NAV_WIDTH - GUTTER_WIDTH - CONTENT_SPACER - ICON_SIZE)
+    }
+  });
+
+export const HeaderPane = styled.div();
+
+const GenericHeaderAction = styled
+  .generic()
+  .extend(GenericHeaderItem, {
+    ...TRANSITION_CUBIC_BEZIER,
+    ...focusVisible(boxShadowBorder(4, CSS_VARS.ACCENT)),
     color: CSS_VARS.COLOUR.CONTENT,
     [style.not(style.firstChild)]: {
       marginLeft: asRem(16)
@@ -83,7 +86,7 @@ const HeaderAction = styled
 
 export const HeaderLink = styled
   .a<HeaderLinkProps>()
-  .extend(HeaderAction, TEXT_DECORATION_NONE);
+  .extend(GenericHeaderAction, TEXT_DECORATION_NONE);
 
 export const Line = styled.span({
   ...DISPLAY_BLOCK,
@@ -108,7 +111,7 @@ export const Line = styled.span({
 
 export const HeaderButton = styled
   .button<HeaderButtonProps>()
-  .extend(HeaderAction, GenericButtonClears, {
+  .extend(GenericHeaderAction, GenericButtonClears, {
     [style.prop('isToggle')]: {
       ...OVERFLOW_HIDDEN,
       ...POSITION_RELATIVE,

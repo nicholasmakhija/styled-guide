@@ -1,15 +1,15 @@
 import React from 'react';
 
 import { LazyIcon } from '@components/LazyIcon';
+import { Logo } from '@components/Logo';
 import { Container } from '@ui/Container';
 import { HeaderThemeSwitcher } from './HeaderThemeSwitcher';
 import { HeaderHamburger } from './HeaderHamburger';
-import { Logo } from './Logo';
 import {
   HeaderRoot,
   HeaderSticky,
-  HeaderBrand,
-  HeaderActions,
+  HeaderSymbol,
+  HeaderPane,
   HeaderLink
 } from './elements';
 
@@ -19,11 +19,11 @@ export const Header = ({
   <HeaderRoot>
     <HeaderSticky>
       <Container flex="space-between">
-        <HeaderBrand>
+        <HeaderSymbol>
           <Logo />
-        </HeaderBrand>
+        </HeaderSymbol>
 
-        <HeaderActions>
+        <HeaderPane>
           <HeaderThemeSwitcher isDark={isDark} />
 
           <HeaderLink
@@ -38,7 +38,7 @@ export const Header = ({
           </HeaderLink>
 
           <HeaderHamburger />
-        </HeaderActions>
+        </HeaderPane>
       </Container>
     </HeaderSticky>
   </HeaderRoot>

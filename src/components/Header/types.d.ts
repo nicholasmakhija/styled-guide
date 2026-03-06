@@ -1,6 +1,6 @@
 type HeaderActionProps = {
-  'aria-label'?: string;
   children?: React.ReactNode;
+  'aria-label'?: string;
   canHover?: boolean;
   isRounded?: boolean;
 };
