@@ -4,8 +4,6 @@ interface Pipe<A, B> extends Fn<A, B> {
   then<C>(g: Fn<B, C>): Pipe<A, C>;
 }
 
-export type Wrapped<A, B> = Pipe<A, B>;
-
 export function pipe<A>(): Pipe<A, A> {
   function _pipe<A, B>(first: Fn<A, B>): Pipe<A, B> {
     return Object.assign(first, {
