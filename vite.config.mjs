@@ -24,6 +24,15 @@ const resolvePath = (pathToResolve) =>
   path.resolve(__dirname, `./${pathToResolve}`);
 
 /**
+ * @param  {...string} searchStrings 
+ * @returns {(str: string) => boolean}
+ */
+const includesAny = (...searchStrings) =>
+  (str) => searchStrings.some(
+    (chars) => str.includes(chars)
+  );
+
+/**
  * @returns {import('vite').Plugin}
  */
 const computedStyleReload = () => ({
@@ -49,7 +58,9 @@ const staticAssetReload = () => ({
   configureServer(server) {
     const { ws, watcher } = server;
     const fullReload = (file) => {
-      if (file.includes('asset') || file.includes('.html')) {
+      const shouldReload = includesAny('asset', '.html');
+
+      if (shouldReload(file)) {
         ws.send({ type: 'full-reload' });
       }
     };
@@ -69,11 +80,11 @@ const expressMiddleware = () => ({
   name: 'vite-plugin-express-middleware',
   configureServer(server) {
     const app = express();
-    const isIgnorePath = (url) => [
+    const isIgnorePath = includesAny(
       '.',
       '@vite',
       '@react-refresh'
-    ].some((item) => url.includes(item));
+    );
 
     app.get(/favicon-(.*)\.png$/, (req, res) => {
       res.sendFile(resolvePath(`src/assets${req.originalUrl}`));
