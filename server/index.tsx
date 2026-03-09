@@ -29,7 +29,7 @@ export function updateHTML(
     currentPage: data.currentPage
   });
 
-  const script = `
+  const scripts = `
   <script>var ${APP_DATA} = ${initialData};</script>
   <script>
     (function () {
@@ -46,7 +46,7 @@ export function updateHTML(
   `;
 
   const renderedHTML = source
-    .replace('<!--app-scripts-->', () => script)
+    .replace('<!--app-scripts-->', () => scripts)
     .replace('<!--app-styles-->', () => sheets)
     .replace('<!--app-html-->', () => html);
 
