@@ -46,7 +46,7 @@ export const SectionHeadingTooltip = styled
     width: asRem(tooltipSize),
     marginLeft: asRem((tooltipSize / 2) * -1),
     background: CSS_VARS.BACKGROUND.TOOLTIP,
-    whiteSpace: 'nowrap',
+    textAlign: 'center',
     color: CSS_VARS.COLOUR.TOOLTIP,
     fontSize: asRem(12),
     animation: `${duration} ${easingFunction} ${tooltipAnimationName}`
