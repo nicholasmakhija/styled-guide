@@ -24,11 +24,6 @@ type RichTextProps = {
   };
 };
 
-type Typography = {
-  fontSize: string;
-  lineHeight: string;
-};
-
 type BoxShadow = {
   boxShadow: string;
 };
