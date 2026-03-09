@@ -5,8 +5,7 @@ import {
   asRem,
   breakpoints,
   focusVisible,
-  headingWithScrollMargin,
-  typography
+  withScrollMarginTop
 } from '@utils';
 import {
   BOX,
@@ -14,6 +13,7 @@ import {
   MARGIN_ZERO,
   POSITION_ABSOLUTE,
   POSITION_RELATIVE,
+  TYPOGRAPHY,
   VISIBILITY_HIDDEN,
   VISIBILITY_VISIBLE
 } from '@constants';
@@ -21,7 +21,7 @@ import {
 export const SectionHeadingButton = styled
   .button<SectionHeadingButtonProps>()
   .extend(GenericIconSize, GenericButtonClears, {
-    ...typography(24, 32),
+    ...TYPOGRAPHY.H2,
     ...focusVisible({
       background: CSS_VARS.ACCENT,
       color: CSS_VARS.COLOUR.CONTENT
@@ -41,6 +41,7 @@ export const SectionHeadingTooltip = styled
   .span<SectionHeadingTooltipProps>({
     ...BOX,
     ...POSITION_ABSOLUTE,
+    ...TYPOGRAPHY.TINY,
     top: tooltipPositionTop,
     left: '50%',
     width: asRem(tooltipSize),
@@ -48,7 +49,6 @@ export const SectionHeadingTooltip = styled
     background: CSS_VARS.BACKGROUND.TOOLTIP,
     textAlign: 'center',
     color: CSS_VARS.COLOUR.TOOLTIP,
-    fontSize: asRem(12),
     animation: `${duration} ${easingFunction} ${tooltipAnimationName}`
   })
   .withCSS(`
@@ -64,10 +64,12 @@ export const SectionHeadingTooltip = styled
   }
 `);
 
-export const SectionHeadingText = styled.h2<SectionHeadingTextProps>({
-  ...MARGIN_ZERO,
-  ...headingWithScrollMargin(24, 32)
-});
+export const SectionHeadingText = styled.h2<SectionHeadingTextProps>(
+  withScrollMarginTop({
+    ...MARGIN_ZERO,
+    ...TYPOGRAPHY.H2
+  })
+);
 
 export const SectionHeadingAction = styled.div({
   ...POSITION_RELATIVE,

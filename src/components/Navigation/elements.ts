@@ -3,8 +3,7 @@ import styled, { style } from '@styled';
 import {
   asRem,
   breakpoints,
-  focusVisible,
-  typography
+  focusVisible
 } from '@utils';
 import {
   BACKGROUND_TRANSPARENT,
@@ -21,6 +20,7 @@ import {
   POSITION_RELATIVE,
   TEXT_DECORATION_NONE,
   TOP_ZERO,
+  TYPOGRAPHY,
   TRANSITION_CUBIC_BEZIER,
   VISIBILITY_HIDDEN,
   VISIBILITY_VISIBLE
@@ -124,7 +124,7 @@ export const NavLink = styled.a<NavLinkProps>({
     color: CSS_VARS.ACCENT
   },
   [style.prop('isTitle')]: {
-    ...typography(24, 32),
+    ...TYPOGRAPHY.H2,
     ...notHoverAndFocus({
       ...BACKGROUND_TRANSPARENT,
       [style.after]: {

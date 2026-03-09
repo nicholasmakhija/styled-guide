@@ -9,7 +9,8 @@ import {
   CSS_VARS,
   GUTTER_WIDTH,
   NAV_WIDTH,
-  POSITION_RELATIVE
+  POSITION_RELATIVE,
+  TYPOGRAPHY
 } from '@constants';
 
 const boxShadowBorderTop = {
@@ -33,8 +34,8 @@ export const FooterContainer = Container.extend({
 });
 
 export const FooterContent = styled.div({
+  ...TYPOGRAPHY.SMALL,
   padding: `${asRem(12)} 0`,
-  fontSize: asRem(14),
   [breakpoints.up.lg]: {
     ...boxShadowBorderTop
   }

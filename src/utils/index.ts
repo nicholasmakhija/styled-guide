@@ -6,5 +6,5 @@ export * from './dispatch-custom-event';
 export * from './focus-visible';
 export * from './get-resource';
 export * from './is';
-export * from './typography';
 export * from './use-event-listener';
+export * from './with-scroll-margin-top';

@@ -1,9 +1,9 @@
 import styled from '@styled';
 
-import { contentParadigm, typography } from '@utils';
-import { CONTENT_SPACER } from '@constants';
+import { contentParadigm } from '@utils';
+import { CONTENT_SPACER, TYPOGRAPHY } from '@constants';
 
 export const Title = styled.h1({
-  ...contentParadigm(CONTENT_SPACER),
-  ...typography(32, 40)
+  ...TYPOGRAPHY.H1,
+  ...contentParadigm(CONTENT_SPACER)
 });

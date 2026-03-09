@@ -4,8 +4,7 @@ import {
   asRem,
   boxShadowBorder,
   breakpoints,
-  headingWithScrollMargin,
-  typography
+  withScrollMarginTop
 } from '@utils';
 import {
   ANCHOR,
@@ -20,6 +19,7 @@ import {
   DISPLAY_BLOCK,
   MARGIN_ZERO,
   OVERFLOW_HIDDEN,
+  TYPOGRAPHY,
   VERTICAL_ALIGN_TOP
 } from '@constants';
 
@@ -48,7 +48,7 @@ const asColumns = (
 
 export const RichText = styled.div<RichTextProps>({
   ...CHILD_PARADIGM,
-  [style.selector('h3')]: headingWithScrollMargin(18, 32),
+  [style.selector('h3')]: withScrollMarginTop(TYPOGRAPHY.H3),
   [style.selector('> ul')]: {
     paddingLeft: 0,
     // @ts-ignore
@@ -62,10 +62,10 @@ export const RichText = styled.div<RichTextProps>({
   },
   [style.selector('a')]: ANCHOR,
   [style.selector('blockquote')]: {
+    ...TYPOGRAPHY.SMALL,
     background: CSS_VARS.BACKGROUND.SECONDARY,
     padding: asRem(8),
     paddingLeft: asRem(CONTENT_SPACER),
-    fontSize: asRem(14),
     boxShadow: `
       0 ${asRem(BORDER_SIZE)} 0 0 ${CSS_VARS.BORDER},
       inset ${asRem(4)} 0 0 0 ${CSS_VARS.ACCENT}
@@ -78,8 +78,8 @@ export const RichText = styled.div<RichTextProps>({
   [style.selector('code')]: {
     ...BOX,
     ...OVERFLOW_HIDDEN,
+    ...TYPOGRAPHY.CODE,
     ...boxShadowBorder(2, CSS_VARS.BORDER),
-    ...typography(14, 20),
     ...dataColor('blue', '#96dfef'), // type, jsx, {}
     ...dataColor('green', '#61e884'), // function, {}
     ...dataColor('grey', '#697098'), // comment
