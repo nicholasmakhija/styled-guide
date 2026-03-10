@@ -1,12 +1,11 @@
 import styled from '@styled';
 
+import { GenericParadigm } from './Generics';
 import { asRem } from '@utils/as-rem';
-import {
-  CHILD_PARADIGM,
-  CONTENT_SPACER
-} from '@constants';
+import { CONTENT_SPACER } from '@constants';
 
-export const Section = styled.section({
-  ...CHILD_PARADIGM,
-  margin: `0 0 ${asRem(CONTENT_SPACER * 2)}`
-});
+export const Section = styled
+  .section()
+  .extend(GenericParadigm, {
+    margin: `0 0 ${asRem(CONTENT_SPACER * 2)}`
+  });

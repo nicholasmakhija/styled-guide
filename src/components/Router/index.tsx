@@ -92,7 +92,7 @@ export const Router = ({
     };
   });
 
-  const { title, sections } = pages[route.pathname];
+  const page = pages[route.pathname];
 
   return (
     <Container isFluid flex="start">
@@ -103,10 +103,11 @@ export const Router = ({
       />
 
       <Main ref={mainRef}>
-        <Title>{title}</Title>
-
-        {sections.map(({ title, id, content }, index) => (
+        {page.sections.map(({ title, id, content }, index) => (
           <Section key={`${index}-${title}`}>
+            {index == 0 && (
+              <Title>{page.title}</Title>
+            )}
             {title && (
               <SectionHeading id={id} title={title} />
             )}

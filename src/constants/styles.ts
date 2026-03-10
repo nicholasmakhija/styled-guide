@@ -4,9 +4,7 @@ import type { CSSProperties } from '@styled';
 
 import { asRem } from '@utils/as-rem';
 import { boxShadowBorder } from '@utils/box-shadow-border';
-import { contentParadigm } from '@utils/content-paradigm';
 import { focusVisible } from '@utils/focus-visible';
-import { CONTENT_SPACER } from './sizes';
 import { CSS_VARS } from './tokens';
 
 export const ANCHOR: CSSProperties = {
@@ -28,8 +26,4 @@ export const ANCHOR: CSSProperties = {
 export const BOX = {
   borderRadius: asRem(4),
   padding: `0 ${asRem(4)}`
-};
-
-export const CHILD_PARADIGM = {
-  [style.selector('> *')]: contentParadigm(CONTENT_SPACER)
 };

@@ -1,7 +1,7 @@
-import styled from '@styled';
+import styled, { style } from '@styled';
 
 import { asRem } from '@utils/as-rem';
-import { ICON_SIZE } from '@constants/sizes';
+import { CONTENT_SPACER, ICON_SIZE } from '@constants/sizes';
 
 export const GenericIconSize = styled.generic({
   margin: 0,
@@ -14,4 +14,13 @@ export const GenericButtonClears = styled.generic({
   appearance: 'none',
   background: 'transparent',
   cursor: 'pointer'
+});
+
+export const GenericParadigm = styled.generic({
+  [style.selector('> *')]: {
+    margin: `0 0 ${asRem(CONTENT_SPACER)}`,
+    [style.lastChild]: {
+      marginBottom: 0
+    }
+  }
 });
