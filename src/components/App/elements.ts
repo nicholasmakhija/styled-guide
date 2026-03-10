@@ -29,10 +29,10 @@ const rootDarkTheme = `
 const htmlAndBody = `
   body,
   html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    margin: 0;
+    width: 100%;
+    padding: 0;
   }
 `;
 
@@ -45,11 +45,11 @@ const html = `
 
 const body = `
   body {
+    background-color: ${CSS_VARS.BACKGROUND.PRIMARY};
+    font-family: Verdana, sans-serif;
     font-size: 16px;
     line-height: 24px;
-    font-family: Verdana, sans-serif;
     color: ${CSS_VARS.COLOUR.CONTENT};
-    background-color: ${CSS_VARS.BACKGROUND.PRIMARY};
   }
 `;
 

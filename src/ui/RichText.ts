@@ -8,19 +8,13 @@ import {
 } from '@utils';
 import {
   ANCHOR,
-  BACKGROUND_TRANSPARENT,
   BORDER_SIZE,
-  BORDER_ZERO,
   BREAKPOINTS,
   BOX,
   CHILD_PARADIGM,
   CONTENT_SPACER,
   CSS_VARS,
-  DISPLAY_BLOCK,
-  MARGIN_ZERO,
-  OVERFLOW_HIDDEN,
-  TYPOGRAPHY,
-  VERTICAL_ALIGN_TOP
+  TYPOGRAPHY
 } from '@constants';
 
 import type { CSSProperties } from '@styled';
@@ -63,21 +57,20 @@ export const RichText = styled.div<RichTextProps>({
   [style.selector('a')]: ANCHOR,
   [style.selector('blockquote')]: {
     ...TYPOGRAPHY.SMALL,
-    background: CSS_VARS.BACKGROUND.SECONDARY,
-    padding: asRem(8),
-    paddingLeft: asRem(CONTENT_SPACER),
     boxShadow: `
       0 ${asRem(BORDER_SIZE)} 0 0 ${CSS_VARS.BORDER},
       inset ${asRem(4)} 0 0 0 ${CSS_VARS.ACCENT}
     `,
+    padding: asRem(8),
+    paddingLeft: asRem(CONTENT_SPACER),
+    background: CSS_VARS.BACKGROUND.SECONDARY,
     [style.selector('> strong')]: {
-      ...DISPLAY_BLOCK,
+      display: 'block',
       color: CSS_VARS.ACCENT
     }
   },
   [style.selector('code')]: {
     ...BOX,
-    ...OVERFLOW_HIDDEN,
     ...TYPOGRAPHY.CODE,
     ...boxShadowBorder(2, CSS_VARS.BORDER),
     ...dataColor('blue', '#96dfef'), // type, jsx, {}
@@ -88,6 +81,7 @@ export const RichText = styled.div<RichTextProps>({
     ...dataColor('purple', '#bf9eee'), // variable, number
     ...dataColor('white', CSS_VARS.COLOUR.CODE), // base
     ...dataColor('yellow', '#e7ee98'), // string
+    overflow: 'hidden',
     background: CSS_VARS.BACKGROUND.CODE,
     [dataSelector('em')]: {
       fontStyle: 'italic'
@@ -96,45 +90,45 @@ export const RichText = styled.div<RichTextProps>({
   [style.selector('pre')]: {
     padding: `0 ${asRem(16)}`,
     background: CSS_VARS.BACKGROUND.PRE,
-    color: CSS_VARS.COLOUR.CODE,
     whiteSpace: 'pre',
+    color: CSS_VARS.COLOUR.CODE,
     [style.selector('> code')]: {
-      ...BACKGROUND_TRANSPARENT,
-      ...DISPLAY_BLOCK,
-      ...OVERFLOW_HIDDEN,
-      padding: `${asRem(16)} 0`,
-      borderRadius: 0,
-      boxShadow: 'none',
+      display: 'block',
+      overflow: 'hidden',
       overflowX: 'auto',
+      boxShadow: 'none',
+      borderRadius: 0,
+      padding: `${asRem(16)} 0`,
+      background: 'transparent',
       whiteSpace: 'pre'
     }
   },
   [style.selector('table')]: {
-    ...BORDER_ZERO,
-    ...MARGIN_ZERO,
-    ...VERTICAL_ALIGN_TOP,
-    padding: 0,
     tableLayout: 'auto',
+    verticalAlign: 'top',
+    margin: 0,
+    border: 0,
     borderCollapse: 'collapse',
     borderSpacing: 0,
     width: '100%',
-    wordBreak: 'normal',
+    padding: 0,
     whiteSpace: 'nowrap',
+    wordBreak: 'normal',
     [style.selector('thead', 'tbody', 'tr')]: {
-      ...BORDER_ZERO,
-      ...MARGIN_ZERO,
-      ...VERTICAL_ALIGN_TOP
+      verticalAlign: 'top',
+      border: 0,
+      margin: 0
     },
     [style.selector('tbody tr')]: {
       borderTop: `${asRem(BORDER_SIZE)} solid ${CSS_VARS.BORDER}`
     },
     [style.selector('th')]: {
-      textAlign: 'left',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      textAlign: 'left'
     },
     [style.selector('th', 'td')]: {
-      ...BORDER_ZERO,
-      ...MARGIN_ZERO,
+      margin: 0,
+      border: 0,
       padding: `${asRem(12)} ${asRem(8)}`
     },
     [dataSelector('highlight')]: {
@@ -142,12 +136,12 @@ export const RichText = styled.div<RichTextProps>({
     }
   },
   [dataSelector('table')]: {
-    padding: `0 ${asRem(8)}`,
-    background: CSS_VARS.BACKGROUND.TABLE,
     boxShadow:
       'inset ' + boxShadowBorder(BORDER_SIZE, CSS_VARS.BORDER).boxShadow,
+    padding: `0 ${asRem(8)}`,
+    background: CSS_VARS.BACKGROUND.TABLE,
     [style.selector('> div')]: {
-      ...OVERFLOW_HIDDEN,
+      overflow: 'hidden',
       overflowX: 'auto'
     }
   }

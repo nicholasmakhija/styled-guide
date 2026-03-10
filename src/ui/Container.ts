@@ -11,11 +11,11 @@ const CONTAINER_WIDTHS = {
 };
 
 export const Container = styled.div<ContainerProps>({
+  marginRight: 'auto',
+  marginLeft: 'auto',
   width: `${CONTAINER_WIDTHS.XS}%`,
   paddingRight: asRem(GUTTER_WIDTH),
   paddingLeft: asRem(GUTTER_WIDTH),
-  marginRight: 'auto',
-  marginLeft: 'auto',
   [breakpoints.up.md]: {
     maxWidth: asRem(CONTAINER_WIDTHS.MD)
   },

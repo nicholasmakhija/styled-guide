@@ -2,23 +2,22 @@ import styled, { style } from '@styled';
 
 import { asRem } from '@utils/as-rem';
 import { CSS_VARS } from '@constants/tokens';
-import { DISPLAY_INLINE_BLOCK, OVERFLOW_HIDDEN } from '@constants/styles';
 
 const shimmer = 'shimmer';
 
 export const Icon = styled
   .svg<IconProps>({
-    ...DISPLAY_INLINE_BLOCK,
+    display: 'inline-block',
+    cursor: 'inherit',
+    pointerEvents: 'none',
     stroke: 'transparent',
     fill: 'currentColor',
-    pointerEvents: 'none',
-    cursor: 'inherit',
     [style.not(':root')]: {
-      ...OVERFLOW_HIDDEN
+      overflow: 'hidden'
     },
     [style.empty]: {
-      backgroundColor: CSS_VARS.SKELETON,
-      animation: `1.2s ease-in-out ${shimmer} infinite`
+      animation: `1.2s ease-in-out ${shimmer} infinite`,
+      backgroundColor: CSS_VARS.SKELETON
     },
     [style.prop('width')]: (width: number) => ({
       width: asRem(width)

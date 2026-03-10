@@ -10,46 +10,39 @@ import {
 import {
   CONTENT_SPACER,
   CSS_VARS,
-  DISPLAY_BLOCK,
-  DISPLAY_INLINE_BLOCK,
+  CUBIC_BEZIER,
   GUTTER_WIDTH,
   HEADER_HEIGHT,
   ICON_SIZE,
-  NAV_WIDTH,
-  OVERFLOW_HIDDEN,
-  POSITION_ABSOLUTE,
-  POSITION_RELATIVE,
-  TEXT_DECORATION_NONE,
-  TRANSITION_CUBIC_BEZIER,
-  TOP_ZERO
+  NAV_WIDTH
 } from '@constants';
 
 export const HeaderRoot = styled.header({
-  ...POSITION_RELATIVE,
+  position: 'relative',
   zIndex: 3,
   height: asRem(HEADER_HEIGHT)
 });
 
 export const HeaderSticky = styled.div({
-  ...TOP_ZERO,
   position: 'fixed',
   zIndex: 2,
-  padding: `${asRem(14)} 0`,
+  top: 0,
+  boxShadow: `0 ${asRem(1)} ${asRem(2)} 0 ${CSS_VARS.BORDER}`,
   width: '100%',
   height: asRem(HEADER_HEIGHT),
+  padding: `${asRem(14)} 0`,
   backgroundColor: CSS_VARS.BACKGROUND.HEADER,
-  backdropFilter: 'saturate(180%) blur(8px)',
   WebkitBackdropFilter: 'blur(0.75rem)',
-  boxShadow: `0 ${asRem(1)} ${asRem(2)} 0 ${CSS_VARS.BORDER}`
+  backdropFilter: 'saturate(180%) blur(8px)'
 });
 
 const GenericHeaderItem = styled
   .generic()
   .extend(GenericIconSize, {
-    ...DISPLAY_INLINE_BLOCK,
+    display: 'inline-block',
+    verticalAlign: 'middle',
     padding: asRem(4),
-    textAlign: 'center',
-    verticalAlign: 'middle'
+    textAlign: 'center'
   });
 
 export const HeaderSymbol = styled
@@ -66,17 +59,17 @@ export const HeaderPane = styled.div();
 const GenericHeaderAction = styled
   .generic()
   .extend(GenericHeaderItem, {
-    ...TRANSITION_CUBIC_BEZIER,
     ...focusVisible(boxShadowBorder(4, CSS_VARS.ACCENT)),
+    transition: CUBIC_BEZIER,
     color: CSS_VARS.COLOUR.CONTENT,
     [style.not(style.firstChild)]: {
       marginLeft: asRem(16)
     },
     [style.prop('canHover')]: {
       [style.hover]: {
-        ...TEXT_DECORATION_NONE,
-        color: '#303846',
-        backgroundColor: '#ebedf0'
+        backgroundColor: '#ebedf0',
+        textDecoration: 'none',
+        color: '#303846'
       }
     },
     [style.prop('isRounded')]: {
@@ -86,16 +79,18 @@ const GenericHeaderAction = styled
 
 export const HeaderLink = styled
   .a<HeaderLinkProps>()
-  .extend(GenericHeaderAction, TEXT_DECORATION_NONE);
+  .extend(GenericHeaderAction, {
+    textDecoration: 'none'
+  });
 
 export const Line = styled.span({
-  ...DISPLAY_BLOCK,
-  ...POSITION_ABSOLUTE,
-  width: `calc(100% - ${asRem(8)})`,
-  height: asRem(2),
-  borderRadius: asRem(1),
+  position: 'absolute',
+  display: 'block',
   transform: 'rotate(0deg)',
   transition: '0.25s ease-in-out, color 0s',
+  borderRadius: asRem(1),
+  width: `calc(100% - ${asRem(8)})`,
+  height: asRem(2),
   backgroundColor: 'currentColor',
   [style.nthChild(1)]: {
     top: asRem(7)
@@ -113,8 +108,8 @@ export const HeaderButton = styled
   .button<HeaderButtonProps>()
   .extend(GenericHeaderAction, GenericButtonClears, {
     [style.prop('isToggle')]: {
-      ...OVERFLOW_HIDDEN,
-      ...POSITION_RELATIVE,
+      position: 'relative',
+      overflow: 'hidden',
       [breakpoints.up.lg]: {
         display: 'none'
       }

@@ -7,4 +7,5 @@ export * from './sizes';
 export * from './styles';
 export * from './theme';
 export * from './tokens';
+export * from './transitions';
 export * as TYPOGRAPHY from './typography';

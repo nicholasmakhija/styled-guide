@@ -9,10 +9,10 @@ import {
 
 export const Main = styled.main<MainProps>({
   flex: 1,
+  maxWidth: '100%',
   paddingTop: asRem(CONTENT_SPACER),
   paddingRight: asRem(GUTTER_WIDTH),
   paddingLeft: asRem(GUTTER_WIDTH),
-  maxWidth: '100%',
   [breakpoints.up.lg]: {
     marginLeft: asRem(NAV_WIDTH),
     maxWidth: `calc(100% - ${asRem(NAV_WIDTH)})`

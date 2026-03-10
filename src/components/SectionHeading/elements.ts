@@ -10,12 +10,7 @@ import {
 import {
   BOX,
   CSS_VARS,
-  MARGIN_ZERO,
-  POSITION_ABSOLUTE,
-  POSITION_RELATIVE,
-  TYPOGRAPHY,
-  VISIBILITY_HIDDEN,
-  VISIBILITY_VISIBLE
+  TYPOGRAPHY
 } from '@constants';
 
 export const SectionHeadingButton = styled
@@ -40,57 +35,57 @@ const tooltipAnimationName = 'fade-in-up';
 export const SectionHeadingTooltip = styled
   .span<SectionHeadingTooltipProps>({
     ...BOX,
-    ...POSITION_ABSOLUTE,
     ...TYPOGRAPHY.TINY,
+    position: 'absolute',
     top: tooltipPositionTop,
     left: '50%',
-    width: asRem(tooltipSize),
+    animation: `${duration} ${easingFunction} ${tooltipAnimationName}`,
     marginLeft: asRem((tooltipSize / 2) * -1),
+    width: asRem(tooltipSize),
     background: CSS_VARS.BACKGROUND.TOOLTIP,
     textAlign: 'center',
-    color: CSS_VARS.COLOUR.TOOLTIP,
-    animation: `${duration} ${easingFunction} ${tooltipAnimationName}`
+    color: CSS_VARS.COLOUR.TOOLTIP
   })
   .withCSS(`
   @keyframes ${tooltipAnimationName} {
     0% {
-      opacity: 0;
       top: -100%;
+      opacity: 0;
     }
     100% {
+      top: ${tooltipPositionTop};
       opacity: 1;
-      top: ${tooltipPositionTop}
     }
   }
 `);
 
 export const SectionHeadingText = styled.h2<SectionHeadingTextProps>(
   withScrollMarginTop({
-    ...MARGIN_ZERO,
-    ...TYPOGRAPHY.H2
+    ...TYPOGRAPHY.H2,
+    margin: 0
   })
 );
 
 export const SectionHeadingAction = styled.div({
-  ...POSITION_RELATIVE,
-  margin: `0 0 0 ${asRem(4)}`,
+  position: 'relative',
   transition: `${duration} ${easingFunction}`,
+  margin: `0 0 0 ${asRem(4)}`,
   [breakpoints.up.lg]: {
-    ...VISIBILITY_HIDDEN,
     opacity: 0,
+    visibility: 'hidden',
     marginLeft: 0
   }
 });
 
 export const SectionHeadingRoot = styled.div({
-  ...POSITION_RELATIVE,
+  position: 'relative',
   display: 'flex',
   alignItems: 'center',
   [breakpoints.up.lg]: {
     [style.hover]: {
       [style.selector(SectionHeadingAction)]: {
-        ...VISIBILITY_VISIBLE,
         opacity: 1,
+        visibility: 'visible',
         marginLeft: asRem(4)
       }
     }
