@@ -123,7 +123,9 @@ const expressMiddleware = () => ({
         }
         
         const template = await server.transformIndexHtml(url, sourceHTML);
-        const { updateHTML } = await server.ssrLoadModule(resolvePath('server/index.tsx'));
+        const { updateHTML } = await server.ssrLoadModule(
+          resolvePath('server/index.tsx')
+        );
         const renderedHTML = updateHTML(template, {
           currentPage: url,
           isDark: false,
