@@ -47,8 +47,7 @@ export const Router = ({
     e.preventDefault();
 
     const anchor = e.currentTarget as HTMLAnchorElement;
-    const { pathname } = anchor;
-    const hash = anchor.hash;
+    const { hash, pathname } = anchor;
 
     history.pushState(hash, '', pathname + hash);
     updateRoute(hash, pathname);

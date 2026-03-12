@@ -24,10 +24,20 @@ export const Navigation = ({
 
   const navContentRef = useRef<HTMLDivElement>();
 
+  const close = () => {
+    setIsOpen(false);
+    dispatchCustomEvent(EVENTS.NAV_CLOSED, true);
+  };
+
   const toggleHandler = (event: CustomEvent<boolean>) => {
     const newState = event.detail;
 
     setIsOpen(newState);
+  };
+
+  const clickHandler = (event: Event) => {
+    onClick(event);
+    close();
   };
 
   const closeHandler = (event: Event) => {
@@ -39,10 +49,8 @@ export const Navigation = ({
     const target = event.target as Node;
 
     if (element && !element.contains(target)) {
-      setIsOpen(false);
+      close();
     }
-
-    dispatchCustomEvent(EVENTS.NAV_CLOSED, false);
   };
 
   const keydownHandler = (event: KeyboardEvent) => {
@@ -51,9 +59,7 @@ export const Navigation = ({
     }
 
     if (event.key === KEYS.ESC && isOpen) {
-      setIsOpen(false);
-
-      dispatchCustomEvent(EVENTS.NAV_CLOSED, true);
+      close();
     }
 
     if (event.key === KEYS.TAB) {
@@ -92,7 +98,7 @@ export const Navigation = ({
                 href={path}
                 isTitle
                 isActive={path === currentPath}
-                onClick={onClick}
+                onClick={clickHandler}
               >{title}</NavLink>
             </NavItem>
 
@@ -100,7 +106,7 @@ export const Navigation = ({
               <NavItem key={id}>
                 <NavLink
                   href={`${path}#${id}`}
-                  onClick={onClick}
+                  onClick={clickHandler}
                 >{title}</NavLink>
               </NavItem>
             ))}
