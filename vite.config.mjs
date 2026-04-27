@@ -198,13 +198,7 @@ export default defineConfig({
     react()
   ],
   resolve: {
-    alias: {
-      '@constants': resolvePath('src/constants'),
-      '@ui': resolvePath('src/ui'),
-      '@utils': resolvePath('src/utils'),
-      '@components': resolvePath('src/components'),
-      '@styled': resolvePath('node_modules/@n3e/styled')
-    },
+    tsconfigPaths: true,
     dedupe: ['react']
   }
 });
