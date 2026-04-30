@@ -5,20 +5,22 @@ type HeaderActionProps = {
   isRounded?: boolean;
 };
 
-type HeaderLinkProps = HeaderActionProps & {
+type HeaderLinkProps = Prettify<HeaderActionProps & {
+  children?: React.ReactNode;
   href: string;
   target?: string;
   rel?: string;
-};
+}>;
 
-type HeaderButtonProps = HeaderActionProps & {
+type HeaderButtonProps = Prettify<HeaderActionProps & {
+  children?: React.ReactNode;
   'aria-expanded'?: boolean;
   'aria-controls'?: string;
   isToggle?: boolean;
   isOpen?: boolean;
   onClick?: (e: Event) => void;
   ref?: React.ForwardedRef<HTMLButtonElement | undefined>;
-};
+}>;
 
 type IsDarkProp = {
   isDark: boolean;

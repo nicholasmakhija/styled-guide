@@ -23,7 +23,7 @@ const scrollToElement = (id?: string): void => {
 export const Router = ({
   currentPage,
   pages = {}
-}: AppProps) => {
+}: RouterProps) => {
   const [route, setRoute] = useState<Route>({
     hash: undefined,
     pathname: currentPage,

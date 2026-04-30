@@ -11,10 +11,10 @@ type Page = {
 
 type PageManifest = Record<string, Page>;
 
-type AppProps = IsDarkProp & {
+type AppProps = Prettify<IsDarkProp & {
   currentPage: string;
   pages: PageManifest;
-};
+}>;
 
 // NOTE: keep below in sync with `constants/globals`
 // eslint-disable-next-line no-var
