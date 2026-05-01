@@ -35,13 +35,14 @@ const includesAny = (...searchStrings) =>
 /**
  * @returns {import('vite').Plugin}
  */
-const computedStyleReload = () => ({
+const styleChangeReload = () => ({
   name: 'vite-plugin-computed-style-reload',
   handleHotUpdate({ read, server }) {
     /** @type {Promise<string>} */(read()).then((content) => {
       const computedStyles = content.match(/style.prop[^$]+?]: ?\(/g) || [];
+      const globalStyles = content.match(/withCSS/g) || [];
 
-      if (computedStyles.length) {
+      if (computedStyles.length || globalStyles.length) {
         server.ws.send({
           type: 'full-reload'
         });
@@ -192,7 +193,7 @@ export default defineConfig({
   },
   plugins: [
     expressMiddleware(),
-    computedStyleReload(),
+    styleChangeReload(),
     staticAssetReload(),
     eslint(),
     react()
